@@ -1,38 +1,99 @@
-.App {
-  text-align: center;
+/*************** document level *******************/
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 14px;
+}
+.body-section{
+    min-height: 100vh;
+}
+/* .page-body.body-section-wrapper{
+    background-color: #f3f3f4;
+} */
+/*************** Header *******************/
+nav{
+    background-color: rgba(28,65,94,255);
+}
+.navbar-logo{
+    width: 100px;
+}
+.navbar-profile-logo{
+    width: 50px;
+}
+.nav-menu-item{
+    cursor: pointer;
+    font-size: 18px;
+}
+.nav-menu-left .nav-menu-item:hover,
+.nav-menu-left .nav-menu-item.menu-active{
+    background-color: rgb(196, 98, 45);
+    color: white !important;
+}
+.nav-menu-left .nav-menu-item{
+    border-right: 0.5px solid white;
+}
+.profile-menu{
+    background-color: white;
+    border-left: 1px solid rgba(28,65,94,255);
+    border-right: 1px solid rgba(28,65,94,255);
+    border-bottom: 1px solid rgba(28,65,94,255);
+    top: 100%;
+    width: 100%;
+    right: 0;
+}
+.profile-menu-item{
+    display: block;
+    color: rgba(28,65,94,255);
+}
+.profile-menu-item:not(:first-child){
+    border-top: 1px solid rgba(28,65,94,255);
+}
+.profile-menu-item:hover,
+.profile-menu-item.menu-active{
+    background-color: rgb(196, 98, 45);
+    color: white;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/******************** Assets **********************************/
+.asset-page.page-body{
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.asset-btn{
+    background-color: rgb(196, 98, 45);
+    border: 1px solid rgb(196, 98, 45);
+    color: white;
+    padding: 1rem 2rem;
+    width: 47%;
+    cursor: pointer;
+    text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.asset-btn:hover{
+    background-color: white;
+    color: rgb(196, 98, 45);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.asset-coming-soon-btn{
+    color: rgba(200, 197, 187, 1);
+    border: 1.5px solid rgba(200, 197, 187, 1);
+    cursor: no-drop;
+    padding: 1rem 2rem;
+    width: 47%;
+    cursor: no-drop;
+    text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+.asset-coming-soon-btn:hover{
+    background-color: rgba(200, 197, 187, 1);;
+    color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@media screen and (max-width: 575px) {
+
+    .asset-btn,
+    .asset-coming-soon-btn{
+        width: 100%;
+    }
 }
+/**************************************************************/

@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import './App.css';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import Home from '../src/components/home/index';
+import Profile from '../src/components/profile/index';
+import Assets from '../src/components/assets/index';
+import WorksheetList from '../src/components/worksheet/list';
+import WorksheetInsert from '../src/components/worksheet/insert';
+import WorksheetEdit from '../src/components/worksheet/edit';
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<Home/>} />
+        <Route path="/profile" element={<Profile/>} />
+        <Route path="/assets" element={<Assets/>} />
+        <Route path="/worksheet/list" element={<WorksheetList/>} />
+        <Route path="/worksheet/create" element={<WorksheetInsert/>} />
+        <Route path="/worksheet/edit/:id" element={<WorksheetEdit/>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
