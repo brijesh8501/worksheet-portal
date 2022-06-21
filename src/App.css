@@ -1,14 +1,155 @@
 /*************** document level *******************/
 body{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-family: 14px;
+    font-family: 'Century Gothic', 'Arial Narrow', Arial, sans-serif;
 }
 .body-section{
     min-height: 100vh;
 }
-/* .page-body.body-section-wrapper{
-    background-color: #f3f3f4;
-} */
+.list-table{
+    width: 1270px;
+}
+.btn-primary{
+    background-color: rgb(196, 98, 45);
+    border: 1px solid rgb(196, 98, 45);
+    border-radius: 0;
+    color: white !important;
+}
+.btn-secondary{
+    border-radius: 0;
+}
+.btn-back{
+    padding: 0;
+    border: 0;
+    background-color: inherit;
+    text-decoration: underline;
+}
+.btn-primary:hover,
+.btn-primary:focus{
+    background-color: rgba(196, 98, 45, 0.75);
+    border: 1px solid rgba(196, 98, 45, 0.75);
+}
+.btn-secondary:hover,
+.btn-secondary:focus{
+    background-color: rgba(108, 117, 125, 0.75);
+    border: 1px solid rgba(108, 117, 125, 0.75);
+}
+.cw-33{
+    width: 33.33%;
+}
+.cw-50{
+    width: 50%;
+}
+.square-radio {
+    position: relative;
+    background-image: none !important;
+    background-color: white;
+    border: 1px solid #ced4da;
+    border-radius: 0 !important;
+    width: 30px;
+    height: 30px;
+}
+.form-check-input.square-radio:checked{
+    background-color: black;
+    border-color: black;
+}
+.square-radio:checked::after {
+    content: "✔";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    text-align: center;
+    color: rgb(255, 255, 255) !important;
+    font-size: 19px;
+}
+.alert-box{
+    background-color: #E9ECEF;
+    border: 1px solid #ced4da;
+}
+.form-control,
+.form-select{
+    border-radius: 0;
+}
+.file-custom-control{
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid #ced4da;
+}
+
+.file-custom-control::file-selector-button {
+    border-right: 0;
+}
+.back-img-icon{
+    width: 20px;
+}
+.text-readonly{
+    background-color: #E9ECEF;
+    border-bottom: 1px solid #ced4da;
+    padding: 0.35rem 0.35rem;
+}
+.cfw-500{
+    font-weight: 500;
+}
+
+/**** dialog ******/
+.modal{
+    display: block;
+    visibility: hidden;
+}
+
+.modal-show
+{
+    visibility: visible;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: opacity 0.2s linear; 
+} 
+
+.modal-dialog{
+    max-width: 1100px;
+    transition: transform .3s ease-out,-webkit-transform .3s ease-out;
+}
+
+.modal-show .modal-dialog {
+    -webkit-transform: none;
+    transform: none;
+}
+
+.modal-content 
+{
+    opacity: 0; 
+}
+
+.modal-show .modal-content 
+{
+    opacity: 1; 
+    transition: 0.2s linear; 
+} 
+
+.close{
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+}
+button.close {
+    padding: 1rem 1rem;
+    margin: -1rem -1rem -1rem auto; 
+    background-color: transparent;
+    border: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+/*******************/
+@media screen and (max-width: 575px) {
+
+    .list-group-item{
+        padding: 0.375rem 0.75rem;
+    }
+
+}
 /*************** Header *******************/
 nav{
     background-color: rgba(28,65,94,255);
@@ -97,3 +238,141 @@ nav{
     }
 }
 /**************************************************************/
+/**************** Worksheet list ***************************/
+#list-head-tag{
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 4px;
+    padding: 0.3rem 0.5rem 0.3rem 1rem;
+    background-color: rgba(28,65,94,255) !important;
+    color: #fff;
+}
+#list-head-tag:before {
+    display: inline-block;
+    position: relative;
+    margin-bottom: -20px;
+    margin-left: -15px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 9px 9px 0;
+    border-color: transparent #e7d3c8 transparent transparent;
+}
+.list-table thead th{
+    padding-top: 3rem;
+}
+.list-icon-link{
+    width: 50%;
+}
+.list-icon-link:hover{
+    background-color: #dadadb;
+    border-radius: 3px;
+}
+
+.list-paginate-wrapper .list-group-item{
+    cursor: pointer;
+}
+@media screen and (max-width: 1400px) {
+
+    #list-head-tag{
+        left: -10px;
+    }
+
+}
+/**************** Worksheet create ***************************/
+.worksheet-img-icon{
+    width: 25px;
+}
+.worksheet-form{
+    background-color: #fafafb;
+    border: 1px solid rgba(200, 197, 187, 1);
+}
+/* .worksheet-sidebar{
+    background-color: #fafafb;
+} */
+.worksheet-sidebar{
+    border-bottom: 3px solid rgba(28,65,94,255);
+}
+.worksheet-sidebar-item:not(:first-child){
+    border-top: 1px solid rgba(200, 197, 187, 1);
+}
+.worksheet-sidebar-item{
+    background-color: #fafafb;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+.worksheet-sidebar-item:hover,
+.worksheet-sidebar-item.worksheet-sidebar-item-active,
+.worksheet-sidebar-item-child-list.worksheet-sidebar-item-active,
+.worksheet-sidebar-item-child-list:hover{
+    background-color: rgba(28,65,94,255);
+    color: white;
+}
+.worksheet-sidebar-item-child-wrapper{
+    background-color: #fafafb;
+    margin-left: auto;
+    max-width: 95%;
+    border-bottom: 3px solid rgba(28,65,94,255);
+}
+.worksheet-sidebar-item-child-list{
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+.worksheet-sidebar-item-child-list{
+    border-top: 1px solid rgba(200, 197, 187, 1);
+}
+.worksheet-form-header{
+    border-bottom: 1px solid rgba(200, 197, 187, 1);
+}
+.worksheet-choice{
+    background-color: white;
+}
+.worksheet-choice-title{
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: -9px;
+    padding: 0.3rem 0.5rem 0.3rem 1rem;
+    background-color: rgba(28,65,94,255) !important;
+    color: #fff;
+}
+.worksheet-choice-title:before {
+    display: inline-block;
+    position: relative;
+    margin-bottom: -20px;
+    margin-left: -16px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 9px 9px 0;
+    border-color: transparent #e7d3c8 transparent transparent;
+}
+
+.purchaser-information-title{
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: -9px;
+    padding: 0.3rem 0.5rem 0.3rem 1rem;
+    background-color: rgba(28,65,94,255) !important;
+    color: #fff;
+}
+.purchaser-information-title:before {
+    display: inline-block;
+    position: relative;
+    margin-bottom: -17.5px;
+    margin-left: -16px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 9px 9px 0;
+    border-color: transparent #e7d3c8 transparent transparent;
+}
+/***************** privacy ****************/
+.privacy-link{
+    cursor: pointer;
+}

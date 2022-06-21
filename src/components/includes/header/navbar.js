@@ -39,7 +39,7 @@ const Navbar = (prop) => {
                 label: 'Worksheet',
                 link: '/worksheet/list',
                 menuFor: headerMenu.isWorksheetMenuRequired.menuFor,
-                class: `text-decoration-none nav-menu-item d-flex justify-content-center align-items-center text-white p-4 ${ (currentPagePath.includes('worksheet/list'))? 'menu-active':'' }`
+                class: `text-decoration-none nav-menu-item d-flex justify-content-center align-items-center text-white px-4 py-2 ${ (currentPagePath.includes('worksheet/list'))? 'menu-active':'' }`
             });
     }
     if(headerMenu.isAssetsMenuRequired.flag){
@@ -48,7 +48,7 @@ const Navbar = (prop) => {
             label: 'Assets',
             link: '/assets',
             menuFor: headerMenu.isAssetsMenuRequiredmenuFor,
-            class: `text-decoration-none nav-menu-item d-flex justify-content-center align-items-center text-white p-4 ${ (currentPagePath.includes('assets'))? 'menu-active':'' }`
+            class: `text-decoration-none nav-menu-item d-flex justify-content-center align-items-center text-white px-4 py-2 ${ (currentPagePath.includes('assets'))? 'menu-active':'' }`
         });
     }
 

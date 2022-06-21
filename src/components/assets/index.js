@@ -16,7 +16,8 @@ const Assets = () => {
                             formFieldSettings={ 
                                 { 
                                     label: 'Logo', 
-                                    class: 'text-uppercase asset-btn'
+                                    class: 'text-uppercase asset-btn',
+                                    id: 'assetLogo'
                                 }
                             }
                         /> 
@@ -25,7 +26,8 @@ const Assets = () => {
                             formFieldSettings={ 
                                 { 
                                     label: 'Site Plan', 
-                                    class: 'text-uppercase asset-btn'
+                                    class: 'text-uppercase asset-btn',
+                                    id: 'assetSitePlan'
                                 }
                             }
                         /> 
@@ -34,7 +36,8 @@ const Assets = () => {
                             formFieldSettings={ 
                                 { 
                                     label: 'Floorplans', 
-                                    class: 'text-uppercase asset-btn'
+                                    class: 'text-uppercase asset-btn',
+                                    id: 'assetFloorplans'
                                 }
                             }
                         /> 
@@ -43,7 +46,8 @@ const Assets = () => {
                             formFieldSettings={ 
                                 { 
                                     label: 'Sales Procedures', 
-                                    class: 'text-uppercase asset-btn'
+                                    class: 'text-uppercase asset-btn',
+                                    id: 'assetSalesProcedures'
                                 }
                             }
                         /> 
@@ -52,7 +56,8 @@ const Assets = () => {
                             formFieldSettings={ 
                                 { 
                                     label: 'Amenities', 
-                                    class: 'text-uppercase asset-btn'
+                                    class: 'text-uppercase asset-btn',
+                                    id: 'assetAmenities'
                                 }
                             }
                         /> 
@@ -65,7 +70,8 @@ const Assets = () => {
                             formFieldSettings={ 
                                 { 
                                     label: 'Logo', 
-                                    class: 'text-uppercase asset-coming-soon-btn'
+                                    class: 'text-uppercase asset-coming-soon-btn',
+                                    id: 'assetLogo1'
                                 }
                             }
                         /> 
@@ -74,7 +80,8 @@ const Assets = () => {
                             formFieldSettings={ 
                                 { 
                                     label: 'Worksheet', 
-                                    class: 'text-uppercase asset-coming-soon-btn'
+                                    class: 'text-uppercase asset-coming-soon-btn',
+                                    id: 'assetWorksheet'
                                 }
                             }
                         /> 
@@ -83,7 +90,8 @@ const Assets = () => {
                             formFieldSettings={ 
                                 { 
                                     label: 'Incentives', 
-                                    class: 'text-uppercase asset-coming-soon-btn'
+                                    class: 'text-uppercase asset-coming-soon-btn',
+                                    id: 'assetIncentives'
                                 }
                             }
                         /> 
@@ -92,7 +100,8 @@ const Assets = () => {
                             formFieldSettings={ 
                                 { 
                                     label: 'Broker Point', 
-                                    class: 'text-uppercase asset-coming-soon-btn'
+                                    class: 'text-uppercase asset-coming-soon-btn',
+                                    id: 'assetBrokerPoint'
                                 }
                             }
                         /> 
