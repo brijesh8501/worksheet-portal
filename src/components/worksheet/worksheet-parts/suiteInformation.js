@@ -297,8 +297,8 @@ const SuiteInformation = () => {
                 </div>
                 <div className='worksheet-form-footer pb-3'>
                     <div className='d-flex gap-3 justify-content-end'>
-                        <button className='btn btn-secondary'>Save</button>
-                        <button className='btn btn-primary'>Save and continue</button>
+                        {/* <button className='btn btn-secondary'>Save</button> */}
+                        <button className='btn btn-primary'>Continue</button>
                     </div>
                 </div>
             </div>

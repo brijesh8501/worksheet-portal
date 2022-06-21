@@ -72,7 +72,7 @@ const Acknowledgment = () => {
                         <button className='btn btn-back'>
                             <img src='/assets/left-arrow.png' className='back-img-icon img-fluid' />Back
                         </button>
-                        <button className='btn btn-secondary'>Save</button>
+                        {/* <button className='btn btn-secondary'>Save</button> */}
                         <button className='btn btn-primary'>Submit worksheet</button>
                     </div>
                 </div>

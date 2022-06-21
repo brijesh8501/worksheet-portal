@@ -11,7 +11,7 @@ class OtherInformation extends React.Component {
     handleChange = (event) => {
         console.log(event.target.value);
     }
-    
+
     render(){
         return (
             <div className='worksheet-form ps-4 pe-3' id='worksheetForm'>
@@ -55,7 +55,7 @@ class OtherInformation extends React.Component {
                             <button className='btn btn-back'>
                                 <img src='/assets/left-arrow.png' className='back-img-icon img-fluid' />Back
                             </button>
-                            <button className='btn btn-secondary'>Save</button>
+                            {/* <button className='btn btn-secondary'>Save</button> */}
                             <button className='btn btn-primary'>Save and continue</button>
                         </div>
                     </div>
