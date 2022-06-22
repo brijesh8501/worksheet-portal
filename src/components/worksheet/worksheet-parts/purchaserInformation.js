@@ -70,7 +70,9 @@ class PurchaserInformation extends React.Component {
                                                 { 
                                                     class: 'form-control',
                                                     id: `${this.state.purchaserPrefix}firstName`,
-                                                    name: `${this.state.purchaserPrefix}firstName`
+                                                    name: `${this.state.purchaserPrefix}firstName`,
+                                                    type: 'text',
+                                                    placeholder: 'Enter first name'
                                                 }
                                             }
                                         />
@@ -83,7 +85,9 @@ class PurchaserInformation extends React.Component {
                                                 { 
                                                     class: 'form-control',
                                                     id: `lastName`,
-                                                    name: `lastName`
+                                                    name: `lastName`,
+                                                    type: 'text',
+                                                    placeholder: 'Enter last name'
                                                 }
                                             }
                                         />
@@ -97,7 +101,9 @@ class PurchaserInformation extends React.Component {
                                             { 
                                                 class: 'form-control',
                                                 id: `address`,
-                                                name: `address`
+                                                name: `address`,
+                                                type: 'text',
+                                                placeholder: 'Enter address'
                                             }
                                         }
                                     />
@@ -111,7 +117,9 @@ class PurchaserInformation extends React.Component {
                                                 { 
                                                     class: 'form-control',
                                                     id: `city`,
-                                                    name: `city`
+                                                    name: `city`,
+                                                    type: 'text',
+                                                    placeholder: 'Enter city'
                                                 }
                                             }
                                         />
@@ -124,7 +132,9 @@ class PurchaserInformation extends React.Component {
                                                 { 
                                                     class: 'form-control',
                                                     id: `province`,
-                                                    name: `province`
+                                                    name: `province`,
+                                                    type: 'text',
+                                                    placeholder: 'Enter province/state/region'
                                                 }
                                             }
                                         />
@@ -139,7 +149,9 @@ class PurchaserInformation extends React.Component {
                                                 { 
                                                     class: 'form-control',
                                                     id: `country`,
-                                                    name: `country`
+                                                    name: `country`,
+                                                    type: 'text',
+                                                    placeholder: 'Enter country'
                                                 }
                                             }
                                         />
@@ -152,7 +164,9 @@ class PurchaserInformation extends React.Component {
                                                 { 
                                                     class: 'form-control',
                                                     id: `postalCode`,
-                                                    name: `postalCode`
+                                                    name: `postalCode`,
+                                                    type: 'text',
+                                                    placeholder: 'Enter postal code'
                                                 }
                                             }
                                         />
@@ -167,7 +181,9 @@ class PurchaserInformation extends React.Component {
                                                 { 
                                                     class: 'form-control',
                                                     id: `phoneNumber`,
-                                                    name: `phoneNumber`
+                                                    name: `phoneNumber`,
+                                                    type: 'text',
+                                                    placeholder: 'Enter phone number'
                                                 }
                                             }
                                         />
@@ -180,7 +196,9 @@ class PurchaserInformation extends React.Component {
                                                 { 
                                                     class: 'form-control',
                                                     id: `emailAddress`,
-                                                    name: `emailAddress`
+                                                    name: `emailAddress`,
+                                                    type: 'text',
+                                                    placeholder: 'Enter email address'
                                                 }
                                             }
                                         />
@@ -195,7 +213,9 @@ class PurchaserInformation extends React.Component {
                                                 { 
                                                     class: 'form-control',
                                                     id: `dob`,
-                                                    name: `dob`
+                                                    name: `dob`,
+                                                    type: 'text',
+                                                    placeholder: 'Enter date of birth'
                                                 }
                                             }
                                         />
@@ -249,7 +269,9 @@ class PurchaserInformation extends React.Component {
                                                 { 
                                                     class: 'form-control',
                                                     id: `occupation`,
-                                                    name: `occupation`
+                                                    name: `occupation`,
+                                                    type: 'text',
+                                                    placeholder: 'Enter occupation'
                                                 }
                                             }
                                         />
@@ -262,7 +284,9 @@ class PurchaserInformation extends React.Component {
                                                 { 
                                                     class: 'form-control',
                                                     id: `employer`,
-                                                    name: `employer`
+                                                    name: `employer`,
+                                                    type: 'text',
+                                                    placeholder: 'Enter employer'
                                                 }
                                             }
                                         />

@@ -16,7 +16,8 @@ class Worksheet extends React.Component {
                 purchaserInformation: {
                     primaryPurchaser: true, 
                     secondaryPurchaser: false
-                }
+                },
+                brijesh: 'no'
             },
             defaultSidebarMenuChildListActive: {
                 purchaserInformation: 'primaryPurchaser'
@@ -24,7 +25,6 @@ class Worksheet extends React.Component {
         };
 
     }
-
     showSectionBySidebar = (e) => {
         const sectionClicked = e.target.attributes.getNamedItem('data-sidebar').value;
         this.setState({
@@ -37,20 +37,41 @@ class Worksheet extends React.Component {
                 :
                 this.state.defaultSidebarMenuChildListActive[sectionClicked];
 
-            let setChildActive = {...this.state.sidebarMenuChildListActive};
+            let setChildActive = { ...this.state.sidebarMenuChildListActive };
 
             Object.keys(setChildActive[sectionClicked]).map( (item, i) => {
                 setChildActive[sectionClicked][item] = ( sectionClickedChildItem === item )? true : false;
             });
 
             this.setState({
-                setChildActive
+                sidebarMenuChildListActive: setChildActive
             });
 
         }
     }
+    componentDidUpdate(prevProps, prevState) {
+        const prevActiveMenu = prevState.sidebarMenuActive;
+        const currentActiveMenu = this.state.sidebarMenuActive;
+        console.log(prevState, 'prev');
+        console.log(this.state, 'current');
+        if (
+            ( prevActiveMenu !== currentActiveMenu ) ||
+            ( 
+                ( prevActiveMenu === currentActiveMenu ) &&
+                ( prevState.sidebarMenuChildListActive[prevActiveMenu] === this.state.sidebarMenuChildListActive[currentActiveMenu]  ) 
+            )
+        ) {
 
+            const body = document.querySelector('#root');
+
+            body.scrollIntoView({
+                behavior: 'smooth'
+            }, 500)
+
+        }
+    }
     render(){
+        console.log(this.state);
         return (<section className='my-5 py-5 container body-section'>
             <div className='page-body body-section-wrapper'>
                 <h1 className='text-center mb-5'>Worksheet</h1>

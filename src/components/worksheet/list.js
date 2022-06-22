@@ -84,10 +84,10 @@ const WorksheetList = () => {
                                             <td>Data 5</td>
                                             <td>Data 6</td>
                                             <td className='d-flex flex-wrap justify-content-center'>
-                                                <Link to='/worksheet/edit' className='list-icon-link'>
+                                                <Link to='/worksheet/edit/1' className='list-icon-link'>
                                                     <img src='/assets/edit-icon.png' className='img-fluid' />
                                                 </Link>
-                                                <Link to='/worksheet/delete' className='list-icon-link'>
+                                                <Link to='/worksheet/delete/1' className='list-icon-link'>
                                                     <img src='/assets/delete-icon.png' className='img-fluid' />
                                                 </Link>
                                             </td>
@@ -100,10 +100,10 @@ const WorksheetList = () => {
                                             <td>Data 5</td>
                                             <td>Data 6</td>
                                             <td className='d-flex flex-wrap justify-content-center'>
-                                                <Link to='/worksheet/edit' className='list-icon-link'>
+                                                <Link to='/worksheet/edit/2' className='list-icon-link'>
                                                     <img src='/assets/edit-icon.png' className='img-fluid' />
                                                 </Link>
-                                                <Link to='/worksheet/delete' className='list-icon-link'>
+                                                <Link to='/worksheet/delete/2' className='list-icon-link'>
                                                     <img src='/assets/delete-icon.png' className='img-fluid' />
                                                 </Link>
                                             </td>

@@ -2,7 +2,6 @@ import React from 'react';
 
 // eslint-disable-next-line react/prop-types
 const Modal = ({ children, show, hideModal, modalTitle, modalFooter }) => {
-  console.log(modalFooter);
   return(
   <div
     className={`modal ${show ? 'modal-show' : ''}`}

@@ -13,7 +13,7 @@ const createField = (inputType, formFieldSettings) => {
             }
           </select>);
         case 'textbox':
-          return (<input type='text' className={formFieldSettings.class} id={formFieldSettings.id} name={formFieldSettings.name} />);
+          return (<input type={formFieldSettings.type} placeholder={formFieldSettings.placeholder} className={formFieldSettings.class} id={formFieldSettings.id} name={formFieldSettings.name} />);
         case 'file':
           return (<input type='file' className={formFieldSettings.class} id={formFieldSettings.id} name={formFieldSettings.name} />);
         case 'textarea':
