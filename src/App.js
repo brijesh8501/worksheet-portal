@@ -1,6 +1,7 @@
 
 import './App.css';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import Home from '../src/components/home/index';
 import Profile from '../src/components/profile/index';
 import Assets from '../src/components/assets/index';
@@ -13,6 +14,10 @@ import ForgotPassword from './components/login/forgotPassword';
 import ChangePassword from './components/login/changePassword';
 
 const App = () => {
+
+  const myState = useSelector( (state) => state.myState);
+  const { portalSetting } = myState;
+
   return (
     <BrowserRouter>
       <Routes>
@@ -22,10 +27,19 @@ const App = () => {
         <Route exact path="/forgot-password" element={<ForgotPassword/>} />
         <Route exact path="/change-password" element={<ChangePassword/>} />
         <Route path="/profile" element={<Profile/>} />
-        <Route path="/assets" element={<Assets/>} />
-        <Route path="/worksheet/list" element={<WorksheetList/>} />
-        <Route path="/worksheet/create" element={<WorksheetInsert/>} />
-        <Route path="/worksheet/edit/:id" element={<WorksheetEdit/>} />
+        {
+          (portalSetting.worksheet)&&
+          <>
+            <Route path="/worksheet/list" element={<WorksheetList/>} />
+            <Route path="/worksheet/create" element={<WorksheetInsert/>} />
+            <Route path="/worksheet/edit/:id" element={<WorksheetEdit/>} />
+          </>
+        } 
+        {
+          (portalSetting.assets)&&
+          <Route path="/assets" element={<Assets/>} />
+        }
+      
       </Routes>
     </BrowserRouter>
   );

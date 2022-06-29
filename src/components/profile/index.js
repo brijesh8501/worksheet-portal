@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Navbar from '../includes/header/navbar';
 import Footer from '../includes/footer/index';
 import FormFields from '../form-fields';
 import PrivacyPolicy from '../includes/privacy';
 import Modal from '../includes/modal';
+import { getFormData } from '../../../action';
 
 const Profile = () => {
 
@@ -23,6 +25,17 @@ const Profile = () => {
         console.log(event.target.value);
     }
 
+    const myState = useSelector( (state) => state.myState);
+    const dispatch = useDispatch();
+
+    const { profileForm, validateForm } = myState;
+
+    const profileInformationData = profileForm.profileInformation;
+    const validateProfileInformationData = profileForm.worksheetForm.profileInformation;
+
+    const getFormFieldData = (e) => {
+        dispatch( getFormData({ inputField: { [e.target.name]: e.target.value }, worksheetFormType: 'otherInformation' }) );
+    }
     return (
         <div>
             <Navbar/>
@@ -46,7 +59,8 @@ const Profile = () => {
                                                 id: `firstName`,
                                                 name: `firstName`,
                                                 type: 'text',
-                                                placeholder: 'Enter agent first name'
+                                                placeholder: 'Enter agent first name',
+                                                onChange: getFormFieldData
                                             }
                                         }
                                     />
@@ -61,7 +75,8 @@ const Profile = () => {
                                                 id: `lastName`,
                                                 name: `lastName`,
                                                 type: 'text',
-                                                placeholder: 'Enter agent last name'
+                                                placeholder: 'Enter agent last name',
+                                                onChange: getFormFieldData
                                             }
                                         }
                                     />
@@ -78,7 +93,8 @@ const Profile = () => {
                                                 id: `phoneNumber`,
                                                 name: `phoneNumber`,
                                                 type: 'text',
-                                                placeholder: 'Enter agent phone number'
+                                                placeholder: 'Enter agent phone number',
+                                                onChange: getFormFieldData
                                             }
                                         }
                                     />
@@ -93,7 +109,8 @@ const Profile = () => {
                                                 id: `emailAddress`,
                                                 name: `emailAddress`,
                                                 type: 'text',
-                                                placeholder: 'Enter agent email address'
+                                                placeholder: 'Enter agent email address',
+                                                onChange: getFormFieldData
                                             }
                                         }
                                     />
@@ -110,7 +127,8 @@ const Profile = () => {
                                                 id: `brokerageName`,
                                                 name: `brokerageName`,
                                                 type: 'text',
-                                                placeholder: 'Enter brokerage name'
+                                                placeholder: 'Enter brokerage name',
+                                                onChange: getFormFieldData
                                             }
                                         }
                                     />
@@ -125,7 +143,8 @@ const Profile = () => {
                                                 id: `brokeragePhoneNumber`,
                                                 name: `brokeragePhoneNumber`,
                                                 type: 'text',
-                                                placeholder: 'Enter brokerage phone number'
+                                                placeholder: 'Enter brokerage phone number',
+                                                onChange: getFormFieldData
                                             }
                                         }
                                     />
@@ -141,7 +160,8 @@ const Profile = () => {
                                             id: `brokerageAddress`,
                                             name: `brokergaeAddress`,
                                             type: 'text',
-                                            placeholder: 'Enter brokerage address'
+                                            placeholder: 'Enter brokerage address',
+                                            onChange: getFormFieldData
                                         }
                                     }
                                 />
@@ -157,7 +177,8 @@ const Profile = () => {
                                                 id: `brokerageCity`,
                                                 name: `brokerageCity`,
                                                 type: 'text',
-                                                placeholder: 'Enter brokerage city'
+                                                placeholder: 'Enter brokerage city',
+                                                onChange: getFormFieldData
                                             }
                                         }
                                     />
@@ -172,7 +193,8 @@ const Profile = () => {
                                                 id: `brokerageProvince`,
                                                 name: `brokerageProvince`,
                                                 type: 'text',
-                                                placeholder: 'Enter brokerage province/state/region'
+                                                placeholder: 'Enter brokerage province/state/region',
+                                                onChange: getFormFieldData
                                             }
                                         }
                                     />
@@ -189,7 +211,8 @@ const Profile = () => {
                                                 id: `brokerageCountry`,
                                                 name: `brokerageCountry`,
                                                 type: 'text',
-                                                placeholder: 'Enter brokerage country'
+                                                placeholder: 'Enter brokerage country',
+                                                onChange: getFormFieldData
                                             }
                                         }
                                     />
@@ -204,7 +227,8 @@ const Profile = () => {
                                                 id: `brokeragePostalCode`,
                                                 name: `brokeragePostalCode`,
                                                 type: 'text',
-                                                placeholder: 'Enter brokerage postal code'
+                                                placeholder: 'Enter brokerage postal code',
+                                                onChange: getFormFieldData
                                             }
                                         }
                                     />

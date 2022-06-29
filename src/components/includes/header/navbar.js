@@ -1,17 +1,21 @@
 import React from 'react';
 import CreateMenu from '../header/createmenu';
+import { useSelector, useDispatch } from 'react-redux';
 
 const Navbar = (prop) => {
+
+    const myState = useSelector( (state) => state.myState);
+    const { portalSetting } = myState;
 
     const currentPagePath = window.location.pathname;
     const pageConfiguration = {
         headerMenu: {
             isWorksheetMenuRequired: {
-                flag: true,
+                flag: portalSetting.worksheet,
                 menuFor: 'Worksheet'
             },
             isAssetsMenuRequired: {
-                flag: true,
+                flag: portalSetting.assets,
                 menuFor: 'Assets'
             }
         }
@@ -32,7 +36,7 @@ const Navbar = (prop) => {
     }
     
     const headerMenu = pageConfiguration.headerMenu;
-
+ 
     if(headerMenu.isWorksheetMenuRequired.flag){
         menuList['menuLeft'].push({
                 name: 'worksheet',
@@ -44,7 +48,7 @@ const Navbar = (prop) => {
     }
     if(headerMenu.isAssetsMenuRequired.flag){
         menuList['menuLeft'].push({
-            name: 'Assets',
+            name: 'assets',
             label: 'Assets',
             link: '/assets',
             menuFor: headerMenu.isAssetsMenuRequiredmenuFor,
