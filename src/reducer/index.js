@@ -38,26 +38,26 @@ const myState = (state = initialState, action) => {
 
         case 'GET_FORM_DATA':
 
-            const worksheetFormType = action.payload.worksheetFormType;
+            const { parentForm, childForm }  = action.payload.formType;
             const payloadKeyValue = Object.entries(action.payload.inputField);
             
             let getFormData = {
                 ...state,
-                worksheetForm:{
-                    ...state.worksheetForm,
-                    [worksheetFormType]:(
-                        worksheetFormType === 'secondaryPurchaser' && 
+                [parentForm]:{
+                    ...state[parentForm],
+                    [childForm]:(
+                        childForm === 'secondaryPurchaser' && 
                         ( payloadKeyValue[0][0] === 'isSecondaryPurchaserRequired' || 
                         payloadKeyValue[0][0] === 'No'
                         ) 
                     )?
                     { 
-                        ...initialState.worksheetForm[worksheetFormType], 
+                        ...initialState[parentForm][childForm], 
                         ...{ [payloadKeyValue[0][0]]: payloadKeyValue[0][1] }  
                     }
                     :
                     {
-                        ...state.worksheetForm[worksheetFormType],
+                        ...state[parentForm][childForm],
                         ...{ [payloadKeyValue[0][0]]: payloadKeyValue[0][1] }
                     }
                 }

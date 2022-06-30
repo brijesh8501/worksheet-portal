@@ -5,7 +5,7 @@ import Footer from '../includes/footer/index';
 import FormFields from '../form-fields';
 import PrivacyPolicy from '../includes/privacy';
 import Modal from '../includes/modal';
-import { getFormData } from '../../../action';
+import { getFormData } from '../../action';
 
 const Profile = () => {
 
@@ -29,12 +29,20 @@ const Profile = () => {
     const dispatch = useDispatch();
 
     const { profileForm, validateForm } = myState;
-
+  
     const profileInformationData = profileForm.profileInformation;
-    const validateProfileInformationData = profileForm.worksheetForm.profileInformation;
+    const validateProfileInformationData = validateForm.profileForm.profileInformation;
+
+    
 
     const getFormFieldData = (e) => {
-        dispatch( getFormData({ inputField: { [e.target.name]: e.target.value }, worksheetFormType: 'otherInformation' }) );
+        dispatch( getFormData({ 
+            inputField: { [e.target.name]: e.target.value }, 
+            formType: {
+                parentForm: 'profileForm',
+                childForm: 'profileInformation' 
+            }
+        }) );
     }
     return (
         <div>

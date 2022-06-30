@@ -5,22 +5,31 @@ import { getFormData } from '../../../action';
 
 const PurchaserInformation = (props) => {
 
+    const whichParentForm = 'worksheetForm';
+    const whichChildForm = props.purchaserSlug;
+
     const myState = useSelector( (state) => state.myState);
     const dispatch = useDispatch();
 
     const { worksheetForm, validateForm } = myState;
 
-    const purchaserInformationData = worksheetForm[props.purchaserSlug];
-    const validatePurchaserInformationData = validateForm.worksheetForm[props.purchaserSlug];
+    const purchaserInformationData = worksheetForm[whichChildForm];
+    const validatePurchaserInformationData = validateForm.worksheetForm[whichChildForm];
 
     const purchaserPrefix = props.purchaserPrefix;
 
     const getFormFieldData = (e) => {
-        dispatch( getFormData({ inputField: { [e.target.name]: e.target.value }, worksheetFormType: props.purchaserSlug }) );
+        dispatch( getFormData({ 
+            inputField: { [e.target.name]: e.target.value },
+            formType: {
+                parentForm: whichParentForm,
+                childForm: whichChildForm 
+            }  
+        }) );
     }
     return(
-        <div className='worksheet-form ps-4 pe-3' id='worksheetForm'>
-            <div className='col-12 worksheet-suite-information' id='worksheetpurchaserInformation'>
+        <div className='worksheet-form ps-4 pe-3' id={whichParentForm}>
+            <div className='col-12 worksheet-suite-information' id={`worksheet${whichParentForm}`}>
                 <div className='worksheet-form-header py-3'>
                     <h2 className='h4 mb-0'>{props.pageTitle}</h2>
                 </div>

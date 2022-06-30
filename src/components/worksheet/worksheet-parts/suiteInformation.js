@@ -5,6 +5,10 @@ import { getFormData } from '../../../action';
 
 const SuiteInformation = (props) => {
 
+    const whichParentForm = 'worksheetForm';
+    const whichChildForm = 'suiteInformation';
+    const whichNextForm = 'otherInformation';
+
     const myState = useSelector( (state) => state.myState);
     const dispatch = useDispatch();
 
@@ -14,11 +18,17 @@ const SuiteInformation = (props) => {
     const validateSuiteInformationData = validateForm.worksheetForm.suiteInformation;
 
     const getFormFieldData = (e) => {
-        dispatch( getFormData({ inputField: { [e.target.name]: e.target.value }, worksheetFormType: 'suiteInformation' }) );
+        dispatch( getFormData({ 
+            inputField: { [e.target.name]: e.target.value }, 
+            formType: {
+                parentForm: whichParentForm,
+                childForm: whichChildForm 
+            }
+        }) );
     }
     return (
-        <div className='worksheet-form ps-4 pe-3' id='worksheetForm'>
-            <div className='col-12 worksheet-suite-information' id='worksheetsuiteInformation'>
+        <div className='worksheet-form ps-4 pe-3' id={whichParentForm}>
+            <div className='col-12 worksheet-suite-information' id={`worksheet${whichChildForm}`}>
                 <div className='worksheet-form-header py-3'>
                     <h2 className='h4 mb-0'>{props.pageTitle}</h2>
                 </div>
@@ -115,7 +125,7 @@ const SuiteInformation = (props) => {
                 <div className='worksheet-form-footer pb-3'>
                     <div className='d-flex gap-3 justify-content-end'>
                         {/* <button className='btn btn-secondary'>Save</button> */}
-                        <button className='btn btn-primary' onClick={ () => { props.showSection({sectionClicked:'otherInformation'}) } }>Continue</button>
+                        <button className='btn btn-primary' onClick={ () => { props.showSection({sectionClicked:whichNextForm}) } }>Continue</button>
                     </div>
                 </div>
             </div>
