@@ -1,6 +1,7 @@
 import React from 'react';
 
-const createField = (inputType, formFieldSettings) => {
+const createField = (inputType, formFieldSettings, formFieldMasking) => {
+
     switch(inputType) {
         case 'div-button':
           return (<div className={formFieldSettings.class} id={formFieldSettings.id}>{formFieldSettings.label}</div>);
@@ -36,7 +37,9 @@ const createField = (inputType, formFieldSettings) => {
               id={formFieldSettings.id} 
               name={formFieldSettings.name}
               value={formFieldSettings.value}
-              onChange={formFieldSettings.onChange} 
+              onChange={formFieldSettings.onChange}
+              data-validatetype={ (formFieldMasking)? formFieldMasking.mask : formFieldMasking }
+              maxLength = { (formFieldSettings.maxlength)? formFieldSettings.maxlength : "" }
             />);
         case 'file':
           return (
@@ -101,8 +104,9 @@ const FormFields = (props) => {
 
     const formField = props.formField;
     const formFieldSettings = props.formFieldSettings;
+    const formFieldMasking = (props.formFieldMasking) ? props.formFieldMasking : null; 
 
-    return createField(formField, formFieldSettings);
+    return createField(formField, formFieldSettings, formFieldMasking);
 }
 
 export default FormFields;

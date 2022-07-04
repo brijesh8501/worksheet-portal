@@ -202,15 +202,15 @@ export const initialState = {
             profileInformation:{
                 firstName: ['required'],
                 lastName: ['required'],
-                phoneNumber: ['required'],
-                emailAddress: ['required'],
+                phoneNumber: ['required', 'phoneNumber'],
+                emailAddress: ['required', 'emailAddress'],
                 brokerageName: ['required'],
                 brokeragePhoneNumber: ['required'],
                 brokerageAddress: ['required'],
                 brokerageCity: ['required'],
                 brokerageProvince: ['required'],
                 brokerageCountry: ['required'],
-                brokeragePostalCode: ['required']
+                brokeragePostalCode: ['required', 'postalCode']
             }
         },
         worksheetForm:{

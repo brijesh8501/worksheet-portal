@@ -6,10 +6,16 @@ import FormFields from '../form-fields';
 import PrivacyPolicy from '../includes/privacy';
 import Modal from '../includes/modal';
 import { getFormData } from '../../action';
+import { validation } from '../validation';
 
 const Profile = () => {
 
     const [show, setShow] = useState(false);
+
+    const firstLetter = /(?!.*[DFIOQU])[A-VXY]/i;
+    const letter = /(?!.*[DFIOQU])[A-Z]/i;
+    const digit = /[0-9]/;
+    const maskPostalCode = [firstLetter, digit, letter, " ", digit, letter, digit];
 
     const showModal = () => {
         setShow(true);
@@ -20,10 +26,6 @@ const Profile = () => {
         setShow(false);
         document.body.style.overflow = "scroll";
     };
-
-    const handleChange = (event) => {
-        console.log(event.target.value);
-    }
 
     const myState = useSelector( (state) => state.myState);
     const dispatch = useDispatch();
@@ -36,14 +38,28 @@ const Profile = () => {
     
 
     const getFormFieldData = (e) => {
-        dispatch( getFormData({ 
-            inputField: { [e.target.name]: e.target.value }, 
-            formType: {
-                parentForm: 'profileForm',
-                childForm: 'profileInformation' 
+
+        const profileInformationFieldToBeValidate = validateForm.profileForm.profileInformation[e.target.name];      
+        const validateType = e.target.getAttribute('data-validatetype');
+
+        if(profileInformationFieldToBeValidate.includes(validateType)){
+
+            const validateData = {
+                type: validateType,
+                value: e.target.value,
+                maxLength: e.target.getAttribute('maxlength')
             }
-        }) );
+            const validatedData = validation(validateData);
+            dispatch( getFormData({ 
+                inputField: { [e.target.name]: (validatedData) ? validatedData : '' }, 
+                formType: {
+                    parentForm: 'profileForm',
+                    childForm: 'profileInformation' 
+                }
+            }) );
+        }
     }
+
     return (
         <div>
             <Navbar/>
@@ -93,16 +109,23 @@ const Profile = () => {
                             <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
                                     <label className='form-label'>Agent phone number <span className='text-danger'>*</span></label>
-                                    <FormFields 
-                                        formField='textbox' 
+                                    <FormFields
+                                        formField='textbox'
                                         formFieldSettings={ 
                                             { 
                                                 class: 'form-control',
                                                 id: `phoneNumber`,
                                                 name: `phoneNumber`,
                                                 type: 'text',
+                                                value: profileInformationData['phoneNumber'],
                                                 placeholder: 'Enter agent phone number',
+                                                maxlength: '10',
                                                 onChange: getFormFieldData
+                                            }
+                                        }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'phoneNumber',
                                             }
                                         }
                                     />
@@ -119,6 +142,11 @@ const Profile = () => {
                                                 type: 'text',
                                                 placeholder: 'Enter agent email address',
                                                 onChange: getFormFieldData
+                                            }
+                                        }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'emailAddress',
                                             }
                                         }
                                     />
@@ -235,8 +263,15 @@ const Profile = () => {
                                                 id: `brokeragePostalCode`,
                                                 name: `brokeragePostalCode`,
                                                 type: 'text',
+                                                value: profileInformationData['brokeragePostalCode'],
+                                                maxlength: '6',
                                                 placeholder: 'Enter brokerage postal code',
                                                 onChange: getFormFieldData
+                                            }
+                                        }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'postalCode',
                                             }
                                         }
                                     />
@@ -284,7 +319,6 @@ const Profile = () => {
                                                             id: 'appointmentTypeYes',
                                                             name: 'appointmentType',
                                                             value: 'Yes',
-                                                            onChange: handleChange
                                                         }
                                                     ]
                                                 }
