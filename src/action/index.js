@@ -5,8 +5,8 @@ const action = actionCreater;
 export const changeWorksheetSideBar = (payload) => { 
     return { type: action.CHANGE_WORKSHEET_SIDEBAR, payload } 
 }
-export const showHideNavProfileMenu = () => { 
-    return { type: action.SHOW_HIDE_NAV_PROFILE_MENU } 
+export const showHideNavProfileMenu = (payload) => { 
+    return { type: action.SHOW_HIDE_NAV_PROFILE_MENU, payload } 
 }
 export const navLeftMenuLimit = () => { 
     return { type: action.NAV_LEFT_MENU_LIMIT } 

@@ -38,6 +38,7 @@ const createField = (inputType, formFieldSettings, formFieldMasking) => {
               name={formFieldSettings.name}
               value={formFieldSettings.value}
               onChange={formFieldSettings.onChange}
+              onBlur={formFieldSettings.onBlur}
               data-validatetype={ (formFieldMasking)? formFieldMasking.mask : formFieldMasking }
               maxLength = { (formFieldSettings.maxlength)? formFieldSettings.maxlength : "" }
             />);
@@ -71,6 +72,7 @@ const createField = (inputType, formFieldSettings, formFieldMasking) => {
                         value={item.value} 
                         id={item.id} 
                         name={item.name} 
+                        data-validatetype={ (formFieldMasking)? formFieldMasking.mask : formFieldMasking }
                         checked={item.checked}
                         onChange={item.onChange}/>
                       <label htmlFor={item.id} className='form-label mb-0'>{item.label}</label>
@@ -87,7 +89,15 @@ const createField = (inputType, formFieldSettings, formFieldMasking) => {
                 formFieldSettings.optionData.map( (item, i) => {
                   return ( 
                     <div key={i} className='d-flex gap-2 justify-content-center align-items-center'>
-                      <input type='checkbox' className={item.class} value={item.value} id={item.id} name={item.name} onChange={item.onChange}/>
+                      <input 
+                        type='checkbox' 
+                        className={item.class} 
+                        value={item.value} 
+                        id={item.id} 
+                        name={item.name} 
+                        data-validatetype={ (formFieldMasking)? formFieldMasking.mask : formFieldMasking }
+                        onChange={item.onChange}
+                      />
                       <label htmlFor={item.id} className='form-label mb-0'>{item.label}</label>
                     </div>
                   );

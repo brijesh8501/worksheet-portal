@@ -1,10 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import FormFields from '../form-fields';
 import HtmlWrapper from './includes/htmlWrapper';
 import { Link } from 'react-router-dom';
+import { getFormData, resetFormData } from '../../action';
+import { setFormFieldDataToState } from '../form-setup';
 
 const Login = () => {
 
+    const myState = useSelector( (state) => state.myState);
+    const dispatch = useDispatch();
+
+    const { profileForm } = myState;
+  
+    const loginInformationData = profileForm.loginInformation;
+
+    const formFieldData = (e) => {
+
+        const formFieldDataSet = {
+            parentForm: 'profileForm',
+            childForm: 'loginInformation',
+            event: e
+        };
+
+        setFormFieldDataToState(formFieldDataSet);
+    }
+    useEffect(() => {
+
+        dispatch ( resetFormData('profileForm') );
+
+    }, []);
     return(
         <div>
             <HtmlWrapper>
@@ -24,7 +49,14 @@ const Login = () => {
                                     id: `emailAddress`,
                                     name: `emailAddress`,
                                     type: 'text',
-                                    placeholder: 'Enter email address'
+                                    placeholder: 'Enter email address',
+                                    value: loginInformationData['emailAddress'],
+                                    onChange: formFieldData
+                                }
+                            }
+                            formFieldMasking={
+                                {
+                                    mask: 'required',
                                 }
                             }
                         />
@@ -39,7 +71,14 @@ const Login = () => {
                                     id: `password`,
                                     name: `password`,
                                     type: 'password',
-                                    placeholder: 'Enter password'
+                                    placeholder: 'Enter password',
+                                    value: loginInformationData['password'],
+                                    onChange: formFieldData
+                                }
+                            }
+                            formFieldMasking={
+                                {
+                                    mask: 'required',
                                 }
                             }
                         />

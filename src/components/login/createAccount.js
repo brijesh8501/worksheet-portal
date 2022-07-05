@@ -1,10 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import FormFields from '../form-fields';
 import HtmlWrapper from './includes/htmlWrapper';
 import { Link } from 'react-router-dom';
+import { getFormData, resetFormData } from '../../action';
+import { setFormFieldDataToState } from '../form-setup';
 
 const CreateAccount = () => {
 
+    const myState = useSelector( (state) => state.myState);
+    const dispatch = useDispatch();
+
+    const { profileForm } = myState;
+  
+    const createAccountInformationData = profileForm.createAccountInformation;
+
+    const formFieldData = (e) => {
+
+        const formFieldDataSet = {
+            parentForm: 'profileForm',
+            childForm: 'createAccountInformation',
+            event: e
+        };
+
+        setFormFieldDataToState(formFieldDataSet);
+    }
+    useEffect(() => {
+
+        dispatch ( resetFormData('profileForm') );
+
+    }, []);
     return(
         <div>
              <HtmlWrapper>
@@ -26,7 +51,14 @@ const CreateAccount = () => {
                                         id: `firstName`,
                                         name: `firstName`,
                                         type: 'text',
-                                        placeholder: 'Enter first name'
+                                        placeholder: 'Enter first name',
+                                        value: createAccountInformationData['firstName'],
+                                        onChange: formFieldData
+                                    }
+                                }
+                                formFieldMasking={
+                                    {
+                                        mask: 'required',
                                     }
                                 }
                             />
@@ -41,7 +73,14 @@ const CreateAccount = () => {
                                         id: `lastName`,
                                         name: `lastName`,
                                         type: 'text',
-                                        placeholder: 'Enter last name'
+                                        placeholder: 'Enter last name',
+                                        value: createAccountInformationData['lastName'],
+                                        onChange: formFieldData
+                                    }
+                                }
+                                formFieldMasking={
+                                    {
+                                        mask: 'required',
                                     }
                                 }
                             />
@@ -56,7 +95,14 @@ const CreateAccount = () => {
                                         id: `emailAddress`,
                                         name: `emailAddress`,
                                         type: 'text',
-                                        placeholder: 'Enter email address'
+                                        placeholder: 'Enter email address',
+                                        value: createAccountInformationData['emailAddress'],
+                                        onChange: formFieldData
+                                    }
+                                }
+                                formFieldMasking={
+                                    {
+                                        mask: 'required',
                                     }
                                 }
                             />
@@ -71,7 +117,14 @@ const CreateAccount = () => {
                                         id: `confirmEmailAddress`,
                                         name: `confirmEmailAddress`,
                                         type: 'text',
-                                        placeholder: 'Confirm your email address'
+                                        placeholder: 'Confirm your email address',
+                                        value: createAccountInformationData['confirmEmailAddress'],
+                                        onChange: formFieldData
+                                    }
+                                }
+                                formFieldMasking={
+                                    {
+                                        mask: 'required',
                                     }
                                 }
                             />
@@ -86,7 +139,14 @@ const CreateAccount = () => {
                                         id: `phoneNumber`,
                                         name: `phoneNumber`,
                                         type: 'text',
-                                        placeholder: 'Enter phone number'
+                                        placeholder: 'Enter phone number',
+                                        value: createAccountInformationData['phoneNumber'],
+                                        onChange: formFieldData
+                                    }
+                                }
+                                formFieldMasking={
+                                    {
+                                        mask: 'required',
                                     }
                                 }
                             />
@@ -101,14 +161,21 @@ const CreateAccount = () => {
                                         id: `password`,
                                         name: `password`,
                                         type: 'password',
-                                        placeholder: 'Enter password'
+                                        placeholder: 'Enter password',
+                                        value: createAccountInformationData['password'],
+                                        onChange: formFieldData
+                                    }
+                                }
+                                formFieldMasking={
+                                    {
+                                        mask: 'required',
                                     }
                                 }
                             />
                         </div>
                         <div className='mt-3'>
                             <label className='form-label'>Confirm password <span className='text-danger'>*</span></label>
-                            <div class="input-group">
+                            <div className="input-group">
                                 <FormFields 
                                     formField='textbox' 
                                     formFieldSettings={ 
@@ -117,11 +184,18 @@ const CreateAccount = () => {
                                             id: `confirmPassword`,
                                             name: `confirmPassword`,
                                             type: 'password',
-                                            placeholder: 'Confirm your password'
+                                            placeholder: 'Confirm your password',
+                                            value: createAccountInformationData['confirmPassword'],
+                                            onChange: formFieldData
+                                        }
+                                    }
+                                    formFieldMasking={
+                                        {
+                                            mask: 'required',
                                         }
                                     }
                                 />
-                                 <span class="input-group-text" tabIndex='0'>
+                                 <span className="input-group-text" tabIndex='0'>
                                     <img src='/assets/eye-hidden.png' className='img-eye-icon img-fluid' />
                                  </span>
                             </div>

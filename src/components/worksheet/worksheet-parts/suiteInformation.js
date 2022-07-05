@@ -7,7 +7,7 @@ const SuiteInformation = (props) => {
 
     const whichParentForm = 'worksheetForm';
     const whichChildForm = 'suiteInformation';
-    const whichNextForm = 'otherInformation';
+    const whichNextForm = 'purchaserInformation';
 
     const myState = useSelector( (state) => state.myState);
     const dispatch = useDispatch();

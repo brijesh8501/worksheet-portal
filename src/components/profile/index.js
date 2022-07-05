@@ -1,21 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Navbar from '../includes/header/navbar';
 import Footer from '../includes/footer/index';
 import FormFields from '../form-fields';
 import PrivacyPolicy from '../includes/privacy';
 import Modal from '../includes/modal';
-import { getFormData } from '../../action';
-import { validation } from '../validation';
+import { getFormData, resetFormData } from '../../action';
+import { setFormFieldDataToState } from '../form-setup';
 
 const Profile = () => {
 
     const [show, setShow] = useState(false);
-
-    const firstLetter = /(?!.*[DFIOQU])[A-VXY]/i;
-    const letter = /(?!.*[DFIOQU])[A-Z]/i;
-    const digit = /[0-9]/;
-    const maskPostalCode = [firstLetter, digit, letter, " ", digit, letter, digit];
 
     const showModal = () => {
         setShow(true);
@@ -35,31 +30,23 @@ const Profile = () => {
     const profileInformationData = profileForm.profileInformation;
     const validateProfileInformationData = validateForm.profileForm.profileInformation;
 
-    
+    const formFieldData = (e) => {
 
-    const getFormFieldData = (e) => {
+        const formFieldDataSet = {
+            parentForm: 'profileForm',
+            childForm: 'profileInformation',
+            event: e
+        };
 
-        const profileInformationFieldToBeValidate = validateForm.profileForm.profileInformation[e.target.name];      
-        const validateType = e.target.getAttribute('data-validatetype');
+        setFormFieldDataToState(formFieldDataSet);
 
-        if(profileInformationFieldToBeValidate.includes(validateType)){
-
-            const validateData = {
-                type: validateType,
-                value: e.target.value,
-                maxLength: e.target.getAttribute('maxlength')
-            }
-            const validatedData = validation(validateData);
-            dispatch( getFormData({ 
-                inputField: { [e.target.name]: (validatedData) ? validatedData : '' }, 
-                formType: {
-                    parentForm: 'profileForm',
-                    childForm: 'profileInformation' 
-                }
-            }) );
-        }
     }
+    useEffect(() => {
 
+        dispatch ( resetFormData('profileForm') );
+
+    }, []);
+   
     return (
         <div>
             <Navbar/>
@@ -83,8 +70,14 @@ const Profile = () => {
                                                 id: `firstName`,
                                                 name: `firstName`,
                                                 type: 'text',
+                                                value: profileInformationData['firstName'],
                                                 placeholder: 'Enter agent first name',
-                                                onChange: getFormFieldData
+                                                onChange: formFieldData
+                                            }
+                                        }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'required',
                                             }
                                         }
                                     />
@@ -99,8 +92,14 @@ const Profile = () => {
                                                 id: `lastName`,
                                                 name: `lastName`,
                                                 type: 'text',
+                                                value: profileInformationData['lastName'],
                                                 placeholder: 'Enter agent last name',
-                                                onChange: getFormFieldData
+                                                onChange: formFieldData
+                                            }
+                                        }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'required',
                                             }
                                         }
                                     />
@@ -118,9 +117,10 @@ const Profile = () => {
                                                 name: `phoneNumber`,
                                                 type: 'text',
                                                 value: profileInformationData['phoneNumber'],
-                                                placeholder: 'Enter agent phone number',
+                                                placeholder: 'Enter agent phone number, e.g. 9999999999',
                                                 maxlength: '10',
-                                                onChange: getFormFieldData
+                                                onChange: formFieldData,
+                                                onBlur: formFieldData
                                             }
                                         }
                                         formFieldMasking={
@@ -140,8 +140,9 @@ const Profile = () => {
                                                 id: `emailAddress`,
                                                 name: `emailAddress`,
                                                 type: 'text',
+                                                value: profileInformationData['emailAddress'],
                                                 placeholder: 'Enter agent email address',
-                                                onChange: getFormFieldData
+                                                onChange: formFieldData
                                             }
                                         }
                                         formFieldMasking={
@@ -163,8 +164,14 @@ const Profile = () => {
                                                 id: `brokerageName`,
                                                 name: `brokerageName`,
                                                 type: 'text',
+                                                value: profileInformationData['brokerageName'],
                                                 placeholder: 'Enter brokerage name',
-                                                onChange: getFormFieldData
+                                                onChange: formFieldData
+                                            }
+                                        }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'required',
                                             }
                                         }
                                     />
@@ -179,8 +186,16 @@ const Profile = () => {
                                                 id: `brokeragePhoneNumber`,
                                                 name: `brokeragePhoneNumber`,
                                                 type: 'text',
-                                                placeholder: 'Enter brokerage phone number',
-                                                onChange: getFormFieldData
+                                                maxlength: '10',
+                                                value: profileInformationData['brokeragePhoneNumber'],
+                                                placeholder: 'Enter brokerage phone number, e.g. 9999999999',
+                                                onChange: formFieldData,
+                                                onBlur: formFieldData
+                                            }
+                                        }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'phoneNumber',
                                             }
                                         }
                                     />
@@ -194,10 +209,16 @@ const Profile = () => {
                                         { 
                                             class: 'form-control',
                                             id: `brokerageAddress`,
-                                            name: `brokergaeAddress`,
+                                            name: `brokerageAddress`,
                                             type: 'text',
+                                            value: profileInformationData['brokerageAddress'],
                                             placeholder: 'Enter brokerage address',
-                                            onChange: getFormFieldData
+                                            onChange: formFieldData
+                                        }
+                                    }
+                                    formFieldMasking={
+                                        {
+                                            mask: 'required',
                                         }
                                     }
                                 />
@@ -213,8 +234,14 @@ const Profile = () => {
                                                 id: `brokerageCity`,
                                                 name: `brokerageCity`,
                                                 type: 'text',
+                                                value: profileInformationData['brokerageCity'],
                                                 placeholder: 'Enter brokerage city',
-                                                onChange: getFormFieldData
+                                                onChange: formFieldData
+                                            }
+                                        }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'required',
                                             }
                                         }
                                     />
@@ -229,8 +256,14 @@ const Profile = () => {
                                                 id: `brokerageProvince`,
                                                 name: `brokerageProvince`,
                                                 type: 'text',
+                                                value: profileInformationData['brokerageProvince'],
                                                 placeholder: 'Enter brokerage province/state/region',
-                                                onChange: getFormFieldData
+                                                onChange: formFieldData
+                                            }
+                                        }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'required',
                                             }
                                         }
                                     />
@@ -247,8 +280,14 @@ const Profile = () => {
                                                 id: `brokerageCountry`,
                                                 name: `brokerageCountry`,
                                                 type: 'text',
+                                                value: profileInformationData['brokerageCountry'],
                                                 placeholder: 'Enter brokerage country',
-                                                onChange: getFormFieldData
+                                                onChange: formFieldData
+                                            }
+                                        }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'required',
                                             }
                                         }
                                     />
@@ -265,8 +304,9 @@ const Profile = () => {
                                                 type: 'text',
                                                 value: profileInformationData['brokeragePostalCode'],
                                                 maxlength: '6',
-                                                placeholder: 'Enter brokerage postal code',
-                                                onChange: getFormFieldData
+                                                placeholder: 'Enter brokerage postal code, e.g. A9A9A9',
+                                                onChange: formFieldData,
+                                                onBlur: formFieldData
                                             }
                                         }
                                         formFieldMasking={
@@ -316,11 +356,18 @@ const Profile = () => {
                                                         {
                                                             label: 'I agree that I have read and accept the Privacy Policy/Terms of Use',
                                                             class: 'form-check-input square-radio',
-                                                            id: 'appointmentTypeYes',
-                                                            name: 'appointmentType',
-                                                            value: 'Yes',
+                                                            id: 'privacyPolicyProfileYes',
+                                                            name: 'privacyPolicyProfile',
+                                                            value: 'true',
+                                                            checked: profileInformationData.privacyPolicyProfile === 'Yes',
+                                                            onChange: formFieldData
                                                         }
                                                     ]
+                                                }
+                                            }
+                                            formFieldMasking={
+                                                {
+                                                    mask: 'required'
                                                 }
                                             }
                                     />}>

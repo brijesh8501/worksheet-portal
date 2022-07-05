@@ -1,10 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import FormFields from '../form-fields';
 import HtmlWrapper from './includes/htmlWrapper';
 import { Link } from 'react-router-dom';
+import { getFormData, resetFormData } from '../../action';
+import { setFormFieldDataToState } from '../form-setup';
 
 const ForgotPassword = () => {
 
+    const myState = useSelector( (state) => state.myState);
+    const dispatch = useDispatch();
+
+    const { profileForm } = myState;
+  
+    const forgotPasswordInformationData = profileForm.forgotPasswordInformation;
+
+    const formFieldData = (e) => {
+
+        const formFieldDataSet = {
+            parentForm: 'profileForm',
+            childForm: 'forgotPasswordInformation',
+            event: e
+        };
+
+        setFormFieldDataToState(formFieldDataSet);
+    }
+    useEffect(() => {
+
+        dispatch ( resetFormData('profileForm') );
+
+    }, []);
     return(
     <div>
         <HtmlWrapper>
@@ -25,9 +50,16 @@ const ForgotPassword = () => {
                                    id: `emailAddress`,
                                    name: `emailAddress`,
                                    type: 'text',
-                                   placeholder: 'Enter email address'
+                                   placeholder: 'Enter email address',
+                                   value: forgotPasswordInformationData['emailAddress'],
+                                   onChange: formFieldData
                                }
                            }
+                           formFieldMasking={
+                                {
+                                    mask: 'required',
+                                }
+                            }
                        />
                    </div>
                    <div className='mt-4 text-center'>

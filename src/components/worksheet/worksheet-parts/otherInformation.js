@@ -73,33 +73,20 @@ const OtherInformation = (props) => {
                 <div className='worksheet-form-footer pb-3'>
                     <div className='d-flex gap-3 justify-content-end'>
                         <button 
-                            className='btn btn-back'
-                            onClick={
-                                () => { 
-                                    props.showSection(
-                                        {
-                                            sectionClicked:'suiteInformation'
-                                        }
-                                    ) 
-                                } 
-                            }
-                        >
-                            <img src='/assets/left-arrow.png' className='back-img-icon img-fluid' />Back
-                        </button>
-                        {/* <button className='btn btn-secondary'>Save</button> */}
-                        <button 
-                            className='btn btn-primary' 
-                            onClick={ 
-                                () => { 
-                                    props.showSection(
-                                        {
-                                            sectionClicked: whichNextForm,
-                                            childItem: { purchaserInformation: { primaryPurchaser: true, secondaryPurchaser: false } } 
-                                        }
-                                    ) 
-                                } 
-                            }
-                        >Continue</button>
+                        className='btn btn-back'
+                        onClick={
+                            () => { 
+                                props.showSection(
+                                    {
+                                        sectionClicked:'agentInformation'
+                                    }
+                                ) 
+                            } 
+                        }
+                    >
+                        <img src='/assets/left-arrow.png' className='back-img-icon img-fluid' />Back
+                    </button>
+                        <button className='btn btn-primary' onClick={ () => { props.showSection({sectionClicked:'acknowledgement'}) } }>Continue</button>
                     </div>
                 </div>
             </div>

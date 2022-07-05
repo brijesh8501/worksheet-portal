@@ -1,10 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import FormFields from '../form-fields';
 import HtmlWrapper from './includes/htmlWrapper';
 import { Link } from 'react-router-dom';
+import { getFormData, resetFormData } from '../../action';
+import { setFormFieldDataToState } from '../form-setup';
 
 const ChangePassword = () => {
 
+    const myState = useSelector( (state) => state.myState);
+    const dispatch = useDispatch();
+
+    const { profileForm } = myState;
+  
+    const changePasswordInformationData = profileForm.changePasswordInformation;
+
+    const formFieldData = (e) => {
+
+        const formFieldDataSet = {
+            parentForm: 'profileForm',
+            childForm: 'changePasswordInformation',
+            event: e
+        };
+
+        setFormFieldDataToState(formFieldDataSet);
+    }
+    useEffect(() => {
+
+        dispatch ( resetFormData('profileForm') );
+
+    }, []);
     return(
         <div>
             <HtmlWrapper>
@@ -17,27 +42,34 @@ const ChangePassword = () => {
                     <div className='create-account-body w-100'>
                         <div>
                             <label className='form-label'>Password <span className='text-danger'>*</span></label>
-                            <div class="input-group">
+                            <div className="input-group">
                                 <FormFields 
                                     formField='textbox' 
                                     formFieldSettings={ 
                                         { 
                                             class: 'form-control',
                                             id: `password`,
-                                            name: `changePassword`,
+                                            name: `password`,
                                             type: 'password',
-                                            placeholder: 'Enter password'
+                                            placeholder: 'Enter password',
+                                            value: changePasswordInformationData['password'],
+                                            onChange: formFieldData
+                                        }
+                                    }
+                                    formFieldMasking={
+                                        {
+                                            mask: 'required',
                                         }
                                     }
                                 />
-                                <span class="input-group-text" tabIndex='0'>
+                                <span className="input-group-text" tabIndex='0'>
                                     <img src='/assets/eye-hidden.png' className='img-eye-icon img-fluid' />
                                 </span>
                             </div>
                         </div>
                         <div className='mt-3'>
                             <label className='form-label'>Confirm password <span className='text-danger'>*</span></label>
-                            <div class="input-group">
+                            <div className="input-group">
                                 <FormFields 
                                     formField='textbox' 
                                     formFieldSettings={ 
@@ -46,11 +78,18 @@ const ChangePassword = () => {
                                             id: `confirmPassword`,
                                             name: `confirmPassword`,
                                             type: 'password',
-                                            placeholder: 'Confirm your password'
+                                            placeholder: 'Confirm your password',
+                                            value: changePasswordInformationData['confirmPassword'],
+                                            onChange: formFieldData
+                                        }
+                                    }
+                                    formFieldMasking={
+                                        {
+                                            mask: 'required',
                                         }
                                     }
                                 />
-                                <span class="input-group-text" tabIndex='0'>
+                                <span className="input-group-text" tabIndex='0'>
                                     <img src='/assets/eye-hidden.png' className='img-eye-icon img-fluid' />
                                 </span>
                             </div>

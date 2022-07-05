@@ -94,7 +94,7 @@ const AgentInformation = (props) => {
                         >
                             <img src='/assets/left-arrow.png' className='back-img-icon img-fluid' />Back
                         </button>
-                        <button className='btn btn-primary' onClick={ () => { props.showSection({sectionClicked:'acknowledgement'}) } }>Continue</button>
+                        <button className='btn btn-primary' onClick={ () => { props.showSection({sectionClicked:'otherInformation'}) } }>Continue</button>
                     </div>
                 </div>
             </div>

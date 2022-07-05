@@ -74,7 +74,7 @@ const Acknowledgement = (props) => {
                                 () => { 
                                     props.showSection(
                                         {
-                                            sectionClicked:'agentInformation'
+                                            sectionClicked:'otherInformation'
                                         }
                                     ) 
                                 } 

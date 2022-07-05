@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { showHideNavProfileMenu } from "../../../action";
@@ -13,9 +13,15 @@ const CreateMenu = (props) => {
 
     const showHideMenu = (e) => {
         if( e.type === 'click' || ( e.type === 'keypress' && e.charCode === 13 ) ){  
-            dispatch(showHideNavProfileMenu());
+            dispatch(showHideNavProfileMenu(false));
         }
     }
+    useEffect(() => {
+
+        dispatch(showHideNavProfileMenu(true));
+
+    }, []);
+
     return (<div className='container-fluid px-0'>
         <div className='nav-menu-wrapper d-flex justify-content-between ms-5'>
             <div className='nav-menu-left d-flex'>

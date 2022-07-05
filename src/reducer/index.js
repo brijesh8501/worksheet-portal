@@ -4,12 +4,11 @@ import { initialState } from "./state";
 const myState = (state = initialState, action) => {
     switch(action.type){
         case 'SHOW_HIDE_NAV_PROFILE_MENU':
-
             return {
                 ...state,
                 navSetting: {
                     ...state.navSetting,
-                    isProfileMenuToShow: (state.navSetting.isProfileMenuToShow)? false : true
+                    isProfileMenuToShow: (action.payload)? false : (state.navSetting.isProfileMenuToShow)? false : true
                 }
             }
 
@@ -39,27 +38,44 @@ const myState = (state = initialState, action) => {
         case 'GET_FORM_DATA':
 
             const { parentForm, childForm }  = action.payload.formType;
+            const { type } = action.payload.inputField;
+
             const payloadKeyValue = Object.entries(action.payload.inputField);
-            
+
+            let setChildForm;
+            payloadKeyValue.map( (item, i) => {
+
+                if(item[0] !== 'type'){
+                  
+                    if( 
+                        ( 
+                            childForm === 'secondaryPurchaser' && 
+                            ( 
+                                item[0] === 'isSecondaryPurchaserRequired' || 
+                                item[1] === 'No'
+                            ) 
+                        )
+                    ){
+
+                        setChildForm =  { ...initialState[parentForm][childForm] }
+                    
+                    }else{
+
+                        setChildForm =  { ...state[parentForm][childForm] }
+
+                    }
+                        
+                    setChildForm =  { ...setChildForm, ...{ [item[0]]: item[1] } }
+        
+                }
+
+            });
+
             let getFormData = {
                 ...state,
                 [parentForm]:{
                     ...state[parentForm],
-                    [childForm]:(
-                        childForm === 'secondaryPurchaser' && 
-                        ( payloadKeyValue[0][0] === 'isSecondaryPurchaserRequired' || 
-                        payloadKeyValue[0][0] === 'No'
-                        ) 
-                    )?
-                    { 
-                        ...initialState[parentForm][childForm], 
-                        ...{ [payloadKeyValue[0][0]]: payloadKeyValue[0][1] }  
-                    }
-                    :
-                    {
-                        ...state[parentForm][childForm],
-                        ...{ [payloadKeyValue[0][0]]: payloadKeyValue[0][1] }
-                    }
+                    [childForm]: setChildForm
                 }
             }
             return getFormData;

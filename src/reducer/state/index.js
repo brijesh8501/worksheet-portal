@@ -13,7 +13,6 @@ export const initialState = {
     worksheetSidebarSetting:{
         sidebarMenu:{
             suiteInformation: 'Suite Information',
-            otherInformation: 'Other Information',
             purchaserInformation: {
                 title: 'Purchaser Information',
                 childInformation:[
@@ -26,6 +25,7 @@ export const initialState = {
                 ]
             },
             agentInformation: 'Agent Information',
+            otherInformation: 'Other Information',
             acknowledgement: 'Acknowledgement',
             reviewInformation: 'Review Information'
         },
@@ -132,6 +132,26 @@ export const initialState = {
         }]
     },
     profileForm: {
+        loginInformation:{
+            emailAddress: '',
+            password: ''
+        },
+        forgotPasswordInformation:{
+            emailAddress: ''
+        },
+        changePasswordInformation:{
+            password: '',
+            confirmPassword: ''
+        },
+        createAccountInformation:{
+            firstName: '',
+            lastName: '',
+            emailAddress: '',
+            confirmEmailAddress: '',
+            phoneNumber: '',
+            password: '',
+            confirmPassword: ''
+        },
         profileInformation:{
             firstName: '',
             lastName: '',
@@ -143,7 +163,8 @@ export const initialState = {
             brokerageCity: '',
             brokerageProvince: '',
             brokerageCountry: '',
-            brokeragePostalCode: ''
+            brokeragePostalCode: '',
+            privacyPolicyProfile: false
         }
     },
     worksheetForm:{
@@ -199,18 +220,39 @@ export const initialState = {
     },
     validateForm:{
         profileForm: {
+            loginInformation:{
+                emailAddress: ['required'],
+                password: ['required']
+            },
+            forgotPasswordInformation:{
+                emailAddress: ['required']
+            },
+            changePasswordInformation:{
+                password: ['required'],
+                confirmPassword: ['required']
+            },
+            createAccountInformation:{
+                firstName: ['required'],
+                lastName: ['required'],
+                emailAddress: ['required'],
+                confirmEmailAddress: ['required'],
+                phoneNumber: ['required'],
+                password: ['required'],
+                confirmPassword: ['required']
+            },
             profileInformation:{
                 firstName: ['required'],
                 lastName: ['required'],
                 phoneNumber: ['required', 'phoneNumber'],
                 emailAddress: ['required', 'emailAddress'],
                 brokerageName: ['required'],
-                brokeragePhoneNumber: ['required'],
+                brokeragePhoneNumber: ['required', 'phoneNumber'],
                 brokerageAddress: ['required'],
                 brokerageCity: ['required'],
                 brokerageProvince: ['required'],
                 brokerageCountry: ['required'],
-                brokeragePostalCode: ['required', 'postalCode']
+                brokeragePostalCode: ['required', 'postalCode'],
+                privacyPolicyProfile: ['required']
             }
         },
         worksheetForm:{

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import FormFields from '../../form-fields/index';
 import { getFormData } from '../../../action';
+import { setFormFieldDataToState } from '../../form-setup';
 
 const PurchaserInformation = (props) => {
 
@@ -19,14 +20,16 @@ const PurchaserInformation = (props) => {
     const purchaserPrefix = props.purchaserPrefix;
 
     const getFormFieldData = (e) => {
-        dispatch( getFormData({ 
-            inputField: { [e.target.name]: e.target.value },
-            formType: {
-                parentForm: whichParentForm,
-                childForm: whichChildForm 
-            }  
-        }) );
+
+        const formFieldDataSet = {
+            parentForm: whichParentForm,
+            childForm: whichChildForm,
+            event: e
+        };
+
+        setFormFieldDataToState(formFieldDataSet);
     }
+
     return(
         <div className='worksheet-form ps-4 pe-3' id={whichParentForm}>
             <div className='col-12 worksheet-suite-information' id={`worksheet${whichParentForm}`}>
@@ -67,6 +70,11 @@ const PurchaserInformation = (props) => {
                                         ]
                                     }
                                 }
+                                formFieldMasking={
+                                    {
+                                        mask: 'required',
+                                    }
+                                }
                         />
                     </div>
                     <div className={`position-relative bg-white purchaser-information-wrapper pt-5 pb-3 ${ (purchaserInformationData[`isSecondaryPurchaserRequired`] === 'Yes')&& 'mt-4' } ${( (purchaserPrefix === 'p1') || (purchaserPrefix === 'p2' && purchaserInformationData[`isSecondaryPurchaserRequired`] === 'Yes' ) )? 'd-block' : 'd-none' } `}>
@@ -92,6 +100,11 @@ const PurchaserInformation = (props) => {
                                                 onChange: getFormFieldData
                                             }
                                         }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'required',
+                                            }
+                                        }
                                     />
                                 </div>
                                 <div className='cw-50'>
@@ -111,6 +124,11 @@ const PurchaserInformation = (props) => {
                                                 value: purchaserInformationData[`${purchaserPrefix}lastName`],
                                                 placeholder: 'Enter last name',
                                                 onChange: getFormFieldData
+                                            }
+                                        }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'required',
                                             }
                                         }
                                     />
@@ -135,6 +153,11 @@ const PurchaserInformation = (props) => {
                                             onChange: getFormFieldData
                                         }
                                     }
+                                    formFieldMasking={
+                                        {
+                                            mask: 'required',
+                                        }
+                                    }
                                 />
                             </div>
                             <div className='d-flex gap-3 justify-content-center align-items-center mt-3'>
@@ -157,6 +180,11 @@ const PurchaserInformation = (props) => {
                                                 onChange: getFormFieldData
                                             }
                                         }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'required',
+                                            }
+                                        }
                                     />
                                 </div>
                                 <div className='cw-50'>
@@ -176,6 +204,11 @@ const PurchaserInformation = (props) => {
                                                 value: purchaserInformationData[`${purchaserPrefix}province`],
                                                 placeholder: 'Enter province/state/region',
                                                 onChange: getFormFieldData
+                                            }
+                                        }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'required',
                                             }
                                         }
                                     />
@@ -201,6 +234,11 @@ const PurchaserInformation = (props) => {
                                                 onChange: getFormFieldData
                                             }
                                         }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'required',
+                                            }
+                                        }
                                     />
                                 </div>
                                 <div className='cw-50'>
@@ -218,8 +256,15 @@ const PurchaserInformation = (props) => {
                                                 name: `${purchaserPrefix}postalCode`,
                                                 type: 'text',
                                                 value: purchaserInformationData[`${purchaserPrefix}postalCode`],
-                                                placeholder: 'Enter postal code',
-                                                onChange: getFormFieldData
+                                                maxlength: '6',
+                                                placeholder: 'Enter postal code, e.g. A9A9A9',
+                                                onChange: getFormFieldData,
+                                                onBlur: getFormFieldData
+                                            }
+                                        }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'postalCode',
                                             }
                                         }
                                     />
@@ -241,8 +286,15 @@ const PurchaserInformation = (props) => {
                                                 name: `${purchaserPrefix}phoneNumber`,
                                                 type: 'text',
                                                 value: purchaserInformationData[`${purchaserPrefix}phoneNumber`],
-                                                placeholder: 'Enter phone number',
-                                                onChange: getFormFieldData
+                                                maxlength: '10',
+                                                placeholder: 'Enter phone number, e.g. 9999999999',
+                                                onChange: getFormFieldData,
+                                                onBlur: getFormFieldData
+                                            }
+                                        }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'phoneNumber',
                                             }
                                         }
                                     />
@@ -266,6 +318,11 @@ const PurchaserInformation = (props) => {
                                                 onChange: getFormFieldData
                                             }
                                         }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'emailAddress',
+                                            }
+                                        }
                                     />
                                 </div>
                             </div>
@@ -285,8 +342,15 @@ const PurchaserInformation = (props) => {
                                                 name: `${purchaserPrefix}dob`,
                                                 type: 'text',
                                                 value: purchaserInformationData[`${purchaserPrefix}dob`],
-                                                placeholder: 'Enter date of birth',
-                                                onChange: getFormFieldData
+                                                maxlength: '8',
+                                                placeholder: 'Enter date of birth, e.g. DDMMYYYY',
+                                                onChange: getFormFieldData,
+                                                onBlur: getFormFieldData
+                                            }
+                                        }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'date',
                                             }
                                         }
                                     />
@@ -334,6 +398,11 @@ const PurchaserInformation = (props) => {
                                                 ]
                                             }
                                         }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'required',
+                                            }
+                                        }
                                     />
                                 </div>
                             </div>
@@ -357,6 +426,11 @@ const PurchaserInformation = (props) => {
                                                 onChange: getFormFieldData
                                             }
                                         }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'required',
+                                            }
+                                        }
                                     />
                                 </div>
                                 <div className='cw-50'>
@@ -376,6 +450,11 @@ const PurchaserInformation = (props) => {
                                                 value: purchaserInformationData[`${purchaserPrefix}employer`],
                                                 placeholder: 'Enter employer',
                                                 onChange: getFormFieldData
+                                            }
+                                        }
+                                        formFieldMasking={
+                                            {
+                                                mask: 'required',
                                             }
                                         }
                                     />
@@ -414,6 +493,11 @@ const PurchaserInformation = (props) => {
                                            
                                                 }
                                             ]
+                                        }
+                                    }
+                                    formFieldMasking={
+                                        {
+                                            mask: 'required',
                                         }
                                     }
                                 />
@@ -495,7 +579,7 @@ const PurchaserInformation = (props) => {
                                 () => { 
                                     props.showSection(
                                         {
-                                            sectionClicked: (purchaserPrefix === 'p1')? 'otherInformation' : 'purchaserInformation', 
+                                            sectionClicked: (purchaserPrefix === 'p1')? 'suiteInformation' : 'purchaserInformation', 
                                             childItem: { 
                                                 purchaserInformation: {
                                                     primaryPurchaser: true, 
