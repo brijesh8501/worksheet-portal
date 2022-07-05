@@ -125,7 +125,19 @@ const SuiteInformation = (props) => {
                 <div className='worksheet-form-footer pb-3'>
                     <div className='d-flex gap-3 justify-content-end'>
                         {/* <button className='btn btn-secondary'>Save</button> */}
-                        <button className='btn btn-primary' onClick={ () => { props.showSection({sectionClicked:whichNextForm}) } }>Continue</button>
+                        <button 
+                            className='btn btn-primary' 
+                            onClick={ 
+                                () => { 
+                                    props.showSection(
+                                        {
+                                            sectionClicked: whichNextForm,
+                                            childItem: { purchaserInformation: { primaryPurchaser: true, secondaryPurchaser: false } } 
+                                        }
+                                    ) 
+                                } 
+                            }
+                        >Continue</button>
                     </div>
                 </div>
             </div>
