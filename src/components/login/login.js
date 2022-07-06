@@ -4,16 +4,19 @@ import FormFields from '../form-fields';
 import HtmlWrapper from './includes/htmlWrapper';
 import { Link } from 'react-router-dom';
 import { getFormData, resetFormData } from '../../action';
-import { setFormFieldDataToState } from '../form-setup';
+import { setFormFieldDataToState, showHidePassword } from '../form-setup';
 
 const Login = () => {
+
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     const myState = useSelector( (state) => state.myState);
     const dispatch = useDispatch();
 
-    const { profileForm } = myState;
+    const { profileForm, validateForm } = myState;
   
     const loginInformationData = profileForm.loginInformation;
+    const validateLoginInformationData = validateForm.profileForm.loginInformation;
 
     const formFieldData = (e) => {
 
@@ -25,11 +28,27 @@ const Login = () => {
 
         setFormFieldDataToState(formFieldDataSet);
     }
+
+    const showHidePasswordField = (e) => {
+
+        const target = e.target.getAttribute('data-target');
+        let visible = (isPasswordVisible)? false :  true;
+        setIsPasswordVisible( visible );
+
+        const showHidePasswordFieldSet = {
+            target,
+            visible 
+        }
+        showHidePassword(showHidePasswordFieldSet);
+
+    }
+
     useEffect(() => {
 
         dispatch ( resetFormData('profileForm') );
 
     }, []);
+
     return(
         <div>
             <HtmlWrapper>
@@ -40,7 +59,11 @@ const Login = () => {
                 </div>
                 <div className='login-form-body w-100'>
                     <div>
-                        <label className='form-label'>Email address <span className='text-danger'>*</span></label>
+                        <label className='form-label'>
+                            Email address 
+                            &nbsp;
+                            { (validateLoginInformationData['emailAddress'][0] === 'required')&& <span className='text-danger'>*</span> }
+                        </label>
                         <FormFields 
                             formField='textbox' 
                             formFieldSettings={ 
@@ -54,34 +77,50 @@ const Login = () => {
                                     onChange: formFieldData
                                 }
                             }
-                            formFieldMasking={
+                            formFieldMasking = {
+                                (validateLoginInformationData['emailAddress'][0] === 'required')&&
                                 {
-                                    mask: 'required',
+                                    mask: validateLoginInformationData['emailAddress'][1]
                                 }
                             }
                         />
                     </div>
                     <div className='mt-3'>
-                        <label className='form-label'>Password <span className='text-danger'>*</span></label>
-                        <FormFields 
-                            formField='textbox' 
-                            formFieldSettings={ 
-                                { 
-                                    class: 'form-control',
-                                    id: `password`,
-                                    name: `password`,
-                                    type: 'password',
-                                    placeholder: 'Enter password',
-                                    value: loginInformationData['password'],
-                                    onChange: formFieldData
+                        <label className='form-label'>
+                            Password 
+                            &nbsp;
+                            { (validateLoginInformationData['password'][0] === 'required')&& <span className='text-danger'>*</span> }
+                        </label>
+                        <div className="input-group">
+                            <FormFields 
+                                formField='textbox' 
+                                formFieldSettings={ 
+                                    { 
+                                        class: 'form-control',
+                                        id: `password`,
+                                        name: `password`,
+                                        type: 'password',
+                                        placeholder: 'Enter password',
+                                        value: loginInformationData['password'],
+                                        onChange: formFieldData
+                                    }
                                 }
-                            }
-                            formFieldMasking={
-                                {
-                                    mask: 'required',
+                                formFieldMasking = {
+                                    (validateLoginInformationData['password'][0] === 'required')&&
+                                    {
+                                        mask: 'required',
+                                    }
                                 }
-                            }
-                        />
+                            />
+                            <span className="input-group-text" tabIndex='0'>
+                                <img 
+                                    src={ (isPasswordVisible)? '/assets/eye-view.png' : '/assets/eye-hidden.png' }
+                                    data-target='password' 
+                                    className='img-eye-icon img-fluid'
+                                    onClick = { showHidePasswordField } 
+                                />
+                            </span>
+                        </div>
                     </div>
                     <div className='mt-3 d-flex justify-content-start align-items-center'>
                         <FormFields 
@@ -94,11 +133,20 @@ const Login = () => {
                                                 class: 'form-check-input square-radio',
                                                 id: 'rememberMe',
                                                 name: 'rememberMe',
-                                                value: 'Yes'
+                                                value: 'true',
+                                                checked: loginInformationData.rememberMe === true,
+                                                onChange: formFieldData
                                             }
                                         ]
                                     }
                                 }
+                                formFieldMasking = {
+                                    (validateLoginInformationData['rememberMe'][0] === 'required')&&
+                                    {
+                                        mask: 'required'
+                                    }
+                                }
+
                         />
                     </div>
                     <div className='mt-4 d-flex justify-content-between'>

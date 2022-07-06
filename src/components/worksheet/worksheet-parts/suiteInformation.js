@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import FormFields from '../../form-fields/index';
 import { getFormData } from '../../../action';
+import { setFormFieldDataToState } from '../../form-setup';
 
 const SuiteInformation = (props) => {
 
@@ -17,14 +18,16 @@ const SuiteInformation = (props) => {
     const suiteInformationData = worksheetForm.suiteInformation;
     const validateSuiteInformationData = validateForm.worksheetForm.suiteInformation;
 
-    const getFormFieldData = (e) => {
-        dispatch( getFormData({ 
-            inputField: { [e.target.name]: e.target.value }, 
-            formType: {
-                parentForm: whichParentForm,
-                childForm: whichChildForm 
-            }
-        }) );
+    const formFieldData = (e) => {
+
+        const formFieldDataSet = {
+            parentForm: whichParentForm,
+            childForm: whichChildForm,
+            event: e
+        };
+        
+        setFormFieldDataToState(formFieldDataSet);
+       
     }
     return (
         <div className='worksheet-form ps-4 pe-3' id={whichParentForm}>
@@ -62,7 +65,13 @@ const SuiteInformation = (props) => {
                                                                 type: 'text',
                                                                 placeholder: data.placeholder,
                                                                 value: suiteInformationData[data.id],
-                                                                onChange: getFormFieldData
+                                                                onChange: formFieldData
+                                                            }
+                                                        }
+                                                        formFieldMasking = {
+                                                            (validateSuiteInformationData[data.name][0] === 'required')&&
+                                                            {
+                                                                mask: 'required',
                                                             }
                                                         }
                                                     />
@@ -84,8 +93,7 @@ const SuiteInformation = (props) => {
                                                                 id: data.id,
                                                                 name: data.name,
                                                                 value: suiteInformationData[data.id],
-                                                                dataRequired: validateSuiteInformationData[data.name],
-                                                                onChange: getFormFieldData,
+                                                                onChange: formFieldData,
                                                                 optionData: [
                                                                     {
                                                                         option: data.placeholder,
@@ -111,6 +119,12 @@ const SuiteInformation = (props) => {
                                                                 ]
                                                             }
                                                         }
+                                                        formFieldMasking = {
+                                                            (validateSuiteInformationData[data.name][0] === 'required')&&
+                                                            {
+                                                                mask: 'required',
+                                                            }
+                                                        }
                                                     />
                                                 </div>)
 
@@ -124,7 +138,6 @@ const SuiteInformation = (props) => {
                 </div>
                 <div className='worksheet-form-footer pb-3'>
                     <div className='d-flex gap-3 justify-content-end'>
-                        {/* <button className='btn btn-secondary'>Save</button> */}
                         <button 
                             className='btn btn-primary' 
                             onClick={ 

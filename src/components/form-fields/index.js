@@ -13,6 +13,7 @@ const createField = (inputType, formFieldSettings, formFieldMasking) => {
               name={formFieldSettings.name}
               value={formFieldSettings.value} 
               onChange={formFieldSettings.onChange}
+              data-validatetype={ (formFieldMasking)? formFieldMasking.mask : formFieldMasking }
             >
               {
                 formFieldSettings.optionData.map( (item, i) => {
@@ -58,6 +59,7 @@ const createField = (inputType, formFieldSettings, formFieldMasking) => {
               name={formFieldSettings.name}
               onChange={formFieldSettings.onChange}
               value={formFieldSettings.value}
+              data-validatetype={ (formFieldMasking)? formFieldMasking.mask : formFieldMasking }
             ></textarea>);
         case 'radio':
           return (
@@ -96,6 +98,7 @@ const createField = (inputType, formFieldSettings, formFieldMasking) => {
                         id={item.id} 
                         name={item.name} 
                         data-validatetype={ (formFieldMasking)? formFieldMasking.mask : formFieldMasking }
+                        checked={item.checked}
                         onChange={item.onChange}
                       />
                       <label htmlFor={item.id} className='form-label mb-0'>{item.label}</label>

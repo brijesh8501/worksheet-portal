@@ -1,10 +1,16 @@
 import React, { useState }  from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import FormFields from '../../form-fields/index';
 import Modal from '../../includes/modal';
 import PrivacyPolicy from '../../includes/privacy';
+import { setFormFieldDataToState } from '../../form-setup';
 
 const Acknowledgement = (props) => {
 
+    const whichParentForm = 'worksheetForm';
+    const whichChildForm = 'acknowledgementInformation';
+    const whichNextForm = 'reviewInformation';
+    
     const [show, setShow] = useState(false);
 
     const showModal = () => {
@@ -17,10 +23,29 @@ const Acknowledgement = (props) => {
         document.body.style.overflow = "scroll";
     };
 
-    const handleChange = (event) => {
-        console.log(event.target.value);
+    const myState = useSelector( (state) => state.myState);
+    const dispatch = useDispatch();
+
+    const { worksheetForm, validateForm } = myState;
+
+    const acknowledgementInformationData = worksheetForm.acknowledgementInformation;
+    const validateAcknowledgementInformationData = validateForm.worksheetForm.acknowledgementInformation;
+
+    const formFieldData = (e) => {
+
+        const formFieldDataSet = {
+            parentForm: whichParentForm,
+            childForm: whichChildForm,
+            event: e
+        };
+
+        setFormFieldDataToState(formFieldDataSet);
+        if(e.target.name === 'privacyPolicyProfile'){
+            (e.target.checked)&&
+                hideModal(); 
+        }
+
     }
-    
 
     return (
         <div className='worksheet-form ps-4 pe-3' id='worksheetForm'>
@@ -40,7 +65,17 @@ const Acknowledgement = (props) => {
                                 <li>Government ID (Back) Image</li>
                             </ul>
                         <p>This information is sent directly to the sales team.</p>
-                        <p className='text-decoration-underline privacy-link' onClick={showModal}>Click here to read and accept the Privacy Policy/Terms of Use.</p>
+                        <div className='mt-3 text-decoration-underline privacy-link' onClick={showModal}>
+                            <p className='mb-0 d-flex justify-content-start align-items-center'>
+                                {
+                                (acknowledgementInformationData['privacyPolicyProfile'])&&
+                                    <>
+                                        <img src="/assets/check-symbol.svg" className="img-check-icon img-fluid" />&nbsp;
+                                    </>
+                                }   
+                                Click here to read and accept the Privacy Policy/Terms of Use.
+                            </p>
+                        </div>
                         <Modal 
                             modalTitle='Privacy Policy/Terms of Use' 
                             show={show} 
@@ -53,12 +88,19 @@ const Acknowledgement = (props) => {
                                                     {
                                                         label: 'I agree that I have read and accept the Privacy Policy/Terms of Use',
                                                         class: 'form-check-input square-radio',
-                                                        id: 'appointmentTypeYes',
-                                                        name: 'appointmentType',
-                                                        value: 'Yes',
-                                                        onChange: handleChange
+                                                        id: 'privacyPolicyProfile',
+                                                        name: 'privacyPolicyProfile',
+                                                        value: 'true',
+                                                        checked: acknowledgementInformationData.privacyPolicyProfile === true,
+                                                        onChange: formFieldData 
                                                     }
                                                 ]
+                                            }
+                                        }
+                                        formFieldMasking={
+                                            (validateAcknowledgementInformationData[`privacyPolicyProfile`][0] === 'required')&&
+                                            {
+                                                mask: 'required',
                                             }
                                         }
                                 />}>
@@ -83,7 +125,7 @@ const Acknowledgement = (props) => {
                             <img src='/assets/left-arrow.png' className='back-img-icon img-fluid' />Back
                         </button>
                         {/* <button className='btn btn-secondary'>Save</button> */}
-                        <button className='btn btn-primary' onClick={ () => { props.showSection({sectionClicked:'reviewInformation'}) } }>Continue</button>
+                        <button className='btn btn-primary' onClick={ () => { props.showSection({sectionClicked:whichNextForm}) } }>Continue</button>
                     </div>
                 </div>
             </div>

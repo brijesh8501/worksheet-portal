@@ -134,7 +134,8 @@ export const initialState = {
     profileForm: {
         loginInformation:{
             emailAddress: '',
-            password: ''
+            password: '',
+            rememberMe: false
         },
         forgotPasswordInformation:{
             emailAddress: ''
@@ -217,15 +218,19 @@ export const initialState = {
             p2purchasingType: '',
             p2notes: ''
         },
+        acknowledgementInformation:{
+            privacyPolicyProfile: false
+        }
     },
     validateForm:{
         profileForm: {
             loginInformation:{
-                emailAddress: ['required'],
-                password: ['required']
+                emailAddress: ['required', 'emailAddress'],
+                password: ['required'],
+                rememberMe: ['required']
             },
             forgotPasswordInformation:{
-                emailAddress: ['required']
+                emailAddress: ['required', 'emailAddress']
             },
             changePasswordInformation:{
                 password: ['required'],
@@ -234,9 +239,9 @@ export const initialState = {
             createAccountInformation:{
                 firstName: ['required'],
                 lastName: ['required'],
-                emailAddress: ['required'],
-                confirmEmailAddress: ['required'],
-                phoneNumber: ['required'],
+                emailAddress: ['required', 'emailAddress'],
+                confirmEmailAddress: ['required', 'emailAddress'],
+                phoneNumber: ['required', 'phoneNumber'],
                 password: ['required'],
                 confirmPassword: ['required']
             },
@@ -305,6 +310,9 @@ export const initialState = {
                 p2purchasingType: ['required'],
                 p2notes: ['notRequired']
             },
+            acknowledgementInformation:{
+                privacyPolicyProfile: ['required']
+            }
         }
     }
    

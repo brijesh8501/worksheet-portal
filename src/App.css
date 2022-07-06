@@ -110,8 +110,51 @@ input.form-control::placeholder,
 select.form-select{
     font-size: 14px !important;
 }
-.img-eye-icon{
+.img-eye-icon,
+.img-check-icon{
     width: 22px;
+}
+/********* tooltip *******/
+.custom-tooltip{
+    position: relative;
+    cursor: pointer;
+}
+.custom-tooltip-box{
+    position: absolute;
+    visibility: hidden;
+    background-color: white;
+    border: 1px solid var(--fourth-bg-color);
+    bottom: 100%;
+    margin-bottom: 7px;
+    width: 700px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.custom-tooltip:focus .custom-tooltip-box{
+    visibility: visible;
+}
+.custom-tooltip-box:after{
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    left: 50%;
+    bottom: 0;
+    margin-bottom: -8px;
+    transform: translateX(-50%) rotate(45deg);
+    border-right: 1px solid var(--fourth-bg-color);
+    border-bottom: 1px solid var(--fourth-bg-color);
+}
+.custom-tooltip-box-header{
+    background-color: #E9ECEF;
+    border-bottom: 1px solid var(--fourth-bg-color);
+}
+.custom-tooltip-box-header{
+    padding: 0.25rem 15px;
+}
+.custom-tooltip-box-body{
+    padding: 0.75rem 15px;
 }
 /**** dialog ******/
 .modal{
@@ -303,6 +346,10 @@ nav{
 .list-paginate-wrapper .list-group-item{
     cursor: pointer;
 }
+.id-info-steps-img{
+    width: 150px;
+    height: 98px;
+  }
 @media screen and (max-width: 1400px) {
 
     #list-head-tag{

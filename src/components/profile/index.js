@@ -37,8 +37,12 @@ const Profile = () => {
             childForm: 'profileInformation',
             event: e
         };
-
+        
         setFormFieldDataToState(formFieldDataSet);
+        if(e.target.name === 'privacyPolicyProfile'){
+            (e.target.checked)&&
+                hideModal(); 
+        }
 
     }
     useEffect(() => {
@@ -46,7 +50,7 @@ const Profile = () => {
         dispatch ( resetFormData('profileForm') );
 
     }, []);
-   
+
     return (
         <div>
             <Navbar/>
@@ -61,7 +65,11 @@ const Profile = () => {
                         <div className='profile-form-body pb-3'>
                             <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center'>
                                 <div className='cw-50'>
-                                    <label className='form-label'>Agent first name <span className='text-danger'>*</span></label>
+                                    <label className='form-label'>
+                                        Agent first name 
+                                        &nbsp;
+                                        { (validateProfileInformationData['firstName'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                    </label>
                                     <FormFields 
                                         formField='textbox' 
                                         formFieldSettings={ 
@@ -75,7 +83,8 @@ const Profile = () => {
                                                 onChange: formFieldData
                                             }
                                         }
-                                        formFieldMasking={
+                                        formFieldMasking = {
+                                            (validateProfileInformationData[`firstName`][0] === 'required')&&
                                             {
                                                 mask: 'required',
                                             }
@@ -83,7 +92,11 @@ const Profile = () => {
                                     />
                                 </div>
                                 <div className='cw-50'>
-                                    <label className='form-label'>Agent last name <span className='text-danger'>*</span></label>
+                                    <label className='form-label'>
+                                        Agent last name 
+                                        &nbsp;
+                                        { (validateProfileInformationData['lastName'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                    </label>
                                     <FormFields 
                                         formField='textbox' 
                                         formFieldSettings={ 
@@ -97,7 +110,8 @@ const Profile = () => {
                                                 onChange: formFieldData
                                             }
                                         }
-                                        formFieldMasking={
+                                        formFieldMasking = {
+                                            (validateProfileInformationData[`lastName`][0] === 'required')&&
                                             {
                                                 mask: 'required',
                                             }
@@ -107,7 +121,11 @@ const Profile = () => {
                             </div>
                             <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
-                                    <label className='form-label'>Agent phone number <span className='text-danger'>*</span></label>
+                                    <label className='form-label'>
+                                        Agent phone number 
+                                        &nbsp;
+                                        { (validateProfileInformationData['phoneNumber'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                    </label>
                                     <FormFields
                                         formField='textbox'
                                         formFieldSettings={ 
@@ -123,15 +141,20 @@ const Profile = () => {
                                                 onBlur: formFieldData
                                             }
                                         }
-                                        formFieldMasking={
+                                        formFieldMasking = {
+                                            (validateProfileInformationData[`phoneNumber`][0] === 'required')&&
                                             {
-                                                mask: 'phoneNumber',
+                                                mask: validateProfileInformationData[`phoneNumber`][1],
                                             }
                                         }
                                     />
                                 </div>
                                 <div className='cw-50'>
-                                    <label className='form-label'>Agent email address <span className='text-danger'>*</span></label>
+                                    <label className='form-label'>
+                                        Agent email address 
+                                        &nbsp;
+                                        { (validateProfileInformationData['emailAddress'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                    </label>
                                     <FormFields 
                                         formField='textbox' 
                                         formFieldSettings={ 
@@ -145,9 +168,10 @@ const Profile = () => {
                                                 onChange: formFieldData
                                             }
                                         }
-                                        formFieldMasking={
+                                        formFieldMasking = {
+                                            (validateProfileInformationData[`emailAddress`][0] === 'required')&&
                                             {
-                                                mask: 'emailAddress',
+                                                mask: validateProfileInformationData['emailAddress'][1],
                                             }
                                         }
                                     />
@@ -155,7 +179,11 @@ const Profile = () => {
                             </div>
                             <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
-                                    <label className='form-label'>Brokerage name <span className='text-danger'>*</span></label>
+                                    <label className='form-label'>
+                                        Brokerage name
+                                        &nbsp;
+                                        { (validateProfileInformationData['brokerageName'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                    </label>
                                     <FormFields 
                                         formField='textbox' 
                                         formFieldSettings={ 
@@ -169,7 +197,8 @@ const Profile = () => {
                                                 onChange: formFieldData
                                             }
                                         }
-                                        formFieldMasking={
+                                        formFieldMasking = {
+                                            (validateProfileInformationData[`brokerageName`][0] === 'required')&&
                                             {
                                                 mask: 'required',
                                             }
@@ -177,7 +206,11 @@ const Profile = () => {
                                     />
                                 </div>
                                 <div className='cw-50'>
-                                    <label className='form-label'>Brokerage Phone number <span className='text-danger'>*</span></label>
+                                    <label className='form-label'>
+                                        Brokerage Phone number 
+                                        &nbsp;
+                                        { (validateProfileInformationData['brokeragePhoneNumber'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                    </label>
                                     <FormFields 
                                         formField='textbox' 
                                         formFieldSettings={ 
@@ -193,16 +226,21 @@ const Profile = () => {
                                                 onBlur: formFieldData
                                             }
                                         }
-                                        formFieldMasking={
+                                        formFieldMasking = {
+                                            (validateProfileInformationData[`brokeragePhoneNumber`][0] === 'required')&&
                                             {
-                                                mask: 'phoneNumber',
+                                                mask: validateProfileInformationData[`brokeragePhoneNumber`][1],
                                             }
                                         }
                                     />
                                 </div>
                             </div>
                             <div className='mt-3'>
-                                <label className='form-label'>Brokerage Address <span className='text-danger'>*</span></label>
+                                <label className='form-label'>
+                                    Brokerage Address 
+                                    &nbsp;
+                                    { (validateProfileInformationData['brokerageAddress'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                </label>
                                 <FormFields 
                                     formField='textbox' 
                                     formFieldSettings={ 
@@ -216,7 +254,8 @@ const Profile = () => {
                                             onChange: formFieldData
                                         }
                                     }
-                                    formFieldMasking={
+                                    formFieldMasking = {
+                                        (validateProfileInformationData[`brokerageAddress`][0] === 'required')&&
                                         {
                                             mask: 'required',
                                         }
@@ -225,7 +264,11 @@ const Profile = () => {
                             </div>
                             <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
-                                    <label className='form-label'>Brokerage city <span className='text-danger'>*</span></label>
+                                    <label className='form-label'>
+                                        Brokerage city 
+                                        &nbsp;
+                                        { (validateProfileInformationData['brokerageCity'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                    </label>
                                     <FormFields 
                                         formField='textbox' 
                                         formFieldSettings={ 
@@ -239,7 +282,8 @@ const Profile = () => {
                                                 onChange: formFieldData
                                             }
                                         }
-                                        formFieldMasking={
+                                        formFieldMasking = {
+                                            (validateProfileInformationData[`brokerageCity`][0] === 'required')&&
                                             {
                                                 mask: 'required',
                                             }
@@ -247,7 +291,11 @@ const Profile = () => {
                                     />
                                 </div>
                                 <div className='cw-50'>
-                                    <label className='form-label'>Brokerage province/state/region <span className='text-danger'>*</span></label>
+                                    <label className='form-label'>
+                                        Brokerage province/state/region 
+                                        &nbsp;
+                                        { (validateProfileInformationData['brokerageProvince'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                    </label>
                                     <FormFields 
                                         formField='textbox' 
                                         formFieldSettings={ 
@@ -261,7 +309,8 @@ const Profile = () => {
                                                 onChange: formFieldData
                                             }
                                         }
-                                        formFieldMasking={
+                                        formFieldMasking = {
+                                            (validateProfileInformationData[`brokerageProvince`][0] === 'required')&&
                                             {
                                                 mask: 'required',
                                             }
@@ -271,7 +320,11 @@ const Profile = () => {
                             </div>
                             <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
-                                    <label className='form-label'>Brokerage country <span className='text-danger'>*</span></label>
+                                    <label className='form-label'>
+                                        Brokerage country 
+                                        &nbsp;
+                                        { (validateProfileInformationData['brokerageCountry'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                    </label>
                                     <FormFields 
                                         formField='textbox' 
                                         formFieldSettings={ 
@@ -285,7 +338,8 @@ const Profile = () => {
                                                 onChange: formFieldData
                                             }
                                         }
-                                        formFieldMasking={
+                                        formFieldMasking = {
+                                            (validateProfileInformationData[`brokerageCountry`][0] === 'required')&&
                                             {
                                                 mask: 'required',
                                             }
@@ -293,7 +347,11 @@ const Profile = () => {
                                     />
                                 </div>
                                 <div className='cw-50'>
-                                    <label className='form-label'>Brokerage postal/zip code <span className='text-danger'>*</span></label>
+                                    <label className='form-label'>
+                                        Brokerage postal/zip code 
+                                        &nbsp;
+                                        { (validateProfileInformationData['brokeragePostalCode'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                    </label>
                                     <FormFields 
                                         formField='textbox' 
                                         formFieldSettings={ 
@@ -309,16 +367,20 @@ const Profile = () => {
                                                 onBlur: formFieldData
                                             }
                                         }
-                                        formFieldMasking={
+                                        formFieldMasking = {
+                                            (validateProfileInformationData[`brokeragePostalCode`][0] === 'required')&&
                                             {
-                                                mask: 'postalCode',
+                                                mask: validateProfileInformationData[`brokeragePostalCode`][1],
                                             }
                                         }
                                     />
                                 </div>
                             </div>
                             <div className='mt-3'>
-                                    <label className='form-label'>Business card (front) <span className='text-danger'>*</span></label>
+                                    <label className='form-label'>
+                                        Business card (front) 
+                                        <span className='text-danger'>*</span>
+                                    </label>
                                     <FormFields 
                                         formField='file' 
                                         formFieldSettings={ 
@@ -331,7 +393,10 @@ const Profile = () => {
                                     />
                                 </div>
                                 <div className='mt-3'>
-                                    <label className='form-label'>Business card (Back) <span className='text-danger'>*</span></label>
+                                    <label className='form-label'>
+                                        Business card (Back) 
+                                        <span className='text-danger'>*</span>
+                                    </label>
                                     <FormFields 
                                         formField='file' 
                                         formFieldSettings={ 
@@ -343,7 +408,17 @@ const Profile = () => {
                                         }
                                     />
                                 </div>
-                            <p className='mt-3 mb-0 text-decoration-underline privacy-link' onClick={showModal}>Click here to read and accept the Privacy Policy/Terms of Use.</p>
+                            <div className='mt-3 text-decoration-underline privacy-link' onClick={showModal}>
+                                <p className='mb-0 d-flex justify-content-start align-items-center'>
+                                    {
+                                    (profileInformationData['privacyPolicyProfile'])&&
+                                        <>
+                                            <img src="/assets/check-symbol.svg" className="img-check-icon img-fluid" />&nbsp;
+                                        </>
+                                    }   
+                                Click here to read and accept the Privacy Policy/Terms of Use.
+                                </p>
+                            </div>
                             <Modal 
                                 modalTitle='Privacy Policy/Terms of Use' 
                                 show={show} 
@@ -356,18 +431,19 @@ const Profile = () => {
                                                         {
                                                             label: 'I agree that I have read and accept the Privacy Policy/Terms of Use',
                                                             class: 'form-check-input square-radio',
-                                                            id: 'privacyPolicyProfileYes',
+                                                            id: 'privacyPolicyProfile',
                                                             name: 'privacyPolicyProfile',
                                                             value: 'true',
-                                                            checked: profileInformationData.privacyPolicyProfile === 'Yes',
+                                                            checked: profileInformationData.privacyPolicyProfile === true,
                                                             onChange: formFieldData
                                                         }
                                                     ]
                                                 }
                                             }
-                                            formFieldMasking={
+                                            formFieldMasking = {
+                                                (validateProfileInformationData[`privacyPolicyProfile`][0] === 'required')&&
                                                 {
-                                                    mask: 'required'
+                                                    mask: 'required',
                                                 }
                                             }
                                     />}>

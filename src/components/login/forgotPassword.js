@@ -11,9 +11,10 @@ const ForgotPassword = () => {
     const myState = useSelector( (state) => state.myState);
     const dispatch = useDispatch();
 
-    const { profileForm } = myState;
+    const { profileForm, validateForm } = myState;
   
     const forgotPasswordInformationData = profileForm.forgotPasswordInformation;
+    const validateForgotPasswordInformationData = validateForm.profileForm.forgotPasswordInformation;
 
     const formFieldData = (e) => {
 
@@ -41,7 +42,11 @@ const ForgotPassword = () => {
                </div>
                <div className='create-account-body w-100'>
                    <div>
-                       <label className='form-label'>Email address <span className='text-danger'>*</span></label>
+                       <label className='form-label'>
+                        Email address
+                        &nbsp;
+                        { (validateForgotPasswordInformationData['emailAddress'][0] === 'required')&& <span className='text-danger'>*</span> }
+                        </label>
                        <FormFields 
                            formField='textbox' 
                            formFieldSettings={ 
@@ -55,9 +60,10 @@ const ForgotPassword = () => {
                                    onChange: formFieldData
                                }
                            }
-                           formFieldMasking={
+                           formFieldMasking = {
+                                (validateForgotPasswordInformationData['emailAddress'][0] === 'required')&&
                                 {
-                                    mask: 'required',
+                                    mask: validateForgotPasswordInformationData['emailAddress'][1],
                                 }
                             }
                        />

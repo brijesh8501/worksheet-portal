@@ -62,3 +62,13 @@ export const setFormFieldDataToState = (props) => {
     store.dispatch( getFormData(passFormData) );
 
 }
+
+export const showHidePassword = (data) => {
+
+    const { target, visible } = data;
+
+    const passwordVisible = (visible)? 'text' : 'password';
+
+    document.getElementById(target).setAttribute('type', passwordVisible);
+
+}

@@ -4,16 +4,21 @@ import FormFields from '../form-fields';
 import HtmlWrapper from './includes/htmlWrapper';
 import { Link } from 'react-router-dom';
 import { getFormData, resetFormData } from '../../action';
-import { setFormFieldDataToState } from '../form-setup';
+import { setFormFieldDataToState, showHidePassword } from '../form-setup';
 
 const ChangePassword = () => {
+
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+    const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
 
     const myState = useSelector( (state) => state.myState);
     const dispatch = useDispatch();
 
-    const { profileForm } = myState;
+    const { profileForm, validateForm } = myState;
   
     const changePasswordInformationData = profileForm.changePasswordInformation;
+    const validateChangePasswordInformationData = validateForm.profileForm.changePasswordInformation;
 
     const formFieldData = (e) => {
 
@@ -25,6 +30,32 @@ const ChangePassword = () => {
 
         setFormFieldDataToState(formFieldDataSet);
     }
+
+    const showHidePasswordField = (e) => {
+
+        const target = e.target.getAttribute('data-target');
+        let visible;
+
+        if( target === 'password' ){
+
+            visible = (isPasswordVisible)? false:  true;
+            setIsPasswordVisible( visible );
+            
+        }else if( target === 'confirmPassword'){
+
+            visible = (isConfirmPasswordVisible)? false:  true;
+            setIsConfirmPasswordVisible( visible );
+
+        }
+
+        const showHidePasswordFieldSet = {
+            target,
+            visible 
+        }
+        showHidePassword(showHidePasswordFieldSet);
+
+    }
+
     useEffect(() => {
 
         dispatch ( resetFormData('profileForm') );
@@ -41,7 +72,11 @@ const ChangePassword = () => {
                     </div>
                     <div className='create-account-body w-100'>
                         <div>
-                            <label className='form-label'>Password <span className='text-danger'>*</span></label>
+                            <label className='form-label'>
+                                Password 
+                                &nbsp;
+                                { (validateChangePasswordInformationData['password'][0] === 'required')&& <span className='text-danger'>*</span> }
+                            </label>
                             <div className="input-group">
                                 <FormFields 
                                     formField='textbox' 
@@ -56,19 +91,29 @@ const ChangePassword = () => {
                                             onChange: formFieldData
                                         }
                                     }
-                                    formFieldMasking={
+                                    formFieldMasking = {
+                                        (validateChangePasswordInformationData['password'][0] === 'required')&&
                                         {
                                             mask: 'required',
                                         }
                                     }
                                 />
                                 <span className="input-group-text" tabIndex='0'>
-                                    <img src='/assets/eye-hidden.png' className='img-eye-icon img-fluid' />
+                                    <img 
+                                        src={ (isPasswordVisible)? '/assets/eye-view.png' : '/assets/eye-hidden.png' }
+                                        data-target='password' 
+                                        className='img-eye-icon img-fluid'
+                                        onClick = { showHidePasswordField } 
+                                    />
                                 </span>
                             </div>
                         </div>
                         <div className='mt-3'>
-                            <label className='form-label'>Confirm password <span className='text-danger'>*</span></label>
+                            <label className='form-label'>
+                                Confirm password 
+                                &nbsp;
+                                { (validateChangePasswordInformationData['confirmPassword'][0] === 'required')&& <span className='text-danger'>*</span> }
+                            </label>
                             <div className="input-group">
                                 <FormFields 
                                     formField='textbox' 
@@ -83,14 +128,20 @@ const ChangePassword = () => {
                                             onChange: formFieldData
                                         }
                                     }
-                                    formFieldMasking={
+                                    formFieldMasking = {
+                                        (validateChangePasswordInformationData['confirmPassword'][0] === 'required')&&
                                         {
                                             mask: 'required',
                                         }
                                     }
                                 />
                                 <span className="input-group-text" tabIndex='0'>
-                                    <img src='/assets/eye-hidden.png' className='img-eye-icon img-fluid' />
+                                    <img 
+                                        src={ (isConfirmPasswordVisible)? '/assets/eye-view.png' : '/assets/eye-hidden.png' } 
+                                        data-target='confirmPassword' 
+                                        className='img-eye-icon img-fluid'
+                                        onClick = {showHidePasswordField} 
+                                    />
                                 </span>
                             </div>
                         </div>

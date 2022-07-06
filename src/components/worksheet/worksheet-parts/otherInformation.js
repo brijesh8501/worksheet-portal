@@ -2,12 +2,13 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import FormFields from '../../form-fields/index';
 import { getFormData } from '../../../action';
+import { setFormFieldDataToState } from '../../form-setup';
 
 const OtherInformation = (props) => {
 
     const whichParentForm = 'worksheetForm';
     const whichChildForm = 'otherInformation';
-    const whichNextForm = 'purchaserInformation';
+    const whichNextForm = 'acknowledgement';
 
     const myState = useSelector( (state) => state.myState);
     const dispatch = useDispatch();
@@ -17,14 +18,15 @@ const OtherInformation = (props) => {
     const otherInformationData = worksheetForm.otherInformation;
     const validateOtherInformationData = validateForm.worksheetForm.otherInformation;
 
-    const getFormFieldData = (e) => {
-        dispatch( getFormData({ 
-            inputField: { [e.target.name]: e.target.value },
-            formType: {
-                parentForm: whichParentForm,
-                childForm: whichChildForm 
-            } 
-        }) );
+    const formFieldData = (e) => {
+    
+        const formFieldDataSet = {
+            parentForm: whichParentForm,
+            childForm: whichChildForm,
+            event: e
+        };
+        
+        setFormFieldDataToState(formFieldDataSet);
     }
 
     return (
@@ -53,7 +55,7 @@ const OtherInformation = (props) => {
                                             name: 'appointmentType',
                                             value: 'Yes',
                                             checked: otherInformationData.appointmentType === 'Yes',
-                                            onChange: getFormFieldData
+                                            onChange: formFieldData
                                         },
                                         {
                                             label: 'No',
@@ -62,9 +64,15 @@ const OtherInformation = (props) => {
                                             name: 'appointmentType',
                                             value: 'No',
                                             checked: otherInformationData.appointmentType === 'No',
-                                            onChange: getFormFieldData
+                                            onChange: formFieldData
                                         }
                                     ]
+                                }
+                            }
+                            formFieldMasking = {
+                                (validateOtherInformationData[`appointmentType`][0] === 'required')&&
+                                {
+                                    mask: 'required',
                                 }
                             }
                         />
@@ -86,7 +94,7 @@ const OtherInformation = (props) => {
                     >
                         <img src='/assets/left-arrow.png' className='back-img-icon img-fluid' />Back
                     </button>
-                        <button className='btn btn-primary' onClick={ () => { props.showSection({sectionClicked:'acknowledgement'}) } }>Continue</button>
+                        <button className='btn btn-primary' onClick={ () => { props.showSection({sectionClicked:whichNextForm}) } }>Continue</button>
                     </div>
                 </div>
             </div>
