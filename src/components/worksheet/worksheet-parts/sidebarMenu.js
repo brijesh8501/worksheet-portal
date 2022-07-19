@@ -18,17 +18,17 @@ const SidebarMenu = (props) => {
     }, [worksheetSidebarSetting]);
 
     return(
-        <div className='worksheet-sidebar' id='worksheetSidebar'>
+        <div className='stepform-sidebar' id='worksheetSidebar'>
             {
                 getWorksheetSidebarSettingToArray.map( (item, i) => {
-                    if(typeof item[1] === 'object'){
+                    if("childInformation" in item[1]){
                         return( 
                         <div
                             key={i}
-                            className='worksheet-sidebar-item-dropdown-wrapper'
+                            className='stepform-sidebar-item-dropdown-wrapper'
                         >
                             <div 
-                                className={`worksheet-sidebar-item ${(props.sidebarMenuActive === item[0] )&& 'worksheet-sidebar-item-active'}`} 
+                                className={`stepform-sidebar-item ${(props.sidebarMenuActive === item[0] )&& 'stepform-sidebar-item-active'}`} 
                                 id={`sidebar${item[0]}`} 
                                 data-sidebar={item[0]} 
                                 onClick={props.showSection}
@@ -36,16 +36,15 @@ const SidebarMenu = (props) => {
                                     {item[1].title}
                             </div>
                             <div 
-                                className={`worksheet-sidebar-item-child-wrapper ${(props.sidebarMenuActive === item[0])? 'd-block':'d-none'}`}
+                                className={`stepform-sidebar-item-child-wrapper ${(props.sidebarMenuActive === item[0])? 'd-block':'d-none'}`}
                             >
                                 {
                                     item[1].childInformation.map( (data, j ) => {
                                         const getKey = Object.keys(data);
-
                                         return(<div 
-                                            className={`worksheet-sidebar-item-child-list ${(props.sidebarMenuActive === item[0] && props.sidebarMenuChildListActive.purchaserInformation[getKey[0]] )&& 'worksheet-sidebar-item-active'}`} 
+                                            className={`stepform-sidebar-item-child-list ${(props.sidebarMenuActive === item[0] && props.sidebarMenuChildListActive.purchaserInformation[data[getKey[2]]] )&& 'stepform-sidebar-item-active'}`} 
                                             data-sidebar={item[0]} 
-                                            data-childitem={getKey[0]} 
+                                            data-childitem={data[getKey[2]]} 
                                             onClick={props.showSection}
                                             key={j}
                                             >
@@ -57,15 +56,14 @@ const SidebarMenu = (props) => {
                         </div>);
 
                     }else{
-
                         return (<div 
-                            className={`worksheet-sidebar-item ${(props.sidebarMenuActive === item[0] )&& 'worksheet-sidebar-item-active'}`} 
+                            className={`stepform-sidebar-item ${(props.sidebarMenuActive === item[0] )&& 'stepform-sidebar-item-active'}`} 
                             id={`sidebar${item[0]}`} 
                             data-sidebar={item[0]} 
                             onClick={props.showSection}
                             key={i}
                             >
-                                {item[1]}
+                                {item[1].title}
                         </div>);
 
                     }

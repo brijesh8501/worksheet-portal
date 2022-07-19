@@ -1,3 +1,10 @@
+import SuiteInformation from '../../components/worksheet/worksheet-parts/suiteInformation';
+import OtherInformation from '../../components/worksheet/worksheet-parts/otherInformation';
+import PurchaserInformation from '../../components/worksheet/worksheet-parts/purchaserInformation';
+import AgentInformation from '../../components/worksheet/worksheet-parts/agentInformation';
+import Acknowledgement from '../../components/worksheet/worksheet-parts/acknowledgement';
+import ReviewInformation from '../../components/worksheet/worksheet-parts/reviewInformation';
+
 export const initialState = {
 
     portalSetting:{
@@ -11,23 +18,56 @@ export const initialState = {
 
     },
     worksheetSidebarSetting:{
+        form: 'worksheetForm',
         sidebarMenu:{
-            suiteInformation: 'Suite Information',
+            suiteInformation: {
+                title: 'Suite Information',
+                component: SuiteInformation,
+                componentProps1: 'worksheetSidebarSetting.sidebarMenu.suiteInformation.title',
+                componentProps2: 'navigateWorksheetSection'
+            },
             purchaserInformation: {
                 title: 'Purchaser Information',
+                component: PurchaserInformation,
                 childInformation:[
                     {
-                        primaryPurchaser: 'Primary Purchaser'
+                        title: 'Primary Purchaser',
+                        componentProps1: 'p1',
+                        componentProps2: 'primaryPurchaser',
+                        componentProps3: 'navigateWorksheetSection' 
                     },
                     {
-                        secondaryPurchaser: 'Secondary Purchaser'
+                        title: 'Secondary Purchaser',
+                        componentProps1: 'p2',
+                        componentProps2: 'secondaryPurchaser',
+                        componentProps3: 'navigateWorksheetSection'
                     }
                 ]
             },
-            agentInformation: 'Agent Information',
-            otherInformation: 'Other Information',
-            acknowledgement: 'Acknowledgement',
-            reviewInformation: 'Review Information'
+            agentInformation: {
+                title: 'Agent Information',
+                component: AgentInformation,
+                componentProps1: 'worksheetSidebarSetting.sidebarMenu.agentInformation.title',
+                componentProps2: 'navigateWorksheetSection'
+            },
+            otherInformation: {
+                title: 'Other Information',
+                component: OtherInformation,
+                componentProps1: 'worksheetSidebarSetting.sidebarMenu.otherInformation.title',
+                componentProps2: 'navigateWorksheetSection'
+            },
+            acknowledgement: {
+                title: 'Acknowledgement',
+                component: Acknowledgement,
+                componentProps1: 'worksheetSidebarSetting.sidebarMenu.acknowledgement.title',
+                componentProps2: 'navigateWorksheetSection'
+            },
+            reviewInformation: {
+                title: 'Review Information',
+                component: ReviewInformation,
+                componentProps1: 'worksheetSidebarSetting.sidebarMenu.reviewInformation.title',
+                componentProps2: 'navigateWorksheetSection'
+            }
         },
         sidebarMenuActive: 'suiteInformation',
         sidebarMenuChildListActive: {

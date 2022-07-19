@@ -6,7 +6,7 @@ import { setFormFieldDataToState } from '../../form-setup';
 
 const OtherInformation = (props) => {
 
-    const whichParentForm = 'worksheetForm';
+    const whichParentForm = props.form;
     const whichChildForm = 'otherInformation';
     const whichNextForm = 'acknowledgement';
 
@@ -30,12 +30,12 @@ const OtherInformation = (props) => {
     }
 
     return (
-        <div className='worksheet-form ps-4 pe-3' id={whichParentForm}>
-            <div className='col-12 worksheet-suite-information' id={`worksheet${whichChildForm}`}>
-                <div className='worksheet-form-header py-3'>
+        <div className='step-form ps-4 pe-3' id={whichParentForm}>
+            <div className='col-12' id={`step${whichChildForm}`}>
+                <div className='step-form-header py-3'>
                     <h2 className='h4 mb-0'>{props.pageTitle}</h2>
                 </div>
-                <div className='worksheet-form-body py-3'>
+                <div className='step-form-body py-3'>
                     <div>
                         <label className='form-check-label'>
                             Preferred appointment type:
@@ -70,15 +70,17 @@ const OtherInformation = (props) => {
                                 }
                             }
                             formFieldMasking = {
-                                (validateOtherInformationData[`appointmentType`][0] === 'required')&&
                                 {
-                                    mask: 'required',
+                                    mask: ( validateOtherInformationData[`appointmentType`].length === 2 ) ? 
+                                    validateOtherInformationData[`appointmentType`][1] 
+                                    :
+                                    validateOtherInformationData[`appointmentType`][0]
                                 }
                             }
                         />
                     </div>
                 </div>
-                <div className='worksheet-form-footer pb-3'>
+                <div className='step-form-footer pb-3'>
                     <div className='d-flex gap-3 justify-content-end'>
                         <button 
                         className='btn btn-back'

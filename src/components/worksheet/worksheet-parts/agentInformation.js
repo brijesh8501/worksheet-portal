@@ -3,14 +3,14 @@ import FormFields from '../../form-fields/index';
 
 
 const AgentInformation = (props) => {
-
+    const whichParentForm = props.form;
     return (
-        <div className='worksheet-form ps-4 pe-3' id='worksheetForm'>
-            <div className='col-12 worksheet-suite-information' id='worksheetotherInformation'>
-                <div className='worksheet-form-header py-3'>
+        <div className='step-form ps-4 pe-3' id={whichParentForm}>
+            <div className='col-12' id='stepagentInformation'>
+                <div className='step-form-header py-3'>
                     <h2 className='h4 mb-0'>{props.pageTitle}</h2>
                 </div>
-                <div className='worksheet-form-body py-3'>
+                <div className='step-form-body py-3'>
                     <div className='agent-information-wrapper bg-white p-3'>
                         <div className='d-flex gap-3'>
                             <div className='cw-50'>
@@ -72,7 +72,7 @@ const AgentInformation = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className='worksheet-form-footer pb-3'>
+                <div className='step-form-footer pb-3'>
                     <div className='d-flex gap-3 justify-content-end'>
                         <button 
                             className='btn btn-back'

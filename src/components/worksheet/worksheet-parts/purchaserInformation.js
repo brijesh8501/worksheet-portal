@@ -6,7 +6,7 @@ import { setFormFieldDataToState } from '../../form-setup';
 
 const PurchaserInformation = (props) => {
 
-    const whichParentForm = 'worksheetForm';
+    const whichParentForm = props.form;
     const whichChildForm = props.purchaserSlug;
 
     const myState = useSelector( (state) => state.myState);
@@ -30,12 +30,12 @@ const PurchaserInformation = (props) => {
         setFormFieldDataToState(formFieldDataSet);
     }
     return(
-        <div className='worksheet-form ps-4 pe-3' id={whichParentForm}>
-            <div className='col-12 worksheet-suite-information' id={`worksheet${whichParentForm}`}>
-                <div className='worksheet-form-header py-3'>
+        <div className='step-form ps-4 pe-3' id={whichParentForm}>
+            <div className='col-12' id={`step${whichChildForm}`}>
+                <div className='step-form-header py-3'>
                     <h2 className='h4 mb-0'>{props.pageTitle}</h2>
                 </div>
-                <div className={`worksheet-form-body py-3`}>
+                <div className={`step-form-body py-3`}>
                     <div className={`${(purchaserPrefix === 'p2')? 'd-block' : 'd-none' }`}>
                         <label className='form-check-label'>
                             Would you like to add secondary purchaser?
@@ -70,16 +70,19 @@ const PurchaserInformation = (props) => {
                                     }
                                 }
                                 formFieldMasking = {
-                                    (purchaserPrefix === 'p2' && validatePurchaserInformationData[`isSecondaryPurchaserRequired`][0] === 'required')&&
+                                    (purchaserPrefix === 'p2')&&
                                     {
-                                        mask: 'required',
+                                        mask: ( validatePurchaserInformationData[`isSecondaryPurchaserRequired`].length === 2 ) ? 
+                                        validatePurchaserInformationData[`isSecondaryPurchaserRequired`][1] 
+                                        :
+                                        validatePurchaserInformationData[`isSecondaryPurchaserRequired`][0]
                                     }
                                 }
                         />
                     </div>
-                    <div className={`position-relative bg-white purchaser-information-wrapper pt-5 pb-3 ${ (purchaserInformationData[`isSecondaryPurchaserRequired`] === 'Yes')&& 'mt-4' } ${( (purchaserPrefix === 'p1') || (purchaserPrefix === 'p2' && purchaserInformationData[`isSecondaryPurchaserRequired`] === 'Yes' ) )? 'd-block' : 'd-none' } `}>
-                        <h3 className='h6 mb-0 position-absolute purchaser-information-title'>{props.pageChildTitle}</h3>
-                        <div className='purchaser-information-box px-3' id='purchaserInformation'>
+                    <div className={`position-relative bg-white pt-5 pb-3 ${ (purchaserInformationData[`isSecondaryPurchaserRequired`] === 'Yes')&& 'mt-4' } ${( (purchaserPrefix === 'p1') || (purchaserPrefix === 'p2' && purchaserInformationData[`isSecondaryPurchaserRequired`] === 'Yes' ) )? 'd-block' : 'd-none' } `}>
+                        <h3 className='h6 mb-0 position-absolute stepform-choice-title'>{props.pageChildTitle}</h3>
+                        <div className='purchaser-information-box px-3'>
                             <div className='d-flex gap-3 justify-content-center align-items-center'>
                                 <div className='cw-50'>
                                     <label className='form-label'>
@@ -101,9 +104,11 @@ const PurchaserInformation = (props) => {
                                             }
                                         }
                                         formFieldMasking = {
-                                            (validatePurchaserInformationData[`${purchaserPrefix}firstName`][0] === 'required')&&
                                             {
-                                                mask: 'required',
+                                                mask: ( validatePurchaserInformationData[`${purchaserPrefix}firstName`].length === 2 ) ? 
+                                                validatePurchaserInformationData[`${purchaserPrefix}firstName`][1] 
+                                                :
+                                                validatePurchaserInformationData[`${purchaserPrefix}firstName`][0]
                                             }
                                         }
                                     />
@@ -128,9 +133,11 @@ const PurchaserInformation = (props) => {
                                             }
                                         }
                                         formFieldMasking = {
-                                            (validatePurchaserInformationData[`${purchaserPrefix}lastName`][0] === 'required')&&
                                             {
-                                                mask: 'required',
+                                                mask: ( validatePurchaserInformationData[`${purchaserPrefix}lastName`].length === 2 ) ? 
+                                                validatePurchaserInformationData[`${purchaserPrefix}lastName`][1] 
+                                                :
+                                                validatePurchaserInformationData[`${purchaserPrefix}lastName`][0]
                                             }
                                         }
                                     />
@@ -156,9 +163,11 @@ const PurchaserInformation = (props) => {
                                         }
                                     }
                                     formFieldMasking = {
-                                        (validatePurchaserInformationData[`${purchaserPrefix}address`][0] === 'required')&&
                                         {
-                                            mask: 'required',
+                                            mask: ( validatePurchaserInformationData[`${purchaserPrefix}address`].length === 2 ) ? 
+                                            validatePurchaserInformationData[`${purchaserPrefix}address`][1] 
+                                            :
+                                            validatePurchaserInformationData[`${purchaserPrefix}address`][0]
                                         }
                                     }
                                 />
@@ -184,9 +193,11 @@ const PurchaserInformation = (props) => {
                                             }
                                         }
                                         formFieldMasking = {
-                                            (validatePurchaserInformationData[`${purchaserPrefix}city`][0] === 'required')&&
                                             {
-                                                mask: 'required',
+                                                mask: ( validatePurchaserInformationData[`${purchaserPrefix}city`].length === 2 ) ? 
+                                                validatePurchaserInformationData[`${purchaserPrefix}city`][1] 
+                                                :
+                                                validatePurchaserInformationData[`${purchaserPrefix}city`][0]
                                             }
                                         }
                                     />
@@ -211,9 +222,11 @@ const PurchaserInformation = (props) => {
                                             }
                                         }
                                         formFieldMasking = {
-                                            (validatePurchaserInformationData[`${purchaserPrefix}province`][0] === 'required')&&
                                             {
-                                                mask: 'required',
+                                                mask: ( validatePurchaserInformationData[`${purchaserPrefix}province`].length === 2 ) ? 
+                                                validatePurchaserInformationData[`${purchaserPrefix}province`][1] 
+                                                :
+                                                validatePurchaserInformationData[`${purchaserPrefix}province`][0]
                                             }
                                         }
                                     />
@@ -240,9 +253,11 @@ const PurchaserInformation = (props) => {
                                             }
                                         }
                                         formFieldMasking = {
-                                            (validatePurchaserInformationData[`${purchaserPrefix}country`][0] === 'required')&&
                                             {
-                                                mask: 'required',
+                                                mask: ( validatePurchaserInformationData[`${purchaserPrefix}country`].length === 2 ) ? 
+                                                validatePurchaserInformationData[`${purchaserPrefix}country`][1] 
+                                                :
+                                                validatePurchaserInformationData[`${purchaserPrefix}country`][0]
                                             }
                                         }
                                     />
@@ -269,9 +284,11 @@ const PurchaserInformation = (props) => {
                                             }
                                         }
                                         formFieldMasking = {
-                                            (validatePurchaserInformationData[`${purchaserPrefix}postalCode`][0] === 'required')&&
                                             {
-                                                mask: validatePurchaserInformationData[`${purchaserPrefix}postalCode`][1],
+                                                mask: ( validatePurchaserInformationData[`${purchaserPrefix}postalCode`].length === 2 ) ? 
+                                                validatePurchaserInformationData[`${purchaserPrefix}postalCode`][1] 
+                                                :
+                                                validatePurchaserInformationData[`${purchaserPrefix}postalCode`][0]
                                             }
                                         }
                                     />
@@ -300,9 +317,11 @@ const PurchaserInformation = (props) => {
                                             }
                                         }
                                         formFieldMasking = {
-                                            (validatePurchaserInformationData[`${purchaserPrefix}phoneNumber`][0] === 'required')&&
                                             {
-                                                mask: validatePurchaserInformationData[`${purchaserPrefix}phoneNumber`][1],
+                                                mask: ( validatePurchaserInformationData[`${purchaserPrefix}phoneNumber`].length === 2 ) ? 
+                                                validatePurchaserInformationData[`${purchaserPrefix}phoneNumber`][1] 
+                                                :
+                                                validatePurchaserInformationData[`${purchaserPrefix}phoneNumber`][0]
                                             }
                                         }
                                     />
@@ -327,9 +346,11 @@ const PurchaserInformation = (props) => {
                                             }
                                         }
                                         formFieldMasking = {
-                                            (validatePurchaserInformationData[`${purchaserPrefix}emailAddress`][0] === 'required')&&
                                             {
-                                                mask: validatePurchaserInformationData[`${purchaserPrefix}emailAddress`][1],
+                                                mask: ( validatePurchaserInformationData[`${purchaserPrefix}emailAddress`].length === 2 ) ? 
+                                                validatePurchaserInformationData[`${purchaserPrefix}emailAddress`][1] 
+                                                :
+                                                validatePurchaserInformationData[`${purchaserPrefix}emailAddress`][0]
                                             }
                                         }
                                     />
@@ -358,9 +379,11 @@ const PurchaserInformation = (props) => {
                                             }
                                         }
                                         formFieldMasking = {
-                                            (validatePurchaserInformationData[`${purchaserPrefix}dob`][0] === 'required')&&
                                             {
-                                                mask: validatePurchaserInformationData[`${purchaserPrefix}dob`][1],
+                                                mask: ( validatePurchaserInformationData[`${purchaserPrefix}dob`].length === 2 ) ? 
+                                                validatePurchaserInformationData[`${purchaserPrefix}dob`][1] 
+                                                :
+                                                validatePurchaserInformationData[`${purchaserPrefix}dob`][0]
                                             }
                                         }
                                     />
@@ -409,9 +432,11 @@ const PurchaserInformation = (props) => {
                                             }
                                         }
                                         formFieldMasking = {
-                                            (validatePurchaserInformationData[`${purchaserPrefix}maritalStatus`][0] === 'required')&&
                                             {
-                                                mask: 'required',
+                                                mask: ( validatePurchaserInformationData[`${purchaserPrefix}maritalStatus`].length === 2 ) ? 
+                                                validatePurchaserInformationData[`${purchaserPrefix}maritalStatus`][1] 
+                                                :
+                                                validatePurchaserInformationData[`${purchaserPrefix}maritalStatus`][0]
                                             }
                                         }
                                     />
@@ -438,9 +463,11 @@ const PurchaserInformation = (props) => {
                                             }
                                         }
                                         formFieldMasking = {
-                                            (validatePurchaserInformationData[`${purchaserPrefix}occupation`][0] === 'required')&&
                                             {
-                                                mask: 'required',
+                                                mask: ( validatePurchaserInformationData[`${purchaserPrefix}occupation`].length === 2 ) ? 
+                                                validatePurchaserInformationData[`${purchaserPrefix}occupation`][1] 
+                                                :
+                                                validatePurchaserInformationData[`${purchaserPrefix}occupation`][0]
                                             }
                                         }
                                     />
@@ -465,9 +492,11 @@ const PurchaserInformation = (props) => {
                                             }
                                         }
                                         formFieldMasking = {
-                                            (validatePurchaserInformationData[`${purchaserPrefix}employer`][0] === 'required')&&
                                             {
-                                                mask: 'required',
+                                                mask: ( validatePurchaserInformationData[`${purchaserPrefix}employer`].length === 2 ) ? 
+                                                validatePurchaserInformationData[`${purchaserPrefix}employer`][1] 
+                                                :
+                                                validatePurchaserInformationData[`${purchaserPrefix}employer`][0]
                                             }
                                         }
                                     />
@@ -509,16 +538,18 @@ const PurchaserInformation = (props) => {
                                         }
                                     }
                                     formFieldMasking = {
-                                        (validatePurchaserInformationData[`${purchaserPrefix}purchasingType`][0] === 'required')&&
                                         {
-                                            mask: 'required',
+                                            mask: ( validatePurchaserInformationData[`${purchaserPrefix}purchasingType`].length === 2 ) ? 
+                                            validatePurchaserInformationData[`${purchaserPrefix}purchasingType`][1] 
+                                            :
+                                            validatePurchaserInformationData[`${purchaserPrefix}purchasingType`][0]
                                         }
                                     }
                                 />
                             </div>
                             <div className='mt-3'>
                                 <div className='alert alert-box d-flex align-items-center gap-2'>
-                                    <img src='/assets/warning.png' className='worksheet-img-icon img-fluid' />
+                                    <img src='/assets/warning.png' className='stepform-img-icon img-fluid' />
                                     <div className='d-flex gap-1 flex-column flex-md-row align-items-start'>
                                         <div 
                                             className='d-flex align-items-center custom-tooltip'
@@ -615,9 +646,11 @@ const PurchaserInformation = (props) => {
                                         }
                                     }
                                     formFieldMasking = {
-                                        (validatePurchaserInformationData[`${purchaserPrefix}notes`][0] === 'required')&&
                                         {
-                                            mask: 'required',
+                                            mask: ( validatePurchaserInformationData[`${purchaserPrefix}notes`].length === 2 ) ? 
+                                            validatePurchaserInformationData[`${purchaserPrefix}notes`][1] 
+                                            :
+                                            validatePurchaserInformationData[`${purchaserPrefix}notes`][0]
                                         }
                                     }
                                 />
@@ -625,7 +658,7 @@ const PurchaserInformation = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className='worksheet-form-footer pb-3'>
+                <div className='step-form-footer pb-3'>
                     <div className='d-flex gap-3 justify-content-end'>
                         <button 
                             className='btn btn-back'

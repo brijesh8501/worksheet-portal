@@ -7,7 +7,7 @@ import { setFormFieldDataToState } from '../../form-setup';
 
 const Acknowledgement = (props) => {
 
-    const whichParentForm = 'worksheetForm';
+    const whichParentForm = props.form;
     const whichChildForm = 'acknowledgementInformation';
     const whichNextForm = 'reviewInformation';
     
@@ -48,12 +48,12 @@ const Acknowledgement = (props) => {
     }
 
     return (
-        <div className='worksheet-form ps-4 pe-3' id='worksheetForm'>
-            <div className='col-12 worksheet-suite-information' id='worksheetotherInformation'>
-                <div className='worksheet-form-header py-3'>
+        <div className='step-form ps-4 pe-3' id={whichParentForm}>
+            <div className='col-12' id='stepotherInformation'>
+                <div className='step-form-header py-3'>
                     <h2 className='h4 mb-0'>{props.pageTitle}</h2>
                 </div>
-                <div className='worksheet-form-body py-3'>
+                <div className='step-form-body py-3'>
                     <div>
                         <p>Please note:</p>
                         <p>In order to comply with the Government of Canada's <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/pipeda_brief/' target='_blank' className='text-black'>Personal Information Protection and 
@@ -108,7 +108,7 @@ const Acknowledgement = (props) => {
                         </Modal>
                     </div>
                 </div>
-                <div className='worksheet-form-footer pb-3'>
+                <div className='step-form-footer pb-3'>
                     <div className='d-flex gap-3 justify-content-end'>
                         <button 
                             className='btn btn-back'

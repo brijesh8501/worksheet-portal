@@ -210,6 +210,77 @@ button.close {
 .flex-even{
     flex: 1;
 }
+
+/**************** step form **************/
+.stepform-img-icon{
+    width: 25px;
+}
+.step-form{
+    background-color: var(--fifth-bg-color);
+    border: 1px solid var(--fourth-bg-color);
+}
+.stepform-sidebar{
+    border-bottom: 3px solid var(--main-bg-color);
+}
+.stepform-sidebar-item:not(:first-child),
+.stepform-sidebar-item-dropdown-wrapper .stepform-sidebar-item{
+    border-top: 1px solid var(--fourth-bg-color);
+}
+.stepform-sidebar-item{
+    background-color: var(--fifth-bg-color);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+.stepform-sidebar-item:hover,
+.stepform-sidebar-item.stepform-sidebar-item-active,
+.stepform-sidebar-item-child-list.stepform-sidebar-item-active,
+.stepform-sidebar-item-child-list:hover{
+    background-color: var(--main-bg-color);
+    color: white;
+}
+.stepform-sidebar-item-child-wrapper{
+    background-color: var(--fifth-bg-color);
+    margin-left: auto;
+    max-width: 95%;
+    border-bottom: 3px solid var(--main-bg-color);
+}
+.stepform-sidebar-item-child-list{
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+.stepform-sidebar-item-child-list{
+    border-top: 1px solid var(--fourth-bg-color);
+}
+.stepform-form-header{
+    border-bottom: 1px solid var(--fourth-bg-color);
+}
+.stepform-choice{
+    background-color: white;
+}
+.stepform-choice:not(:first-child){
+    margin-top: 1rem;
+}
+.stepform-choice-title{
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: -9px;
+    padding: 0.3rem 0.5rem 0.3rem 1rem;
+    background-color: var(--main-bg-color) !important;
+    color: #fff;
+}
+.stepform-choice-title:before {
+    display: inline-block;
+    position: relative;
+    margin-bottom: -20px;
+    margin-left: -16px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 9px 9px 0;
+    border-color: transparent var(--sixth-bg-color) transparent transparent;
+}
 /*******************/
 @media screen and (max-width: 575px) {
 
@@ -369,76 +440,6 @@ nav{
 }
 
 /**************** Worksheet create ***************************/
-.worksheet-img-icon{
-    width: 25px;
-}
-.worksheet-form{
-    background-color: var(--fifth-bg-color);
-    border: 1px solid var(--fourth-bg-color);
-}
-.worksheet-sidebar{
-    border-bottom: 3px solid var(--main-bg-color);
-}
-.worksheet-sidebar-item:not(:first-child),
-.worksheet-sidebar-item-dropdown-wrapper .worksheet-sidebar-item{
-    border-top: 1px solid var(--fourth-bg-color);
-}
-.worksheet-sidebar-item{
-    background-color: var(--fifth-bg-color);
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-}
-.worksheet-sidebar-item:hover,
-.worksheet-sidebar-item.worksheet-sidebar-item-active,
-.worksheet-sidebar-item-child-list.worksheet-sidebar-item-active,
-.worksheet-sidebar-item-child-list:hover{
-    background-color: var(--main-bg-color);
-    color: white;
-}
-.worksheet-sidebar-item-child-wrapper{
-    background-color: var(--fifth-bg-color);
-    margin-left: auto;
-    max-width: 95%;
-    border-bottom: 3px solid var(--main-bg-color);
-}
-.worksheet-sidebar-item-child-list{
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-}
-.worksheet-sidebar-item-child-list{
-    border-top: 1px solid var(--fourth-bg-color);
-}
-.worksheet-form-header{
-    border-bottom: 1px solid var(--fourth-bg-color);
-}
-.worksheet-choice{
-    background-color: white;
-}
-.worksheet-choice:not(:first-child){
-    margin-top: 1rem;
-}
-.worksheet-choice-title{
-    display: inline-block;
-    position: absolute;
-    top: 10px;
-    left: -9px;
-    padding: 0.3rem 0.5rem 0.3rem 1rem;
-    background-color: var(--main-bg-color) !important;
-    color: #fff;
-}
-.worksheet-choice-title:before {
-    display: inline-block;
-    position: relative;
-    margin-bottom: -20px;
-    margin-left: -16px;
-    content: "";
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 9px 9px 0;
-    border-color: transparent var(--sixth-bg-color) transparent transparent;
-}
-
 .purchaser-information-title{
     display: inline-block;
     position: absolute;
