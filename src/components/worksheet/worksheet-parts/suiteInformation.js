@@ -2,22 +2,50 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import FormFields from '../../form-fields/index';
 import { getFormData } from '../../../action';
-import { setFormFieldDataToState } from '../../form-setup';
+import { setFormFieldDataToState, stepFormPrevNextSidebarItem, stepFormPrevNextSidebarChildItem } from '../../form-setup';
 
 const SuiteInformation = (props) => {
 
     const whichParentForm = props.form;
-    const whichChildForm = 'suiteInformation';
-    const whichNextForm = 'purchaserInformation';
-
     const myState = useSelector( (state) => state.myState);
     const dispatch = useDispatch();
 
-    const { worksheetSuiteInformationSetting, worksheetForm, validateForm } = myState;
+    const { worksheetSuiteInformationSetting, worksheetForm, validateForm, worksheetSidebarSetting } = myState;
 
     const suiteInformationData = worksheetForm.suiteInformation;
     const validateSuiteInformationData = validateForm.worksheetForm.suiteInformation;
 
+    const getNavigateStepForm = stepFormPrevNextSidebarItem(worksheetSidebarSetting);
+    const whichPrevForm = (getNavigateStepForm.prev)? getNavigateStepForm.prev : null;
+    const whichChildForm = getNavigateStepForm.current;
+    const whichNextForm = (getNavigateStepForm.next)? getNavigateStepForm.next : null;
+
+    let navigateBackButton = {};
+    if(whichPrevForm){
+        const objPrevNextForNavigation = {
+            whichPrevNextForm: whichPrevForm,
+            whichCurrentForm: whichChildForm,
+            worksheetSidebarSetting,
+            navigateBackNextButton: navigateBackButton
+        }
+     
+        const respPrevNextForNavigation = stepFormPrevNextSidebarChildItem(objPrevNextForNavigation);
+        navigateBackButton = respPrevNextForNavigation;   
+    }
+    let navigateNextButton = {};
+    if(whichNextForm){
+        navigateNextButton['sectionClicked'] = whichNextForm;
+
+        const objPrevNextForNavigation = {
+            whichPrevNextForm: whichNextForm,
+            whichCurrentForm: whichChildForm,
+            worksheetSidebarSetting,
+            navigateBackNextButton: navigateNextButton
+        }
+     
+        const respPrevNextForNavigation = stepFormPrevNextSidebarChildItem(objPrevNextForNavigation);
+        navigateNextButton = respPrevNextForNavigation; 
+    }
     const formFieldData = (e) => {
 
         const formFieldDataSet = {
@@ -29,6 +57,7 @@ const SuiteInformation = (props) => {
         setFormFieldDataToState(formFieldDataSet);
        
     }
+
     return (
         <div className='step-form ps-4 pe-3' id={whichParentForm}>
             <div className='col-12' id={`step${whichChildForm}`}>
@@ -142,16 +171,24 @@ const SuiteInformation = (props) => {
                 </div>
                 <div className='step-form-footer pb-3'>
                     <div className='d-flex gap-3 justify-content-end'>
+                        {
+                            (whichPrevForm)&&
+                                <button 
+                                    className='btn btn-back'
+                                    onClick={
+                                        () => { 
+                                            props.showSection(navigateBackButton) 
+                                        } 
+                                    }
+                                ><img src='/assets/left-arrow.png' className='back-img-icon img-fluid' />Back
+                                </button>
+                        }
+                            
                         <button 
                             className='btn btn-primary' 
                             onClick={ 
                                 () => { 
-                                    props.showSection(
-                                        {
-                                            sectionClicked: whichNextForm,
-                                            childItem: { purchaserInformation: { primaryPurchaser: true, secondaryPurchaser: false } } 
-                                        }
-                                    ) 
+                                    props.showSection(navigateNextButton) 
                                 } 
                             }
                         >Continue</button>

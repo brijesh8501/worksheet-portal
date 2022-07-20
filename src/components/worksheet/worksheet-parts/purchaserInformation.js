@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import FormFields from '../../form-fields/index';
 import { getFormData } from '../../../action';
-import { setFormFieldDataToState } from '../../form-setup';
+import { setFormFieldDataToState, stepFormPrevNextSidebarItem, stepFormPrevNextSidebarChildItem } from '../../form-setup';
 
 const PurchaserInformation = (props) => {
 
@@ -12,12 +12,44 @@ const PurchaserInformation = (props) => {
     const myState = useSelector( (state) => state.myState);
     const dispatch = useDispatch();
 
-    const { worksheetForm, validateForm } = myState;
+    const { worksheetForm, validateForm, worksheetSidebarSetting } = myState;
 
     const purchaserInformationData = worksheetForm[whichChildForm];
     const validatePurchaserInformationData = validateForm.worksheetForm[whichChildForm];
 
     const purchaserPrefix = props.purchaserPrefix;
+
+    const getNavigateStepForm = stepFormPrevNextSidebarItem(worksheetSidebarSetting);
+    const whichPrevForm = (getNavigateStepForm.prev)? getNavigateStepForm.prev : null;
+    const whichCurrentForm = getNavigateStepForm.current;
+    const whichNextForm = (getNavigateStepForm.next)? getNavigateStepForm.next : null;
+
+    let navigateBackButton = {};
+    if(whichPrevForm){
+        const objPrevNextForNavigation = {
+            whichPrevNextForm: whichPrevForm,
+            whichCurrentForm,
+            worksheetSidebarSetting,
+            navigateBackNextButton: navigateBackButton
+        }
+     
+        const respPrevNextForNavigation = stepFormPrevNextSidebarChildItem(objPrevNextForNavigation);
+        navigateBackButton = respPrevNextForNavigation;   
+    }
+    let navigateNextButton = {};
+    if(whichNextForm){
+        navigateNextButton['sectionClicked'] = whichNextForm;
+
+        const objPrevNextForNavigation = {
+            whichPrevNextForm: whichNextForm,
+            whichCurrentForm,
+            worksheetSidebarSetting,
+            navigateBackNextButton: navigateNextButton
+        }
+     
+        const respPrevNextForNavigation = stepFormPrevNextSidebarChildItem(objPrevNextForNavigation);
+        navigateNextButton = respPrevNextForNavigation; 
+    }
 
     const formFieldData = (e) => {
 
@@ -29,6 +61,7 @@ const PurchaserInformation = (props) => {
 
         setFormFieldDataToState(formFieldDataSet);
     }
+
     return(
         <div className='step-form ps-4 pe-3' id={whichParentForm}>
             <div className='col-12' id={`step${whichChildForm}`}>
@@ -660,36 +693,24 @@ const PurchaserInformation = (props) => {
                 </div>
                 <div className='step-form-footer pb-3'>
                     <div className='d-flex gap-3 justify-content-end'>
-                        <button 
-                            className='btn btn-back'
-                            onClick={
-                                () => { 
-                                    props.showSection(
-                                        {
-                                            sectionClicked: (purchaserPrefix === 'p1')? 'suiteInformation' : 'purchaserInformation', 
-                                            childItem: { 
-                                                purchaserInformation: {
-                                                    primaryPurchaser: true, 
-                                                    secondaryPurchaser: false
-                                                }
-                                            }
-                                        }
-                                    ) 
-                                } 
-                            }
-                        >
-                            <img src='/assets/left-arrow.png' className='back-img-icon img-fluid' />Back
-                        </button>
+                        {
+                            (whichPrevForm)&&
+                                <button 
+                                    className='btn btn-back'
+                                    onClick={
+                                        () => { 
+                                            props.showSection(navigateBackButton) 
+                                        } 
+                                    }
+                                >
+                                    <img src='/assets/left-arrow.png' className='back-img-icon img-fluid' />Back
+                                </button>
+                        }
                         <button 
                             className='btn btn-primary' 
                             onClick={ 
                                 () => { 
-                                    props.showSection(
-                                        { 
-                                            sectionClicked: (purchaserPrefix === 'p1')? 'purchaserInformation' : 'agentInformation', 
-                                            childItem: (purchaserPrefix === 'p1')? {purchaserInformation: {primaryPurchaser: false, secondaryPurchaser: true}} : null 
-                                        }
-                                    ) 
+                                    props.showSection(navigateNextButton) 
                                 } 
                             }>Continue</button>
                     </div>

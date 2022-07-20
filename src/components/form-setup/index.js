@@ -12,7 +12,8 @@ export const setFormFieldDataToState = (props) => {
 
     const eventTargetType = event.target.type;
 
-    const informationFieldToBeValidate = validateForm[parentForm][childForm][event.target.name];   
+    const informationFieldToBeValidate = validateForm[parentForm][childForm][event.target.name]; 
+
     const validateType = event.target.getAttribute('data-validatetype');
 
     let inputFieldData;
@@ -71,4 +72,115 @@ export const showHidePassword = (data) => {
 
     document.getElementById(target).setAttribute('type', passwordVisible);
 
+}
+
+export const stepFormPrevNextSidebarItem = (item) => {
+
+    let keySidebarMenu;
+    let nextIndexSidebarMenu;
+    let prevIndexSidebarMenu;
+    const currentActiveSidebarMenu = item.sidebarMenuActive;
+    let currentActiveSidebarMenuChildList;
+    let nextSidebarMenu;
+    let prevSidebarMenu;
+
+    const sidebarMenuItem = Object.keys(item.sidebarMenu);
+    const getPositionOfCurrentActiveSidebarMenu =  sidebarMenuItem.indexOf(currentActiveSidebarMenu);
+    const getTotalSidebarMenuLength = sidebarMenuItem.length;
+
+    if("childInformation" in item.sidebarMenu[currentActiveSidebarMenu]){
+
+        currentActiveSidebarMenuChildList = Object.keys(item.sidebarMenuChildListActive[currentActiveSidebarMenu]).find(key => item.sidebarMenuChildListActive[currentActiveSidebarMenu][key] === true); 
+        keySidebarMenu = Object.values( item.sidebarMenu[currentActiveSidebarMenu].childInformation.map( (info, i) => info.componentProps2 ) );
+
+        const lastChildItemOfSidebarMenu = keySidebarMenu[ keySidebarMenu.length - 1 ];
+        const firstChildItemOfSidebarMenu = keySidebarMenu[0];
+
+        let getPositionOfChildList;
+
+        if(currentActiveSidebarMenuChildList === lastChildItemOfSidebarMenu){
+            getPositionOfChildList = 'last';
+        }else if(currentActiveSidebarMenuChildList === firstChildItemOfSidebarMenu){
+            getPositionOfChildList = 'first';
+        }else{
+            getPositionOfChildList = 'middle';
+        }
+
+        if( getPositionOfChildList === 'first'){
+
+            prevIndexSidebarMenu = sidebarMenuItem.indexOf(currentActiveSidebarMenu) - 1;
+            if(keySidebarMenu.length === 1){
+                nextIndexSidebarMenu = sidebarMenuItem.indexOf(currentActiveSidebarMenu) + 1;
+                nextSidebarMenu = sidebarMenuItem[nextIndexSidebarMenu];
+            }else{
+                nextIndexSidebarMenu = keySidebarMenu.indexOf(currentActiveSidebarMenuChildList) + 1;
+                nextSidebarMenu = keySidebarMenu[nextIndexSidebarMenu];
+            }
+
+            prevSidebarMenu = sidebarMenuItem[prevIndexSidebarMenu];
+
+        }else if(getPositionOfChildList === 'middle'){
+
+            nextIndexSidebarMenu = keySidebarMenu.indexOf(currentActiveSidebarMenuChildList) + 1;
+            prevIndexSidebarMenu = keySidebarMenu.indexOf(currentActiveSidebarMenuChildList) - 1;
+
+            nextSidebarMenu = keySidebarMenu[nextIndexSidebarMenu];
+            prevSidebarMenu = keySidebarMenu[prevIndexSidebarMenu];
+
+        }else if( getPositionOfChildList === 'last'){
+
+            nextIndexSidebarMenu = sidebarMenuItem.indexOf(currentActiveSidebarMenu) + 1;
+            if(keySidebarMenu.length === 1){
+                prevIndexSidebarMenu = sidebarMenuItem.indexOf(currentActiveSidebarMenu) - 1;
+                prevSidebarMenu = sidebarMenuItem[prevIndexSidebarMenu];
+            }else{
+                prevIndexSidebarMenu = keySidebarMenu.indexOf(currentActiveSidebarMenuChildList) - 1;
+                prevSidebarMenu = keySidebarMenu[prevIndexSidebarMenu];
+            }
+
+            nextSidebarMenu = sidebarMenuItem[nextIndexSidebarMenu];
+         
+        }
+      
+    }else{
+
+        nextIndexSidebarMenu = sidebarMenuItem.indexOf(currentActiveSidebarMenu) + 1;
+        prevIndexSidebarMenu = sidebarMenuItem.indexOf(currentActiveSidebarMenu) - 1;
+
+        nextSidebarMenu = sidebarMenuItem[nextIndexSidebarMenu];
+        prevSidebarMenu = sidebarMenuItem[prevIndexSidebarMenu];
+
+    }
+
+    let navigateStepForm = { current: currentActiveSidebarMenu };
+
+    if(prevSidebarMenu){ navigateStepForm['prev'] = prevSidebarMenu; }
+        
+    if(nextSidebarMenu){ navigateStepForm['next'] = nextSidebarMenu; }
+
+    return navigateStepForm;
+
+}
+
+export const stepFormPrevNextSidebarChildItem = ({ whichPrevNextForm, whichCurrentForm, worksheetSidebarSetting, navigateBackNextButton  }) => {
+
+    if(
+        'childInformation' in worksheetSidebarSetting.sidebarMenu[whichCurrentForm] && 
+        whichPrevNextForm in worksheetSidebarSetting.sidebarMenuChildListActive[whichCurrentForm]
+    ){
+        
+        navigateBackNextButton['sectionClicked'] = whichCurrentForm;
+
+        const setFalseToAllChild = Object.keys( worksheetSidebarSetting.sidebarMenuChildListActive[whichCurrentForm]  ).reduce((accumulator, key) => {
+            return {...accumulator, [key]: false};
+        }, {});
+        
+        navigateBackNextButton['childItem'] = { 
+            [whichCurrentForm] : { ...setFalseToAllChild, ...{ [whichPrevNextForm]: true } }
+        }
+
+    }else{
+        navigateBackNextButton['sectionClicked'] = whichPrevNextForm;
+    }
+    return navigateBackNextButton;
 }

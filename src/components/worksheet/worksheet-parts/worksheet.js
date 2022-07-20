@@ -75,6 +75,7 @@ const Worksheet = () => {
                 }else{
                     const CreateComponent = item[1].component;
                     return <CreateComponent
+                        form={worksheetSidebarSetting.form} 
                         pageTitle={eval(item[1].componentProps1)} 
                         showSection={ eval(item[1].componentProps2) }
                         key={i} 

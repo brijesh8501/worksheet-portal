@@ -156,6 +156,24 @@ select.form-select{
 .custom-tooltip-box-body{
     padding: 0.75rem 15px;
 }
+.flex-even{
+    flex: 1;
+}
+fieldset{
+    border: 1px solid black;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
+legend{
+    width: max-content;
+    float: none;
+    margin-left: 1rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    margin-bottom: 0;;
+}
 /**** dialog ******/
 .modal{
     display: block;
@@ -206,9 +224,6 @@ button.close {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-}
-.flex-even{
-    flex: 1;
 }
 
 /**************** step form **************/

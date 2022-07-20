@@ -2,21 +2,51 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import FormFields from '../../form-fields/index';
 import { getFormData } from '../../../action';
-import { setFormFieldDataToState } from '../../form-setup';
+import { setFormFieldDataToState, stepFormPrevNextSidebarItem, stepFormPrevNextSidebarChildItem } from '../../form-setup';
 
 const OtherInformation = (props) => {
 
     const whichParentForm = props.form;
-    const whichChildForm = 'otherInformation';
-    const whichNextForm = 'acknowledgement';
 
     const myState = useSelector( (state) => state.myState);
     const dispatch = useDispatch();
 
-    const { worksheetForm, validateForm } = myState;
+    const { worksheetForm, validateForm, worksheetSidebarSetting } = myState;
 
     const otherInformationData = worksheetForm.otherInformation;
     const validateOtherInformationData = validateForm.worksheetForm.otherInformation;
+
+    const getNavigateStepForm = stepFormPrevNextSidebarItem(worksheetSidebarSetting);
+    const whichPrevForm = (getNavigateStepForm.prev)? getNavigateStepForm.prev : null;
+    const whichChildForm = getNavigateStepForm.current;
+    const whichNextForm = (getNavigateStepForm.next)? getNavigateStepForm.next : null;
+
+    let navigateBackButton = {};
+    if(whichPrevForm){
+        const objPrevNextForNavigation = {
+            whichPrevNextForm: whichPrevForm,
+            whichCurrentForm: whichChildForm,
+            worksheetSidebarSetting,
+            navigateBackNextButton: navigateBackButton
+        }
+     
+        const respPrevNextForNavigation = stepFormPrevNextSidebarChildItem(objPrevNextForNavigation);
+        navigateBackButton = respPrevNextForNavigation;   
+    }
+    let navigateNextButton = {};
+    if(whichNextForm){
+        navigateNextButton['sectionClicked'] = whichNextForm;
+
+        const objPrevNextForNavigation = {
+            whichPrevNextForm: whichNextForm,
+            whichCurrentForm: whichChildForm,
+            worksheetSidebarSetting,
+            navigateBackNextButton: navigateNextButton
+        }
+     
+        const respPrevNextForNavigation = stepFormPrevNextSidebarChildItem(objPrevNextForNavigation);
+        navigateNextButton = respPrevNextForNavigation; 
+    }
 
     const formFieldData = (e) => {
     
@@ -82,21 +112,26 @@ const OtherInformation = (props) => {
                 </div>
                 <div className='step-form-footer pb-3'>
                     <div className='d-flex gap-3 justify-content-end'>
-                        <button 
-                        className='btn btn-back'
-                        onClick={
-                            () => { 
-                                props.showSection(
-                                    {
-                                        sectionClicked:'agentInformation'
+                        {
+                            (whichPrevForm)&&
+                                <button 
+                                    className='btn btn-back'
+                                    onClick={
+                                        () => { 
+                                            props.showSection(navigateBackButton) 
+                                        } 
                                     }
-                                ) 
+                                >
+                                    <img src='/assets/left-arrow.png' className='back-img-icon img-fluid' />Back
+                                </button>
+                        }
+                        <button 
+                            className='btn btn-primary' 
+                            onClick={ () => { 
+                                props.showSection(navigateNextButton) 
                             } 
                         }
-                    >
-                        <img src='/assets/left-arrow.png' className='back-img-icon img-fluid' />Back
-                    </button>
-                        <button className='btn btn-primary' onClick={ () => { props.showSection({sectionClicked:whichNextForm}) } }>Continue</button>
+                        >Continue</button>
                     </div>
                 </div>
             </div>
