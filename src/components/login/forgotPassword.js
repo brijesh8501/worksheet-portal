@@ -43,7 +43,7 @@ const ForgotPassword = () => {
                <div className='create-account-body w-100'>
                    <div>
                        <label className='form-label'>
-                        Email address
+                        {forgotPasswordInformationData['emailAddress'].label}
                         &nbsp;
                         { (validateForgotPasswordInformationData['emailAddress'][0] === 'required')&& <span className='text-danger'>*</span> }
                         </label>
@@ -56,7 +56,7 @@ const ForgotPassword = () => {
                                    name: `emailAddress`,
                                    type: 'text',
                                    placeholder: 'Enter email address',
-                                   value: forgotPasswordInformationData['emailAddress'],
+                                   value: forgotPasswordInformationData['emailAddress'].value,
                                    onChange: formFieldData
                                }
                            }

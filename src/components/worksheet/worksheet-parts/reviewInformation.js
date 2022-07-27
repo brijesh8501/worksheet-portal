@@ -7,12 +7,25 @@ const ReviewInformation = (props) => {
     const whichParentForm = props.form;
     const myState = useSelector( (state) => state.myState);
    
-    const { worksheetForm, worksheetSidebarSetting } = myState;
+    const { worksheetForm, profileForm, worksheetSidebarSetting, worksheetSuiteInformationSetting } = myState;
 
     const getNavigateStepForm = stepFormPrevNextSidebarItem(worksheetSidebarSetting);
     const whichPrevForm = (getNavigateStepForm.prev)? getNavigateStepForm.prev : null;
     const whichChildForm = getNavigateStepForm.current;
     const whichNextForm = (getNavigateStepForm.next)? getNavigateStepForm.next : null;
+
+    const reviewDesignSetting = {
+        fullWidth: [
+            'p1address',
+            'p1purchasingType',
+            'p1notes',
+            'isSecondaryPurchaserRequired',
+            'p2address',
+            'p2purchasingType',
+            'p2notes',
+            'brokerageAddress'
+        ]
+    }
 
     let navigateBackButton = {};
     if(whichPrevForm){
@@ -40,37 +53,87 @@ const ReviewInformation = (props) => {
         const respPrevNextForNavigation = stepFormPrevNextSidebarChildItem(objPrevNextForNavigation);
         navigateNextButton = respPrevNextForNavigation; 
     }
-    console.log(worksheetForm.suiteInformation)
+   console.log(worksheetForm);
     return(
         <div className='step-form ps-4 pe-3' id={whichParentForm}>
             <div className='col-12' id='stepreviewInformation'>
                 <div className='step-form-header py-3'>
                     <h2 className='h4 mb-0'>{props.pageTitle}</h2>
                 </div>
-                <div className='step-form-body py-3'>
+                <div className='step-form-body pb-3'>
                     <div className='step-form-body-wrapper'>
                         <fieldset>
-                            <legend>Suite Information</legend>
-                            <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center'>
-                                <div className='cw-33'>
-                                    <label htmlFor="readModelType1">Model</label>
-                                    <input type="text" className='form-control' name="readModelType1" id="readModelType1" value={worksheetForm.suiteInformation.modelType1} readOnly/>
+                            <legend>{worksheetSuiteInformationSetting.suiteInformationTitle}</legend>
+                            {
+                                worksheetSuiteInformationSetting.choice.map( (item, i) => {
+                                    return(
+                                        <div key={i}>
+                                            <h2 className={`h6 ${(i>0)? 'mt-4' : 'mt-2'}`}>{item.label}</h2>
+                                            <div className='d-flex gap-3 justify-content-center align-items-center'>
+                                                {
+                                                    item.fields.map( (child, j) => {
+                                                        return(
+                                                            <div className='cw-33' key={j}>
+                                                                <label htmlFor={`${whichChildForm}${child.id}`}>{child.label}</label>
+                                                                <input type="text" className='form-control' name={`${whichChildForm}${child.name}`} id={`${whichChildForm}${child.id}`} value={worksheetForm.suiteInformation[child.id].value} readOnly/>
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        </div>
+                                    )
+                                } )
+                            }
+                        </fieldset>
+                        <fieldset className='mt-4'>
+                            <legend>Purchaser Information</legend>
+                            <div>
+                                <h2 className='h6 mt-3 mb-3'>Primary Purchaser</h2>
+                                <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center'>
+                                {
+                                    Object.entries(worksheetForm.primaryPurchaser).map( (item, i)=>{
+                                        return(<div className={`${reviewDesignSetting.fullWidth.includes(item[0])? 'w-100' : 'cw-50'}`} key={i}>
+                                                <label htmlFor={`${whichChildForm}${item[0]}`}>{item[1].label}</label>
+                                                <input type="text" className='form-control' name={`${whichChildForm}${item[0]}`} id={`${whichChildForm}${item[0]}`} value={item[1].value} readOnly/>
+                                            </div>
+                                        );
+                                    })
+                                }
                                 </div>
-                                <div className='cw-33'>
-                                    <label htmlFor="readLotType1">Lot</label>
-                                    <input type="text" className='form-control' name="readLotType1" id="readLotType1" value={worksheetForm.suiteInformation.lotType1} readOnly/>
-                                </div>
-                                <div className='cw-33'>
-                                    <label htmlFor="readPreference1">Lot</label>
-                                    <input type="text" className='form-control' name="readPreference1" id="readPreference1" value={worksheetForm.suiteInformation.preference1} readOnly/>
+                            </div>
+                            <div>
+                                <h2 className='h6 mt-5 mb-3'>Secondary Purchaser</h2>
+                                <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center'>
+                                {
+                                    Object.entries(worksheetForm.secondaryPurchaser).map( (item, i)=>{
+
+                                        return(<div className={`${reviewDesignSetting.fullWidth.includes(item[0])? 'w-100' : 'cw-50'}`} key={i}>
+                                                <label htmlFor={`${whichChildForm}${item[0]}`}>{item[1].label}</label>
+                                                <input type="text" className='form-control' name={`${whichChildForm}${item[0]}`} id={`${whichChildForm}${item[0]}`} value={item[1].value} readOnly/>
+                                            </div>
+                                        );
+                                    })
+                                }
                                 </div>
                             </div>
                         </fieldset>
                         <fieldset>
-                            <legend>Purchaser Information</legend>
-                        </fieldset>
-                        <fieldset>
                             <legend>Agent Information</legend>
+                            <div>
+                                <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center'>
+                                {
+                                    Object.entries(profileForm.profileInformation).map( (item, i)=>{
+                                        return (item[0] !== 'privacyPolicyProfile')&&
+                                            (<div className={`${reviewDesignSetting.fullWidth.includes(item[0])? 'w-100' : 'cw-50'}`} key={i}>
+                                                    <label htmlFor={`${whichChildForm}${item[0]}`}>{item[1].label}</label>
+                                                    <input type="text" className='form-control' name={`${whichChildForm}${item[0]}`} id={`${whichChildForm}${item[0]}`} value={item[1].value} readOnly/>
+                                                </div>
+                                            )
+                                    })
+                                }
+                                </div>
+                            </div>
                         </fieldset>
                         <fieldset>
                             <legend>Other Information</legend>

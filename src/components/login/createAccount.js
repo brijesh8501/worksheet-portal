@@ -74,7 +74,7 @@ const CreateAccount = () => {
                     <div className='create-account-body w-100'>
                         <div>
                             <label className='form-label'>
-                                First name 
+                                {createAccountInformationData['firstName'].label} 
                                 &nbsp;
                                 { (validateCreateAccountInformationData['firstName'][0] === 'required')&& <span className='text-danger'>*</span> }
                             </label>
@@ -87,7 +87,7 @@ const CreateAccount = () => {
                                         name: `firstName`,
                                         type: 'text',
                                         placeholder: 'Enter first name',
-                                        value: createAccountInformationData['firstName'],
+                                        value: createAccountInformationData['firstName'].value,
                                         onChange: formFieldData
                                     }
                                 }
@@ -101,7 +101,7 @@ const CreateAccount = () => {
                         </div>
                         <div className='mt-3'>
                             <label className='form-label'>
-                                Last name 
+                                {createAccountInformationData['lastName'].label} 
                                 &nbsp;
                                 { (validateCreateAccountInformationData['lastName'][0] === 'required')&& <span className='text-danger'>*</span> }
                             </label>
@@ -114,7 +114,7 @@ const CreateAccount = () => {
                                         name: `lastName`,
                                         type: 'text',
                                         placeholder: 'Enter last name',
-                                        value: createAccountInformationData['lastName'],
+                                        value: createAccountInformationData['lastName'].value,
                                         onChange: formFieldData
                                     }
                                 }
@@ -128,7 +128,7 @@ const CreateAccount = () => {
                         </div>
                         <div className='mt-3'>
                             <label className='form-label'>
-                                Email address 
+                                {createAccountInformationData['emailAddress'].label} 
                                 &nbsp;
                                 { (validateCreateAccountInformationData['emailAddress'][0] === 'required')&& <span className='text-danger'>*</span> }
                             </label>
@@ -141,7 +141,7 @@ const CreateAccount = () => {
                                         name: `emailAddress`,
                                         type: 'text',
                                         placeholder: 'Enter email address',
-                                        value: createAccountInformationData['emailAddress'],
+                                        value: createAccountInformationData['emailAddress'].value,
                                         onChange: formFieldData
                                     }
                                 }
@@ -155,7 +155,7 @@ const CreateAccount = () => {
                         </div>
                         <div className='mt-3'>
                             <label className='form-label'>
-                                Confirm email address 
+                                {createAccountInformationData['confirmEmailAddress'].label} 
                                 &nbsp;
                                 { (validateCreateAccountInformationData['confirmEmailAddress'][0] === 'required')&& <span className='text-danger'>*</span> }
                             </label>
@@ -168,7 +168,7 @@ const CreateAccount = () => {
                                         name: `confirmEmailAddress`,
                                         type: 'text',
                                         placeholder: 'Confirm your email address',
-                                        value: createAccountInformationData['confirmEmailAddress'],
+                                        value: createAccountInformationData['confirmEmailAddress'].value,
                                         onChange: formFieldData
                                     }
                                 }
@@ -182,7 +182,7 @@ const CreateAccount = () => {
                         </div>
                         <div className='mt-3'>
                             <label className='form-label'>
-                                Phone number 
+                                {createAccountInformationData['phoneNumber'].label} 
                                 &nbsp;
                                 { (validateCreateAccountInformationData['phoneNumber'][0] === 'required')&& <span className='text-danger'>*</span> }
                             </label>
@@ -195,7 +195,7 @@ const CreateAccount = () => {
                                         name: `phoneNumber`,
                                         type: 'text',
                                         placeholder: 'Enter phone number',
-                                        value: createAccountInformationData['phoneNumber'],
+                                        value: createAccountInformationData['phoneNumber'].value,
                                         onChange: formFieldData
                                     }
                                 }
@@ -209,7 +209,7 @@ const CreateAccount = () => {
                         </div>
                         <div className='mt-3'>
                             <label className='form-label'>
-                                Password 
+                                {createAccountInformationData['password'].label} 
                                 &nbsp;
                                 { (validateCreateAccountInformationData['password'][0] === 'required')&& <span className='text-danger'>*</span> }
                             </label>
@@ -223,7 +223,7 @@ const CreateAccount = () => {
                                             name: `password`,
                                             type: 'password',
                                             placeholder: 'Enter password',
-                                            value: createAccountInformationData['password'],
+                                            value: createAccountInformationData['password'].value,
                                             onChange: formFieldData
                                         }
                                     }
@@ -246,7 +246,7 @@ const CreateAccount = () => {
                         </div>
                         <div className='mt-3'>
                             <label className='form-label'>
-                                Confirm password
+                                {createAccountInformationData['confirmPassword'].label}
                                 &nbsp;
                                 { (validateCreateAccountInformationData['confirmPassword'][0] === 'required')&& <span className='text-danger'>*</span> }
                             </label>
@@ -260,7 +260,7 @@ const CreateAccount = () => {
                                             name: `confirmPassword`,
                                             type: 'password',
                                             placeholder: 'Confirm your password',
-                                            value: createAccountInformationData['confirmPassword'],
+                                            value: createAccountInformationData['confirmPassword'].value,
                                             onChange: formFieldData
                                         }
                                     }

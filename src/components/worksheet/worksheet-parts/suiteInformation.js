@@ -93,7 +93,7 @@ const SuiteInformation = (props) => {
                                                                 name: data.name,
                                                                 type: 'text',
                                                                 placeholder: data.placeholder,
-                                                                value: suiteInformationData[data.id],
+                                                                value: suiteInformationData[data.id].value,
                                                                 onChange: formFieldData
                                                             }
                                                         }
@@ -123,7 +123,7 @@ const SuiteInformation = (props) => {
                                                                 class: 'form-select',
                                                                 id: data.id,
                                                                 name: data.name,
-                                                                value: suiteInformationData[data.id],
+                                                                value: suiteInformationData[data.id].value,
                                                                 onChange: formFieldData,
                                                                 optionData: [
                                                                     {

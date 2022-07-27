@@ -69,57 +69,60 @@ const PurchaserInformation = (props) => {
                     <h2 className='h4 mb-0'>{props.pageTitle}</h2>
                 </div>
                 <div className={`step-form-body py-3`}>
-                    <div className={`${(purchaserPrefix === 'p2')? 'd-block' : 'd-none' }`}>
-                        <label className='form-check-label'>
-                            Would you like to add secondary purchaser?
-                            &nbsp; 
-                            { ( purchaserPrefix === 'p2' && validatePurchaserInformationData['isSecondaryPurchaserRequired'][0] === 'required')&& <span className='text-danger'>*</span> }
-                        </label>
-                            <FormFields 
-                                formField='radio' 
-                                formFieldSettings={ 
-                                    { 
-                                        class: 'd-flex gap-3 mt-2',
-                                        optionData: [
-                                            {
-                                                label: 'Yes',
-                                                class: 'form-check-input square-radio',
-                                                id: 'isSecondaryPurchaserRequiredYes',
-                                                name: 'isSecondaryPurchaserRequired',
-                                                value: 'Yes',
-                                                checked: purchaserInformationData[`isSecondaryPurchaserRequired`] === 'Yes',
-                                                onChange: formFieldData 
-                                            },
-                                            {
-                                                label: 'No',
-                                                class: 'form-check-input square-radio',
-                                                id: 'isSecondaryPurchaserRequiredNo',
-                                                name: 'isSecondaryPurchaserRequired',
-                                                value: 'No',
-                                                checked: purchaserInformationData[`isSecondaryPurchaserRequired`] === 'No',
-                                                onChange: formFieldData
+                    {
+                        (purchaserPrefix === 'p2')&&
+                            <div>
+                                <label className='form-check-label'>
+                                    {purchaserInformationData[`isSecondaryPurchaserRequired`].label}
+                                    &nbsp; 
+                                    { ( purchaserPrefix === 'p2' && validatePurchaserInformationData['isSecondaryPurchaserRequired'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                </label>
+                                    <FormFields 
+                                        formField='radio' 
+                                        formFieldSettings={ 
+                                            { 
+                                                class: 'd-flex gap-3 mt-2',
+                                                optionData: [
+                                                    {
+                                                        label: 'Yes',
+                                                        class: 'form-check-input square-radio',
+                                                        id: 'isSecondaryPurchaserRequiredYes',
+                                                        name: 'isSecondaryPurchaserRequired',
+                                                        value: 'Yes',
+                                                        checked: purchaserInformationData[`isSecondaryPurchaserRequired`].value === 'Yes',
+                                                        onChange: formFieldData 
+                                                    },
+                                                    {
+                                                        label: 'No',
+                                                        class: 'form-check-input square-radio',
+                                                        id: 'isSecondaryPurchaserRequiredNo',
+                                                        name: 'isSecondaryPurchaserRequired',
+                                                        value: 'No',
+                                                        checked: purchaserInformationData[`isSecondaryPurchaserRequired`].value === 'No',
+                                                        onChange: formFieldData
+                                                    }
+                                                ]
                                             }
-                                        ]
-                                    }
-                                }
-                                formFieldMasking = {
-                                    (purchaserPrefix === 'p2')&&
-                                    {
-                                        mask: ( validatePurchaserInformationData[`isSecondaryPurchaserRequired`].length === 2 ) ? 
-                                        validatePurchaserInformationData[`isSecondaryPurchaserRequired`][1] 
-                                        :
-                                        validatePurchaserInformationData[`isSecondaryPurchaserRequired`][0]
-                                    }
-                                }
-                        />
-                    </div>
-                    <div className={`position-relative bg-white pt-5 pb-3 ${ (purchaserInformationData[`isSecondaryPurchaserRequired`] === 'Yes')&& 'mt-4' } ${( (purchaserPrefix === 'p1') || (purchaserPrefix === 'p2' && purchaserInformationData[`isSecondaryPurchaserRequired`] === 'Yes' ) )? 'd-block' : 'd-none' } `}>
-                        <h3 className='h6 mb-0 position-absolute stepform-choice-title'>{props.pageChildTitle}</h3>
+                                        }
+                                        formFieldMasking = {
+                                            (purchaserPrefix === 'p2')&&
+                                            {
+                                                mask: ( validatePurchaserInformationData[`isSecondaryPurchaserRequired`].length === 2 ) ? 
+                                                validatePurchaserInformationData[`isSecondaryPurchaserRequired`][1] 
+                                                :
+                                                validatePurchaserInformationData[`isSecondaryPurchaserRequired`][0]
+                                            }
+                                        }
+                                />
+                            </div>
+                    }
+                    <div className={`position-relative bg-white pt-5 pb-3 ${ ( ('isSecondaryPurchaserRequired' in purchaserInformationData) && purchaserInformationData[`isSecondaryPurchaserRequired`].value === 'Yes')&& 'mt-4' } ${( (purchaserPrefix === 'p1') || (purchaserPrefix === 'p2' && purchaserInformationData[`isSecondaryPurchaserRequired`].value === 'Yes' ) )? 'd-block' : 'd-none' } `}>
+                        <h3 className='h6 mb-0 position-absolute stepform-choice-title purchaser-title'>{props.pageChildTitle}</h3>
                         <div className='purchaser-information-box px-3'>
                             <div className='d-flex gap-3 justify-content-center align-items-center'>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        First name
+                                        {purchaserInformationData[`${purchaserPrefix}firstName`].label}
                                         &nbsp;
                                         { (validatePurchaserInformationData[`${purchaserPrefix}firstName`][0] === 'required')&& <span className='text-danger'>*</span> } 
                                     </label>
@@ -131,7 +134,7 @@ const PurchaserInformation = (props) => {
                                                 id: `${purchaserPrefix}firstName`,
                                                 name: `${purchaserPrefix}firstName`,
                                                 type: 'text',
-                                                value: purchaserInformationData[`${purchaserPrefix}firstName`],
+                                                value: purchaserInformationData[`${purchaserPrefix}firstName`].value,
                                                 placeholder: 'Enter first name',
                                                 onChange: formFieldData
                                             }
@@ -148,7 +151,7 @@ const PurchaserInformation = (props) => {
                                 </div>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Last name
+                                        {purchaserInformationData[`${purchaserPrefix}lastName`].label}
                                         &nbsp; 
                                         { (validatePurchaserInformationData[`${purchaserPrefix}lastName`][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -160,7 +163,7 @@ const PurchaserInformation = (props) => {
                                                 id: `${purchaserPrefix}lastName`,
                                                 name: `${purchaserPrefix}lastName`,
                                                 type: 'text',
-                                                value: purchaserInformationData[`${purchaserPrefix}lastName`],
+                                                value: purchaserInformationData[`${purchaserPrefix}lastName`].value,
                                                 placeholder: 'Enter last name',
                                                 onChange: formFieldData
                                             }
@@ -178,7 +181,7 @@ const PurchaserInformation = (props) => {
                             </div>
                             <div className='mt-3'>
                                 <label className='form-label'>
-                                    Address
+                                    {purchaserInformationData[`${purchaserPrefix}address`].label}
                                     &nbsp;
                                     { (validatePurchaserInformationData[`${purchaserPrefix}address`][0] === 'required')&& <span className='text-danger'>*</span> }
                                 </label>
@@ -190,7 +193,7 @@ const PurchaserInformation = (props) => {
                                             id: `${purchaserPrefix}address`,
                                             name: `${purchaserPrefix}address`,
                                             type: 'text',
-                                            value: purchaserInformationData[`${purchaserPrefix}address`],
+                                            value: purchaserInformationData[`${purchaserPrefix}address`].value,
                                             placeholder: 'Enter address',
                                             onChange: formFieldData
                                         }
@@ -208,7 +211,7 @@ const PurchaserInformation = (props) => {
                             <div className='d-flex gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        City
+                                        {purchaserInformationData[`${purchaserPrefix}city`].label}
                                         &nbsp; 
                                         { (validatePurchaserInformationData[`${purchaserPrefix}city`][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -220,7 +223,7 @@ const PurchaserInformation = (props) => {
                                                 id: `${purchaserPrefix}city`,
                                                 name: `${purchaserPrefix}city`,
                                                 type: 'text',
-                                                value: purchaserInformationData[`${purchaserPrefix}city`],
+                                                value: purchaserInformationData[`${purchaserPrefix}city`].value,
                                                 placeholder: 'Enter city',
                                                 onChange: formFieldData
                                             }
@@ -237,7 +240,7 @@ const PurchaserInformation = (props) => {
                                 </div>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Province/State/Region
+                                        {purchaserInformationData[`${purchaserPrefix}province`].label}
                                         &nbsp;
                                         { (validatePurchaserInformationData[`${purchaserPrefix}province`][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -249,7 +252,7 @@ const PurchaserInformation = (props) => {
                                                 id: `${purchaserPrefix}province`,
                                                 name: `${purchaserPrefix}province`,
                                                 type: 'text',
-                                                value: purchaserInformationData[`${purchaserPrefix}province`],
+                                                value: purchaserInformationData[`${purchaserPrefix}province`].value,
                                                 placeholder: 'Enter province/state/region',
                                                 onChange: formFieldData
                                             }
@@ -268,7 +271,7 @@ const PurchaserInformation = (props) => {
                             <div className='d-flex gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Country
+                                        {purchaserInformationData[`${purchaserPrefix}country`].label}
                                         &nbsp;
                                         { (validatePurchaserInformationData[`${purchaserPrefix}country`][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -280,7 +283,7 @@ const PurchaserInformation = (props) => {
                                                 id: `${purchaserPrefix}country`,
                                                 name: `${purchaserPrefix}country`,
                                                 type: 'text',
-                                                value: purchaserInformationData[`${purchaserPrefix}country`],
+                                                value: purchaserInformationData[`${purchaserPrefix}country`].value,
                                                 placeholder: 'Enter country',
                                                 onChange: formFieldData
                                             }
@@ -297,7 +300,7 @@ const PurchaserInformation = (props) => {
                                 </div>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Postal/Zip code
+                                        {purchaserInformationData[`${purchaserPrefix}postalCode`].label}
                                         &nbsp;
                                         { (validatePurchaserInformationData[`${purchaserPrefix}postalCode`][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -309,7 +312,7 @@ const PurchaserInformation = (props) => {
                                                 id: `${purchaserPrefix}postalCode`,
                                                 name: `${purchaserPrefix}postalCode`,
                                                 type: 'text',
-                                                value: purchaserInformationData[`${purchaserPrefix}postalCode`],
+                                                value: purchaserInformationData[`${purchaserPrefix}postalCode`].value,
                                                 maxlength: '6',
                                                 placeholder: 'Enter postal code, e.g. A9A9A9',
                                                 onChange: formFieldData,
@@ -330,7 +333,7 @@ const PurchaserInformation = (props) => {
                             <div className='d-flex gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Phone number
+                                        {purchaserInformationData[`${purchaserPrefix}phoneNumber`].label}
                                         &nbsp;
                                         { (validatePurchaserInformationData[`${purchaserPrefix}phoneNumber`][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -342,7 +345,7 @@ const PurchaserInformation = (props) => {
                                                 id: `${purchaserPrefix}phoneNumber`,
                                                 name: `${purchaserPrefix}phoneNumber`,
                                                 type: 'text',
-                                                value: purchaserInformationData[`${purchaserPrefix}phoneNumber`],
+                                                value: purchaserInformationData[`${purchaserPrefix}phoneNumber`].value,
                                                 maxlength: '10',
                                                 placeholder: 'Enter phone number, e.g. 9999999999',
                                                 onChange: formFieldData,
@@ -361,7 +364,7 @@ const PurchaserInformation = (props) => {
                                 </div>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Email address
+                                        {purchaserInformationData[`${purchaserPrefix}emailAddress`].label}
                                         &nbsp;
                                         { (validatePurchaserInformationData[`${purchaserPrefix}emailAddress`][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -373,7 +376,7 @@ const PurchaserInformation = (props) => {
                                                 id: `${purchaserPrefix}emailAddress`,
                                                 name: `${purchaserPrefix}emailAddress`,
                                                 type: 'text',
-                                                value: purchaserInformationData[`${purchaserPrefix}emailAddress`],
+                                                value: purchaserInformationData[`${purchaserPrefix}emailAddress`].value,
                                                 placeholder: 'Enter email address',
                                                 onChange: formFieldData
                                             }
@@ -392,7 +395,7 @@ const PurchaserInformation = (props) => {
                             <div className='d-flex gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Date of birth
+                                        {purchaserInformationData[`${purchaserPrefix}dob`].label}
                                         &nbsp;
                                         { (validatePurchaserInformationData[`${purchaserPrefix}dob`][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -404,7 +407,7 @@ const PurchaserInformation = (props) => {
                                                 id: `${purchaserPrefix}dob`,
                                                 name: `${purchaserPrefix}dob`,
                                                 type: 'text',
-                                                value: purchaserInformationData[`${purchaserPrefix}dob`],
+                                                value: purchaserInformationData[`${purchaserPrefix}dob`].value,
                                                 maxlength: '8',
                                                 placeholder: 'Enter date of birth, e.g. DDMMYYYY',
                                                 onChange: formFieldData,
@@ -423,7 +426,7 @@ const PurchaserInformation = (props) => {
                                 </div>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Marital status
+                                        {purchaserInformationData[`${purchaserPrefix}maritalStatus`].label}
                                         &nbsp;
                                         { (validatePurchaserInformationData[`${purchaserPrefix}maritalStatus`][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -434,7 +437,7 @@ const PurchaserInformation = (props) => {
                                                 class: 'form-select',
                                                 id: `${purchaserPrefix}maritalStatus`,
                                                 name: `${purchaserPrefix}maritalStatus`,
-                                                value: purchaserInformationData[`${purchaserPrefix}maritalStatus`],
+                                                value: purchaserInformationData[`${purchaserPrefix}maritalStatus`].value,
                                                 onChange: formFieldData,
                                                 optionData: [
                                                     {
@@ -478,7 +481,7 @@ const PurchaserInformation = (props) => {
                             <div className='d-flex gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Occupation
+                                        {purchaserInformationData[`${purchaserPrefix}occupation`].label}
                                         &nbsp;
                                         { (validatePurchaserInformationData[`${purchaserPrefix}occupation`][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -490,7 +493,7 @@ const PurchaserInformation = (props) => {
                                                 id: `${purchaserPrefix}occupation`,
                                                 name: `${purchaserPrefix}occupation`,
                                                 type: 'text',
-                                                value: purchaserInformationData[`${purchaserPrefix}occupation`],
+                                                value: purchaserInformationData[`${purchaserPrefix}occupation`].value,
                                                 placeholder: 'Enter occupation',
                                                 onChange: formFieldData
                                             }
@@ -507,7 +510,7 @@ const PurchaserInformation = (props) => {
                                 </div>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Employer
+                                        {purchaserInformationData[`${purchaserPrefix}employer`].label}
                                         &nbsp; 
                                         { (validatePurchaserInformationData[`${purchaserPrefix}employer`][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -519,7 +522,7 @@ const PurchaserInformation = (props) => {
                                                 id: `${purchaserPrefix}employer`,
                                                 name: `${purchaserPrefix}employer`,
                                                 type: 'text',
-                                                value: purchaserInformationData[`${purchaserPrefix}employer`],
+                                                value: purchaserInformationData[`${purchaserPrefix}employer`].value,
                                                 placeholder: 'Enter employer',
                                                 onChange: formFieldData
                                             }
@@ -537,7 +540,7 @@ const PurchaserInformation = (props) => {
                             </div>
                             <div className='mt-3 d-flex gap-3 justify-content-start align-items-center'>
                                 <label className='form-label mb-0'>
-                                    Your client is purchasing this home
+                                    {purchaserInformationData[`${purchaserPrefix}purchasingType`].label}
                                     &nbsp;
                                     { (validatePurchaserInformationData[`${purchaserPrefix}purchasingType`][0] === 'required')&& <span className='text-danger'>*</span> }
                                 </label>
@@ -553,7 +556,7 @@ const PurchaserInformation = (props) => {
                                                     id: `${purchaserPrefix}purchasingTypeInvestment`,
                                                     name: `${purchaserPrefix}purchasingType`,
                                                     value: 'As an investment',
-                                                    checked: purchaserInformationData[`${purchaserPrefix}purchasingType`] === 'As an investment',
+                                                    checked: purchaserInformationData[`${purchaserPrefix}purchasingType`].value === 'As an investment',
                                                     onChange: formFieldData
                                                    
                                                 },
@@ -563,7 +566,7 @@ const PurchaserInformation = (props) => {
                                                     id: `${purchaserPrefix}purchasringTypeLiveIn`,
                                                     name: `${purchaserPrefix}purchasingType`,
                                                     value: 'To live in',
-                                                    checked: purchaserInformationData[`${purchaserPrefix}purchasingType`] === 'To live in',
+                                                    checked: purchaserInformationData[`${purchaserPrefix}purchasingType`].value === 'To live in',
                                                     onChange: formFieldData
                                            
                                                 }
@@ -663,7 +666,7 @@ const PurchaserInformation = (props) => {
                             </div>
                             <div className='mt-3'>
                                 <label className='form-label'>
-                                    Notes
+                                    {purchaserInformationData[`${purchaserPrefix}notes`].label}
                                     &nbsp;
                                     { (validatePurchaserInformationData[`${purchaserPrefix}notes`][0] === 'required')&& <span className='text-danger'>*</span> }
                                 </label>
@@ -674,7 +677,7 @@ const PurchaserInformation = (props) => {
                                             class: 'form-control',
                                             id: `${purchaserPrefix}notes`,
                                             name: `${purchaserPrefix}notes`,
-                                            value: purchaserInformationData[`${purchaserPrefix}notes`],
+                                            value: purchaserInformationData[`${purchaserPrefix}notes`].value,
                                             onChange: formFieldData
                                         }
                                     }

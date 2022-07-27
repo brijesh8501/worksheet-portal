@@ -58,7 +58,7 @@ const OtherInformation = (props) => {
         
         setFormFieldDataToState(formFieldDataSet);
     }
-
+    console.log(otherInformationData);
     return (
         <div className='step-form ps-4 pe-3' id={whichParentForm}>
             <div className='col-12' id={`step${whichChildForm}`}>

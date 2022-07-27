@@ -60,7 +60,7 @@ const Login = () => {
                 <div className='login-form-body w-100'>
                     <div>
                         <label className='form-label'>
-                            Email address 
+                            {loginInformationData['emailAddress'].label}
                             &nbsp;
                             { (validateLoginInformationData['emailAddress'][0] === 'required')&& <span className='text-danger'>*</span> }
                         </label>
@@ -73,7 +73,7 @@ const Login = () => {
                                     name: `emailAddress`,
                                     type: 'text',
                                     placeholder: 'Enter email address',
-                                    value: loginInformationData['emailAddress'],
+                                    value: loginInformationData['emailAddress'].value,
                                     onChange: formFieldData
                                 }
                             }
@@ -87,7 +87,7 @@ const Login = () => {
                     </div>
                     <div className='mt-3'>
                         <label className='form-label'>
-                            Password 
+                            {loginInformationData['password'].label} 
                             &nbsp;
                             { (validateLoginInformationData['password'][0] === 'required')&& <span className='text-danger'>*</span> }
                         </label>
@@ -101,7 +101,7 @@ const Login = () => {
                                         name: `password`,
                                         type: 'password',
                                         placeholder: 'Enter password',
-                                        value: loginInformationData['password'],
+                                        value: loginInformationData['password'].value,
                                         onChange: formFieldData
                                     }
                                 }
@@ -129,12 +129,12 @@ const Login = () => {
                                         class: '',
                                         optionData: [
                                             {
-                                                label: 'Remember me',
+                                                label: loginInformationData.rememberMe.label,
                                                 class: 'form-check-input square-radio',
                                                 id: 'rememberMe',
                                                 name: 'rememberMe',
                                                 value: 'true',
-                                                checked: loginInformationData.rememberMe === true,
+                                                checked: loginInformationData.rememberMe.value === true,
                                                 onChange: formFieldData
                                             }
                                         ]

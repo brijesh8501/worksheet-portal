@@ -52,6 +52,9 @@ body{
 .cw-33{
     width: 33.33%;
 }
+.cw-33-flex{
+    width: 31.5%;
+}
 .cw-50{
     width: 49%;
 }
@@ -169,7 +172,6 @@ fieldset{
 legend{
     width: max-content;
     float: none;
-    margin-left: 1rem;
     padding-left: 0.25rem;
     padding-right: 0.25rem;
     margin-bottom: 0;;
@@ -295,6 +297,9 @@ button.close {
     border-style: solid;
     border-width: 0 9px 9px 0;
     border-color: transparent var(--sixth-bg-color) transparent transparent;
+}
+.stepform-choice-title.purchaser-title:before{
+    margin-bottom: -18px;
 }
 /*******************/
 @media screen and (max-width: 575px) {

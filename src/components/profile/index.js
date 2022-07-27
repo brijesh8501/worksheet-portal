@@ -60,13 +60,13 @@ const Profile = () => {
                     <div className='profile-form px-3 position-relative' id='profileForm'>
                         <div className='d-flex justify-content-end profile-form-header py-4'>
                             <button className='btn btn-secondary btn-delete-account'>
-                                <img src='/assets/delete-profile-icon.png' className='worksheet-img-icon img-fluid'/>Delete account</button> 
+                                <img src='/assets/delete-profile-icon.png' className='stepform-img-icon img-fluid'/>Delete account</button> 
                         </div>
                         <div className='profile-form-body pb-3'>
                             <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center'>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Agent first name 
+                                        {profileInformationData['firstName'].label} 
                                         &nbsp;
                                         { (validateProfileInformationData['firstName'][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -78,7 +78,7 @@ const Profile = () => {
                                                 id: `firstName`,
                                                 name: `firstName`,
                                                 type: 'text',
-                                                value: profileInformationData['firstName'],
+                                                value: profileInformationData['firstName'].value,
                                                 placeholder: 'Enter agent first name',
                                                 onChange: formFieldData
                                             }
@@ -93,7 +93,7 @@ const Profile = () => {
                                 </div>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Agent last name 
+                                        {profileInformationData['lastName'].label}
                                         &nbsp;
                                         { (validateProfileInformationData['lastName'][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -105,7 +105,7 @@ const Profile = () => {
                                                 id: `lastName`,
                                                 name: `lastName`,
                                                 type: 'text',
-                                                value: profileInformationData['lastName'],
+                                                value: profileInformationData['lastName'].value,
                                                 placeholder: 'Enter agent last name',
                                                 onChange: formFieldData
                                             }
@@ -122,7 +122,7 @@ const Profile = () => {
                             <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Agent phone number 
+                                        {profileInformationData['phoneNumber'].label}
                                         &nbsp;
                                         { (validateProfileInformationData['phoneNumber'][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -134,7 +134,7 @@ const Profile = () => {
                                                 id: `phoneNumber`,
                                                 name: `phoneNumber`,
                                                 type: 'text',
-                                                value: profileInformationData['phoneNumber'],
+                                                value: profileInformationData['phoneNumber'].value,
                                                 placeholder: 'Enter agent phone number, e.g. 9999999999',
                                                 maxlength: '10',
                                                 onChange: formFieldData,
@@ -151,7 +151,7 @@ const Profile = () => {
                                 </div>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Agent email address 
+                                        {profileInformationData['emailAddress'].label} 
                                         &nbsp;
                                         { (validateProfileInformationData['emailAddress'][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -163,7 +163,7 @@ const Profile = () => {
                                                 id: `emailAddress`,
                                                 name: `emailAddress`,
                                                 type: 'text',
-                                                value: profileInformationData['emailAddress'],
+                                                value: profileInformationData['emailAddress'].value,
                                                 placeholder: 'Enter agent email address',
                                                 onChange: formFieldData
                                             }
@@ -180,7 +180,7 @@ const Profile = () => {
                             <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Brokerage name
+                                        {profileInformationData['brokerageName'].label}
                                         &nbsp;
                                         { (validateProfileInformationData['brokerageName'][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -192,7 +192,7 @@ const Profile = () => {
                                                 id: `brokerageName`,
                                                 name: `brokerageName`,
                                                 type: 'text',
-                                                value: profileInformationData['brokerageName'],
+                                                value: profileInformationData['brokerageName'].value,
                                                 placeholder: 'Enter brokerage name',
                                                 onChange: formFieldData
                                             }
@@ -207,7 +207,7 @@ const Profile = () => {
                                 </div>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Brokerage Phone number 
+                                        {profileInformationData['brokeragePhoneNumber'].label}
                                         &nbsp;
                                         { (validateProfileInformationData['brokeragePhoneNumber'][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -220,7 +220,7 @@ const Profile = () => {
                                                 name: `brokeragePhoneNumber`,
                                                 type: 'text',
                                                 maxlength: '10',
-                                                value: profileInformationData['brokeragePhoneNumber'],
+                                                value: profileInformationData['brokeragePhoneNumber'].value,
                                                 placeholder: 'Enter brokerage phone number, e.g. 9999999999',
                                                 onChange: formFieldData,
                                                 onBlur: formFieldData
@@ -237,7 +237,7 @@ const Profile = () => {
                             </div>
                             <div className='mt-3'>
                                 <label className='form-label'>
-                                    Brokerage Address 
+                                    {profileInformationData['brokerageAddress'].label} 
                                     &nbsp;
                                     { (validateProfileInformationData['brokerageAddress'][0] === 'required')&& <span className='text-danger'>*</span> }
                                 </label>
@@ -249,7 +249,7 @@ const Profile = () => {
                                             id: `brokerageAddress`,
                                             name: `brokerageAddress`,
                                             type: 'text',
-                                            value: profileInformationData['brokerageAddress'],
+                                            value: profileInformationData['brokerageAddress'].value,
                                             placeholder: 'Enter brokerage address',
                                             onChange: formFieldData
                                         }
@@ -265,7 +265,7 @@ const Profile = () => {
                             <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Brokerage city 
+                                        {profileInformationData['brokerageCity'].label} 
                                         &nbsp;
                                         { (validateProfileInformationData['brokerageCity'][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -277,7 +277,7 @@ const Profile = () => {
                                                 id: `brokerageCity`,
                                                 name: `brokerageCity`,
                                                 type: 'text',
-                                                value: profileInformationData['brokerageCity'],
+                                                value: profileInformationData['brokerageCity'].value,
                                                 placeholder: 'Enter brokerage city',
                                                 onChange: formFieldData
                                             }
@@ -292,7 +292,7 @@ const Profile = () => {
                                 </div>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Brokerage province/state/region 
+                                        {profileInformationData['brokerageProvince'].label} 
                                         &nbsp;
                                         { (validateProfileInformationData['brokerageProvince'][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -304,7 +304,7 @@ const Profile = () => {
                                                 id: `brokerageProvince`,
                                                 name: `brokerageProvince`,
                                                 type: 'text',
-                                                value: profileInformationData['brokerageProvince'],
+                                                value: profileInformationData['brokerageProvince'].value,
                                                 placeholder: 'Enter brokerage province/state/region',
                                                 onChange: formFieldData
                                             }
@@ -321,7 +321,7 @@ const Profile = () => {
                             <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Brokerage country 
+                                        {profileInformationData['brokerageCountry'].label} 
                                         &nbsp;
                                         { (validateProfileInformationData['brokerageCountry'][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -333,7 +333,7 @@ const Profile = () => {
                                                 id: `brokerageCountry`,
                                                 name: `brokerageCountry`,
                                                 type: 'text',
-                                                value: profileInformationData['brokerageCountry'],
+                                                value: profileInformationData['brokerageCountry'].value,
                                                 placeholder: 'Enter brokerage country',
                                                 onChange: formFieldData
                                             }
@@ -348,7 +348,7 @@ const Profile = () => {
                                 </div>
                                 <div className='cw-50'>
                                     <label className='form-label'>
-                                        Brokerage postal/zip code 
+                                        {profileInformationData['brokeragePostalCode'].label} 
                                         &nbsp;
                                         { (validateProfileInformationData['brokeragePostalCode'][0] === 'required')&& <span className='text-danger'>*</span> }
                                     </label>
@@ -360,7 +360,7 @@ const Profile = () => {
                                                 id: `brokeragePostalCode`,
                                                 name: `brokeragePostalCode`,
                                                 type: 'text',
-                                                value: profileInformationData['brokeragePostalCode'],
+                                                value: profileInformationData['brokeragePostalCode'].value,
                                                 maxlength: '6',
                                                 placeholder: 'Enter brokerage postal code, e.g. A9A9A9',
                                                 onChange: formFieldData,
@@ -429,12 +429,12 @@ const Profile = () => {
                                                     class: '',
                                                     optionData: [
                                                         {
-                                                            label: 'I agree that I have read and accept the Privacy Policy/Terms of Use',
+                                                            label: profileInformationData.privacyPolicyProfile.label,
                                                             class: 'form-check-input square-radio',
                                                             id: 'privacyPolicyProfile',
                                                             name: 'privacyPolicyProfile',
                                                             value: 'true',
-                                                            checked: profileInformationData.privacyPolicyProfile === true,
+                                                            checked: profileInformationData.privacyPolicyProfile.value === true,
                                                             onChange: formFieldData
                                                         }
                                                     ]

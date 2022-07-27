@@ -65,11 +65,14 @@ const myState = (state = initialState, action) => {
 
                     }
                         
-                    setChildForm =  { ...setChildForm, ...{ [item[0]]: item[1] } }
-        
+                    setChildForm =  { ...setChildForm, ...{ 
+                            [item[0]]: { ...state[parentForm][childForm][item[0]], ...{ value: item[1] } } 
+                        } 
+                    }
                 }
-
+               
             });
+          
 
             let getFormData = {
                 ...state,

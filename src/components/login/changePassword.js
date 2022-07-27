@@ -73,7 +73,7 @@ const ChangePassword = () => {
                     <div className='create-account-body w-100'>
                         <div>
                             <label className='form-label'>
-                                Password 
+                                {changePasswordInformationData['password'].label} 
                                 &nbsp;
                                 { (validateChangePasswordInformationData['password'][0] === 'required')&& <span className='text-danger'>*</span> }
                             </label>
@@ -87,7 +87,7 @@ const ChangePassword = () => {
                                             name: `password`,
                                             type: 'password',
                                             placeholder: 'Enter password',
-                                            value: changePasswordInformationData['password'],
+                                            value: changePasswordInformationData['password'].value,
                                             onChange: formFieldData
                                         }
                                     }
@@ -110,7 +110,7 @@ const ChangePassword = () => {
                         </div>
                         <div className='mt-3'>
                             <label className='form-label'>
-                                Confirm password 
+                                {changePasswordInformationData['confirmPassword'].label} 
                                 &nbsp;
                                 { (validateChangePasswordInformationData['confirmPassword'][0] === 'required')&& <span className='text-danger'>*</span> }
                             </label>
@@ -124,7 +124,7 @@ const ChangePassword = () => {
                                             name: `confirmPassword`,
                                             type: 'password',
                                             placeholder: 'Confirm your password',
-                                            value: changePasswordInformationData['confirmPassword'],
+                                            value: changePasswordInformationData['confirmPassword'].value,
                                             onChange: formFieldData
                                         }
                                     }

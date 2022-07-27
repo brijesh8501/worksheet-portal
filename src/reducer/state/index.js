@@ -135,7 +135,7 @@ export const initialState = {
                     label: 'Preference',
                     fieldType: 'textbox',
                     name: 'preference2',
-                    id: 'prererence2',
+                    id: 'preference2',
                     placeholder: 'Enter your preference',
                     isApiCallRequired: false
                 }
@@ -173,93 +173,294 @@ export const initialState = {
     },
     profileForm: {
         loginInformation:{
-            emailAddress: '',
-            password: '',
-            rememberMe: false
+            emailAddress: {
+                label: 'Email address',
+                value: ''
+            },
+            password: {
+                label: 'Password',
+                value: ''
+            },
+            rememberMe: {
+                label: 'Remember me',
+                value: false
+            },
         },
         forgotPasswordInformation:{
-            emailAddress: ''
+            emailAddress: {
+                label: 'Email Address',
+                value: ''
+            },
         },
         changePasswordInformation:{
-            password: '',
-            confirmPassword: ''
+            password: {
+                label: 'Password',
+                value: ''
+            },
+            confirmPassword: {
+                label: 'Confirm password',
+                value: ''
+            }
         },
         createAccountInformation:{
-            firstName: '',
-            lastName: '',
-            emailAddress: '',
-            confirmEmailAddress: '',
-            phoneNumber: '',
-            password: '',
-            confirmPassword: ''
+            firstName: {
+                label: 'First name',
+                value: ''
+            },
+            lastName: {
+                label: 'Last name',
+                value: ''
+            },
+            emailAddress: {
+                label: 'Email address',
+                value: ''
+            },
+            confirmEmailAddress: {
+                label: 'Confirm email address',
+                value: ''
+            },
+            phoneNumber: {
+                label: 'Phone number',
+                value: ''
+            },
+            password: {
+                label: 'Password',
+                value: ''
+            },
+            confirmPassword: {
+                label: 'Confirm password',
+                value: ''
+            }
         },
         profileInformation:{
-            firstName: '',
-            lastName: '',
-            phoneNumber: '',
-            emailAddress: '',
-            brokerageName: '',
-            brokeragePhoneNumber: '',
-            brokerageAddress: '',
-            brokerageCity: '',
-            brokerageProvince: '',
-            brokerageCountry: '',
-            brokeragePostalCode: '',
-            privacyPolicyProfile: false
+            firstName: {
+                label: 'Agent first name',
+                value: ''
+            },
+            lastName: {
+                label: 'Agent last name',
+                value: ''
+            },
+            phoneNumber: {
+                label: 'Agent phone number',
+                value: ''
+            },
+            emailAddress: {
+                label: 'Agent email address',
+                value: ''
+            },
+            brokerageName: {
+                label: 'Brokerage name',
+                value: ''
+            },
+            brokeragePhoneNumber: {
+                label: 'Brokerage phone number',
+                value: ''
+            },
+            brokerageAddress: {
+                label: 'Brokerage address',
+                value: ''
+            },
+            brokerageCity: {
+                label: 'Brokerage city',
+                value: ''
+            },
+            brokerageProvince: {
+                label: 'Brokerage province/state/region',
+                value: ''
+            },
+            brokerageCountry: {
+                label: 'Brokerage country',
+                value: ''
+            },
+            brokeragePostalCode: {
+                label: 'Brokerage postal/zip code',
+                value: ''
+            },
+            privacyPolicyProfile: {
+                label: 'I agree that I have read and accept the Privacy Policy/Terms of Use',
+                value: false
+            }
         }
     },
     worksheetForm:{
         suiteInformation:{
-            modelType1: '',
-            lotType1: '',
-            preference1: '',
-            modelType2: '',
-            lotType2: '',
-            preference2: '',
-            modelType3: '',
-            lotType3: '',
-            preference3: ''
+            modelType1: {
+                label: 'Model',
+                value: ''
+            },
+            lotType1: {
+                label: 'Lot',
+                value: ''
+            },
+            preference1: {
+                label: 'Preference',
+                value: ''
+            },
+            modelType2: {
+                label: 'Model',
+                value: ''
+            },
+            lotType2: {
+                label: 'Lot',
+                value: ''
+            },
+            preference2: {
+                label: 'Preference',
+                value: ''
+            },
+            modelType3: {
+                label: 'Model',
+                value: ''
+            },
+            lotType3: {
+                label: 'Lot',
+                value: ''
+            },
+            preference3: {
+                label: 'Preference',
+                value: ''
+            }
         },
         otherInformation:{
-            appointmentType: ''
+            appointmentType: {
+                label: 'Preferred appointment type:',
+                value: ''
+            }
         },
         primaryPurchaser:{
-            p1firstName: '',
-            p1lastName: '',
-            p1address: '',
-            p1city: '',
-            p1province: '',
-            p1country: '',
-            p1postalCode: '',
-            p1phoneNumber: '',
-            p1emailAddress: '',
-            p1dob: '',
-            p1maritalStatus: '',
-            p1occupation: '',
-            p1employer: '',
-            p1purchasingType: '',
-            p1notes: ''
+            p1firstName: {
+                label: 'First name',
+                value: ''
+            },
+            p1lastName: {
+                label: 'Last name',
+                value: ''
+            },
+            p1address: {
+                label: 'Address',
+                value: ''
+            },
+            p1city: {
+                label: 'City',
+                value: ''
+            },
+            p1province: {
+                label: 'Province/State/Region',
+                value: ''
+            },
+            p1country: {
+                label: 'Country',
+                value: ''
+            },
+            p1postalCode: {
+                label: 'Postal/Zip code',
+                value: ''
+            },
+            p1phoneNumber: {
+                label: 'Phone number',
+                value: ''
+            },
+            p1emailAddress: {
+                label: 'Email address',
+                value: ''
+            },
+            p1dob: {
+                label: 'Date of birth',
+                value: ''
+            },
+            p1maritalStatus: {
+                label: 'Marital status',
+                value: ''
+            },
+            p1occupation: {
+                label: 'Occupation',
+                value: ''
+            },
+            p1employer: {
+                label: 'Employer',
+                value: ''
+            },
+            p1purchasingType: {
+                label: 'Your client is purchasing this home',
+                value: ''
+            },
+            p1notes: {
+                label: 'Notes',
+                value: ''
+            }
         },
         secondaryPurchaser:{
-            isSecondaryPurchaserRequired: '',
-            p2firstName: '',
-            p2lastName: '',
-            p2address: '',
-            p2city: '',
-            p2province: '',
-            p2country: '',
-            p2postalCode: '',
-            p2phoneNumber: '',
-            p2emailAddress: '',
-            p2dob: '',
-            p2maritalStatus: '',
-            p2occupation: '',
-            p2employer: '',
-            p2purchasingType: '',
-            p2notes: ''
+            isSecondaryPurchaserRequired: {
+                label: 'Would you like to add secondary purchaser?',
+                value: ''
+            },
+            p2firstName: {
+                label: 'First name',
+                value: ''
+            },
+            p2lastName: {
+                label: 'Last name',
+                value: ''
+            },
+            p2address: {
+                label: 'Address',
+                value: ''
+            },
+            p2city: {
+                label: 'City',
+                value: ''
+            },
+            p2province: {
+                label: 'Province/State/Region',
+                value: ''
+            },
+            p2country: {
+                label: 'Country',
+                value: ''
+            },
+            p2postalCode: {
+                label: 'Postal/Zip code',
+                value: ''
+            },
+            p2phoneNumber: {
+                label: 'Phone number',
+                value: ''
+            },
+            p2emailAddress: {
+                label: 'Email address',
+                value: ''
+            },
+            p2dob: {
+                label: 'Date of birth',
+                value: ''
+            },
+            p2maritalStatus: {
+                label: 'Marital status',
+                value: ''
+            },
+            p2occupation: {
+                label: 'Occupation',
+                value: ''
+            },
+            p2employer: {
+                label: 'Employer',
+                value: ''
+            },
+            p2purchasingType: {
+                label: 'Your client is purchasing this home',
+                value: ''
+            },
+            p2notes: {
+                label: 'Notes',
+                value: ''
+            }
         },
         acknowledgementInformation:{
-            privacyPolicyProfile: false
+            privacyPolicyProfile: {
+                label: 'I agree that I have read and accept the Privacy Policy/Terms of Use',
+                value: false
+            }
         }
     },
     validateForm:{
