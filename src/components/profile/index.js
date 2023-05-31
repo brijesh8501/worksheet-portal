@@ -56,7 +56,7 @@ const Profile = () => {
             <Navbar/>
             <section className='my-5 py-5 container body-section'>
                 <div className='page-body body-section-wrapper'>
-                    <h1 className='text-center mb-5'>Profile</h1>
+                    <h1 className='text-center mb-5 page-title'>Profile</h1>
                     <div className='profile-form px-3 position-relative' id='profileForm'>
                         <div className='d-flex justify-content-end profile-form-header py-4'>
                             <button className='btn btn-secondary btn-delete-account'>

@@ -23,7 +23,8 @@ const ReviewInformation = (props) => {
             'p2address',
             'p2purchasingType',
             'p2notes',
-            'brokerageAddress'
+            'brokerageAddress',
+            'appointmentType'
         ]
     }
 
@@ -58,7 +59,9 @@ const ReviewInformation = (props) => {
         <div className='step-form ps-4 pe-3' id={whichParentForm}>
             <div className='col-12' id='stepreviewInformation'>
                 <div className='step-form-header py-3'>
-                    <h2 className='h4 mb-0'>{props.pageTitle}</h2>
+                    <h2 className='h4 mb-0 page-title'>{props.pageTitle}</h2>
+                    <hr/>
+                    <p className='mb-0 fst-italic small'>* Review details carefully before submitting. You may not be able to update once the details are submitted.</p>
                 </div>
                 <div className='step-form-body pb-3'>
                     <div className='step-form-body-wrapper'>
@@ -68,8 +71,8 @@ const ReviewInformation = (props) => {
                                 worksheetSuiteInformationSetting.choice.map( (item, i) => {
                                     return(
                                         <div key={i}>
-                                            <h2 className={`h6 ${(i>0)? 'mt-4' : 'mt-2'}`}>{item.label}</h2>
-                                            <div className='d-flex gap-3 justify-content-center align-items-center'>
+                                            <h2 className={`text-decoration-underline h6 ${(i>0)? 'mt-4' : 'mt-2'}`}>{item.label}</h2>
+                                            <div className='d-flex gap-3 flex-column flex-sm-row justify-content-center align-items-center'>
                                                 {
                                                     item.fields.map( (child, j) => {
                                                         return(
@@ -87,9 +90,23 @@ const ReviewInformation = (props) => {
                             }
                         </fieldset>
                         <fieldset className='mt-4'>
-                            <legend>Purchaser Information</legend>
+                            <legend className='page-title'>Other Information</legend>
+                            <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center'>
+                                {
+                                    Object.entries(worksheetForm.otherInformation).map( (item, i)=>{
+                                        return(<div className={`${reviewDesignSetting.fullWidth.includes(item[0])? 'w-100' : 'cw-50'}`} key={i}>
+                                                <label htmlFor={`${whichChildForm}${item[0]}`}>{item[1].label}</label>
+                                                <input type="text" className='form-control' name={`${whichChildForm}${item[0]}`} id={`${whichChildForm}${item[0]}`} value={item[1].value} readOnly/>
+                                            </div>
+                                        );
+                                    })
+                                }
+                                </div>
+                        </fieldset>
+                        <fieldset className='mt-4'>
+                            <legend className='page-title'>Purchaser Information</legend>
                             <div>
-                                <h2 className='h6 mt-3 mb-3'>Primary Purchaser</h2>
+                                <h2 className='h6 mt-3 mb-3 text-decoration-underline'>Primary Purchaser</h2>
                                 <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center'>
                                 {
                                     Object.entries(worksheetForm.primaryPurchaser).map( (item, i)=>{
@@ -103,7 +120,7 @@ const ReviewInformation = (props) => {
                                 </div>
                             </div>
                             <div>
-                                <h2 className='h6 mt-5 mb-3'>Secondary Purchaser</h2>
+                                <h2 className='h6 mt-5 mb-3 text-decoration-underline'>Secondary Purchaser</h2>
                                 <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center'>
                                 {
                                     Object.entries(worksheetForm.secondaryPurchaser).map( (item, i)=>{
@@ -118,8 +135,8 @@ const ReviewInformation = (props) => {
                                 </div>
                             </div>
                         </fieldset>
-                        <fieldset>
-                            <legend>Agent Information</legend>
+                        <fieldset className='mt-4'>
+                            <legend className='page-title'>Agent Information</legend>
                             <div>
                                 <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center'>
                                 {
@@ -135,12 +152,12 @@ const ReviewInformation = (props) => {
                                 </div>
                             </div>
                         </fieldset>
-                        <fieldset>
-                            <legend>Other Information</legend>
+                        <fieldset className='mt-4'>
+                            <legend className='page-title'>Acknowledgement</legend>
                         </fieldset>
-                        <fieldset>
-                            <legend>Acknowledgement</legend>
-                        </fieldset>
+                        <div className='mt-4 fst-italic small'>
+                            <p className='mb-0'>* If you wish not to submit worksheet at this moment then "Save" and continue with submitting worksheet later.</p>  
+                        </div>
                     </div>
                 </div>
                 <div className='step-form-footer pb-3'>
@@ -158,6 +175,10 @@ const ReviewInformation = (props) => {
                                     <img src='/assets/left-arrow.png' className='back-img-icon img-fluid' />Back
                                 </button>
                         }
+                         <button 
+                            className='btn btn-secondary'
+                        >
+                            Save</button>
                         <button 
                             className='btn btn-primary'
                         >

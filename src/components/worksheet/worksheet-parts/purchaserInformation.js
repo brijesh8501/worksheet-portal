@@ -66,9 +66,10 @@ const PurchaserInformation = (props) => {
         <div className='step-form ps-4 pe-3' id={whichParentForm}>
             <div className='col-12' id={`step${whichChildForm}`}>
                 <div className='step-form-header py-3'>
-                    <h2 className='h4 mb-0'>{props.pageTitle}</h2>
+                    <h2 className='h4 mb-0 page-title'>{props.pageTitle}</h2>
+                    <hr className='mb-0'/>
                 </div>
-                <div className={`step-form-body py-3`}>
+                <div className={`step-form-body pb-3`}>
                     {
                         (purchaserPrefix === 'p2')&&
                             <div>
@@ -116,7 +117,7 @@ const PurchaserInformation = (props) => {
                                 />
                             </div>
                     }
-                    <div className={`position-relative bg-white pt-5 pb-3 ${ ( ('isSecondaryPurchaserRequired' in purchaserInformationData) && purchaserInformationData[`isSecondaryPurchaserRequired`].value === 'Yes')&& 'mt-4' } ${( (purchaserPrefix === 'p1') || (purchaserPrefix === 'p2' && purchaserInformationData[`isSecondaryPurchaserRequired`].value === 'Yes' ) )? 'd-block' : 'd-none' } `}>
+                    <div className={`position-relative bg-white pt-5 pb-3 ${ ( ('isSecondaryPurchaserRequired' in purchaserInformationData) && purchaserInformationData[`isSecondaryPurchaserRequired`].value === 'Yes')? 'mt-4' : 'mt-2' } ${( (purchaserPrefix === 'p1') || (purchaserPrefix === 'p2' && purchaserInformationData[`isSecondaryPurchaserRequired`].value === 'Yes' ) )? 'd-block' : 'd-none' } `}>
                         <h3 className='h6 mb-0 position-absolute stepform-choice-title purchaser-title'>{props.pageChildTitle}</h3>
                         <div className='purchaser-information-box px-3'>
                             <div className='d-flex gap-3 justify-content-center align-items-center'>

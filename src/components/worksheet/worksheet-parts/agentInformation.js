@@ -46,9 +46,10 @@ const AgentInformation = (props) => {
         <div className='step-form ps-4 pe-3' id={whichParentForm}>
             <div className='col-12' id='stepagentInformation'>
                 <div className='step-form-header py-3'>
-                    <h2 className='h4 mb-0'>{props.pageTitle}</h2>
+                    <h2 className='h4 mb-0 page-title'>{props.pageTitle}</h2>
+                    <hr className='mb-0'/>
                 </div>
-                <div className='step-form-body py-3'>
+                <div className='step-form-body pt-2 pb-3'>
                     <div className='agent-information-wrapper bg-white p-3'>
                         <div className='d-flex gap-3'>
                             <div className='cw-50'>

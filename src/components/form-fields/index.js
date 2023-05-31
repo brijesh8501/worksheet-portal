@@ -4,7 +4,20 @@ const createField = (inputType, formFieldSettings, formFieldMasking) => {
 
     switch(inputType) {
         case 'div-button':
-          return (<div className={formFieldSettings.class} id={formFieldSettings.id}>{formFieldSettings.label}</div>);
+          return (
+            (formFieldSettings.anchorLinkSetting.isEnabled)?
+              <div className={formFieldSettings.class} id={formFieldSettings.id}>
+                <a 
+                  href={formFieldSettings.anchorLinkSetting.hrefLink}
+                  className={formFieldSettings.anchorLinkSetting.class}
+                  target={ (formFieldSettings.anchorLinkSetting.isTarget)? "_blank" : "_self" } 
+                >
+                  {formFieldSettings.label}
+                </a>
+              </div>
+            :
+              <div className={formFieldSettings.class} id={formFieldSettings.id}>{formFieldSettings.label}</div>
+          );
         case 'drop-down':
           return (
             <select 

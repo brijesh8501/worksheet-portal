@@ -97,14 +97,14 @@ const Worksheet = () => {
             <div className='page-body body-section-wrapper'>
                 <h1 className='text-center mb-5'>Worksheet</h1>
                 <div className='row'>
-                    <div className='col-12 col-md-3'>
+                    <div className='col-12 col-lg-3'>
                         <SidebarMenu 
                             showSection={showSectionBySidebar} 
                             sidebarMenuActive={worksheetSidebarSetting.sidebarMenuActive}
                             sidebarMenuChildListActive={worksheetSidebarSetting.sidebarMenuChildListActive}
                         />
                     </div>
-                    <div className='col-12 col-md-9'>
+                    <div className='col-12 col-lg-9 mt-5 mt-lg-0'>
                         { createWorksheetComponent() }
                     </div>
                 </div>

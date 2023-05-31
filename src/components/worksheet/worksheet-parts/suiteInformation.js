@@ -62,9 +62,10 @@ const SuiteInformation = (props) => {
         <div className='step-form ps-4 pe-3' id={whichParentForm}>
             <div className='col-12' id={`step${whichChildForm}`}>
                 <div className='step-form-header py-3'>
-                    <h2 className='h4 mb-0'>{props.pageTitle}</h2>
+                    <h2 className='h4 mb-0 page-title'>{props.pageTitle}</h2>
+                    <hr className='mb-0'/>
                 </div>
-                <div className='step-form-body py-3'>
+                <div className='step-form-body pt-2 pb-3'>
                     {
                         worksheetSuiteInformationSetting.choice.map( (item, i) =>{
                             return( <div

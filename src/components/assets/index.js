@@ -17,7 +17,13 @@ const Assets = () => {
                                 { 
                                     label: 'Logo', 
                                     class: 'text-uppercase asset-btn',
-                                    id: 'assetLogo'
+                                    id: 'assetLogo',
+                                    anchorLinkSetting: {
+                                        isEnabled: true,
+                                        class: 'text-decoration-none anchor-btn',
+                                        hrefLink: '#',
+                                        isTarget: true
+                                    }
                                 }
                             }
                         /> 
@@ -27,7 +33,13 @@ const Assets = () => {
                                 { 
                                     label: 'Site Plan', 
                                     class: 'text-uppercase asset-btn',
-                                    id: 'assetSitePlan'
+                                    id: 'assetSitePlan',
+                                    anchorLinkSetting: {
+                                        isEnabled: true,
+                                        class: 'text-decoration-none anchor-btn',
+                                        hrefLink: '#',
+                                        isTarget: false
+                                    }
                                 }
                             }
                         /> 
@@ -37,7 +49,13 @@ const Assets = () => {
                                 { 
                                     label: 'Floorplans', 
                                     class: 'text-uppercase asset-btn',
-                                    id: 'assetFloorplans'
+                                    id: 'assetFloorplans',
+                                    anchorLinkSetting: {
+                                        isEnabled: true,
+                                        class: 'text-decoration-none anchor-btn',
+                                        hrefLink: '#',
+                                        isTarget: true
+                                    }
                                 }
                             }
                         /> 
@@ -47,7 +65,13 @@ const Assets = () => {
                                 { 
                                     label: 'Sales Procedures', 
                                     class: 'text-uppercase asset-btn',
-                                    id: 'assetSalesProcedures'
+                                    id: 'assetSalesProcedures',
+                                    anchorLinkSetting: {
+                                        isEnabled: true,
+                                        class: 'text-decoration-none anchor-btn',
+                                        hrefLink: '#',
+                                        isTarget: true
+                                    }
                                 }
                             }
                         /> 
@@ -57,7 +81,13 @@ const Assets = () => {
                                 { 
                                     label: 'Amenities', 
                                     class: 'text-uppercase asset-btn',
-                                    id: 'assetAmenities'
+                                    id: 'assetAmenities',
+                                    anchorLinkSetting: {
+                                        isEnabled: true,
+                                        class: 'text-decoration-none anchor-btn',
+                                        hrefLink: '#',
+                                        isTarget: true
+                                    }
                                 }
                             }
                         /> 
@@ -71,7 +101,11 @@ const Assets = () => {
                                 { 
                                     label: 'Logo', 
                                     class: 'text-uppercase asset-coming-soon-btn',
-                                    id: 'assetLogo1'
+                                    id: 'assetLogo1',
+                                    anchorLinkSetting: {
+                                        isEnabled: false
+                                    }
+                                    
                                 }
                             }
                         /> 
@@ -81,7 +115,10 @@ const Assets = () => {
                                 { 
                                     label: 'Worksheet', 
                                     class: 'text-uppercase asset-coming-soon-btn',
-                                    id: 'assetWorksheet'
+                                    id: 'assetWorksheet',
+                                    anchorLinkSetting: {
+                                        isEnabled: false
+                                    }
                                 }
                             }
                         /> 
@@ -91,7 +128,10 @@ const Assets = () => {
                                 { 
                                     label: 'Incentives', 
                                     class: 'text-uppercase asset-coming-soon-btn',
-                                    id: 'assetIncentives'
+                                    id: 'assetIncentives',
+                                    anchorLinkSetting: {
+                                        isEnabled: false
+                                    }
                                 }
                             }
                         /> 
@@ -101,7 +141,10 @@ const Assets = () => {
                                 { 
                                     label: 'Broker Point', 
                                     class: 'text-uppercase asset-coming-soon-btn',
-                                    id: 'assetBrokerPoint'
+                                    id: 'assetBrokerPoint',
+                                    anchorLinkSetting: {
+                                        isEnabled: false
+                                    }
                                 }
                             }
                         /> 

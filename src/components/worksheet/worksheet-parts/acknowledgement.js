@@ -81,9 +81,10 @@ const Acknowledgement = (props) => {
         <div className='step-form ps-4 pe-3' id={whichParentForm}>
             <div className='col-12' id='stepotherInformation'>
                 <div className='step-form-header py-3'>
-                    <h2 className='h4 mb-0'>{props.pageTitle}</h2>
+                    <h2 className='h4 mb-0 page-title'>{props.pageTitle}</h2>
+                    <hr className='mb-0'/>
                 </div>
-                <div className='step-form-body py-3'>
+                <div className='step-form-body pb-3'>
                     <div>
                         <p>Please note:</p>
                         <p>In order to comply with the Government of Canada's <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/pipeda_brief/' target='_blank' className='text-black'>Personal Information Protection and 

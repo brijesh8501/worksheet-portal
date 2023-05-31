@@ -8,7 +8,7 @@ const CreateMenu = (props) => {
     const myState = useSelector( (state) => state.myState);
     const dispatch = useDispatch();
 
-    const { navSetting } = myState;
+    const { navSetting, portalSetting } = myState;
     const menuList = props.menuList;
 
     const showHideMenu = (e) => {
@@ -26,7 +26,7 @@ const CreateMenu = (props) => {
         <div className='nav-menu-wrapper d-flex justify-content-between ms-5'>
             <div className='nav-menu-left d-flex'>
                 <Link to='/' className='nav-menu-item navbar-logo-wrapper px-4 py-2 d-flex justify-content-center align-items-center'>
-                    <img src="/assets/The-Valley-white-logo.png" className='navbar-logo img-fluid'/>
+                    <img src={`/${portalSetting.projectSetup.assetFolder}/${portalSetting.projectSetup.projectLogo}`} className='navbar-logo img-fluid'/>
                 </Link>
                 { 
                     (menuList.menuLeft.length <= navSetting.leftMenuLimit) &&
@@ -40,7 +40,7 @@ const CreateMenu = (props) => {
             <div className='nav-menu-right d-flex justify-content-center align-items-center position-relative pe-5'>
                 <div className='nav-menu-item text-white' tabIndex='0' onClick={showHideMenu} onKeyPress={showHideMenu}>
                     <div className='py-2'>
-                        <img src="/assets/profile-user.png" className='navbar-profile-logo img-fluid me-3'/>
+                        <img src={`/${portalSetting.projectSetup.assetFolder}/${portalSetting.projectSetup.profileIcon}`} className='navbar-profile-logo img-fluid me-3'/>
                         <span>Brijesh Ahir</span>
                     </div>
                 </div>

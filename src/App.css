@@ -15,9 +15,6 @@
 
     --sixth-bg-color: #e7d3c8;
 }
-body{
-    font-family: 'Century Gothic', 'Arial Narrow', Arial, sans-serif;
-}
 .body-section{
     min-height: 100vh;
 }
@@ -52,11 +49,8 @@ body{
 .cw-33{
     width: 33.33%;
 }
-.cw-33-flex{
-    width: 31.5%;
-}
 .cw-50{
-    width: 49%;
+    width: calc(50% - 8px);
 }
 .square-radio {
     position: relative;
@@ -227,7 +221,12 @@ button.close {
     -moz-appearance: none;
     appearance: none;
 }
-
+.anchor-btn,
+.anchor-btn:hover,
+.anchor-btn:visited,
+.anchor-btn:focus{
+    color: inherit;
+}
 /**************** step form **************/
 .stepform-img-icon{
     width: 25px;

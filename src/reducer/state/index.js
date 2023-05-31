@@ -9,7 +9,12 @@ export const initialState = {
 
     portalSetting:{
         worksheet: true,
-        assets: true
+        assets: true,
+        projectSetup: {
+            assetFolder: 'assets',
+            projectLogo: 'The-Valley-white-logo.png',
+            profileIcon: 'profile-user.png'
+        }
     },
     navSetting:{
 
@@ -24,6 +29,12 @@ export const initialState = {
                 title: 'Suite Information',
                 component: SuiteInformation,
                 componentProps1: 'worksheetSidebarSetting.sidebarMenu.suiteInformation.title',
+                componentProps2: 'navigateWorksheetSection'
+            },
+            otherInformation: {
+                title: 'Other Information',
+                component: OtherInformation,
+                componentProps1: 'worksheetSidebarSetting.sidebarMenu.otherInformation.title',
                 componentProps2: 'navigateWorksheetSection'
             },
             purchaserInformation: {
@@ -48,12 +59,6 @@ export const initialState = {
                 title: 'Agent Information',
                 component: AgentInformation,
                 componentProps1: 'worksheetSidebarSetting.sidebarMenu.agentInformation.title',
-                componentProps2: 'navigateWorksheetSection'
-            },
-            otherInformation: {
-                title: 'Other Information',
-                component: OtherInformation,
-                componentProps1: 'worksheetSidebarSetting.sidebarMenu.otherInformation.title',
                 componentProps2: 'navigateWorksheetSection'
             },
             acknowledgement: {
