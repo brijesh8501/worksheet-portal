@@ -11,7 +11,7 @@ export const setFormFieldDataToState = (props) => {
     const { event, parentForm, childForm } = props;
 
     const eventTargetType = event.target.type;
-
+    console.log(validateForm);
     const informationFieldToBeValidate = validateForm[parentForm][childForm][event.target.name]; 
 
     const validateType = event.target.getAttribute('data-validatetype');

@@ -39,7 +39,7 @@ const Profile = () => {
         };
         
         setFormFieldDataToState(formFieldDataSet);
-        if(e.target.name === 'privacyPolicyProfile'){
+        if(e.target.name === 'privacyPolicy'){
             (e.target.checked)&&
                 hideModal(); 
         }
@@ -411,7 +411,7 @@ const Profile = () => {
                             <div className='mt-3 text-decoration-underline privacy-link' onClick={showModal}>
                                 <p className='mb-0 d-flex justify-content-start align-items-center'>
                                     {
-                                    (profileInformationData['privacyPolicyProfile'])&&
+                                    (profileInformationData['privacyPolicy'].value)&&
                                         <>
                                             <img src="/assets/check-symbol.svg" className="img-check-icon img-fluid" />&nbsp;
                                         </>
@@ -429,19 +429,19 @@ const Profile = () => {
                                                     class: '',
                                                     optionData: [
                                                         {
-                                                            label: profileInformationData.privacyPolicyProfile.label,
+                                                            label: profileInformationData.privacyPolicy.label,
                                                             class: 'form-check-input square-radio',
-                                                            id: 'privacyPolicyProfile',
-                                                            name: 'privacyPolicyProfile',
+                                                            id: 'privacyPolicy',
+                                                            name: 'privacyPolicy',
                                                             value: 'true',
-                                                            checked: profileInformationData.privacyPolicyProfile.value === true,
+                                                            checked: profileInformationData.privacyPolicy.value === true,
                                                             onChange: formFieldData
                                                         }
                                                     ]
                                                 }
                                             }
                                             formFieldMasking = {
-                                                (validateProfileInformationData[`privacyPolicyProfile`][0] === 'required')&&
+                                                (validateProfileInformationData[`privacyPolicy`][0] === 'required')&&
                                                 {
                                                     mask: 'required',
                                                 }

@@ -26,8 +26,8 @@ const Acknowledgement = (props) => {
 
     const { worksheetForm, validateForm, worksheetSidebarSetting } = myState;
 
-    const acknowledgementInformationData = worksheetForm.acknowledgementInformation;
-    const validateAcknowledgementInformationData = validateForm.worksheetForm.acknowledgementInformation;
+    const acknowledgementInformationData = worksheetForm.acknowledgement;
+    const validateAcknowledgementInformationData = validateForm.worksheetForm.acknowledgement;
 
     const getNavigateStepForm = stepFormPrevNextSidebarItem(worksheetSidebarSetting);
     const whichPrevForm = (getNavigateStepForm.prev)? getNavigateStepForm.prev : null;
@@ -69,9 +69,9 @@ const Acknowledgement = (props) => {
             childForm: whichChildForm,
             event: e
         };
-
+ 
         setFormFieldDataToState(formFieldDataSet);
-        if(e.target.name === 'privacyPolicyProfile'){
+        if(e.target.name === 'privacyPolicy'){
             (e.target.checked)&&
                 hideModal(); 
         }
@@ -99,7 +99,7 @@ const Acknowledgement = (props) => {
                         <div className='mt-3 text-decoration-underline privacy-link' onClick={showModal}>
                             <p className='mb-0 d-flex justify-content-start align-items-center'>
                                 {
-                                (acknowledgementInformationData['privacyPolicyProfile'])&&
+                                (acknowledgementInformationData['privacyPolicy'].value)&&
                                     <>
                                         <img src="/assets/check-symbol.svg" className="img-check-icon img-fluid" />&nbsp;
                                     </>
@@ -117,19 +117,19 @@ const Acknowledgement = (props) => {
                                                 class: '',
                                                 optionData: [
                                                     {
-                                                        label: 'I agree that I have read and accept the Privacy Policy/Terms of Use',
+                                                        label: acknowledgementInformationData.privacyPolicy.label,
                                                         class: 'form-check-input square-radio',
-                                                        id: 'privacyPolicyProfile',
-                                                        name: 'privacyPolicyProfile',
+                                                        id: 'privacyPolicy',
+                                                        name: 'privacyPolicy',
                                                         value: 'true',
-                                                        checked: acknowledgementInformationData.privacyPolicyProfile === true,
+                                                        checked: acknowledgementInformationData.privacyPolicy.value === true,
                                                         onChange: formFieldData 
                                                     }
                                                 ]
                                             }
                                         }
                                         formFieldMasking={
-                                            (validateAcknowledgementInformationData[`privacyPolicyProfile`][0] === 'required')&&
+                                            (validateAcknowledgementInformationData[`privacyPolicy`][0] === 'required')&&
                                             {
                                                 mask: 'required',
                                             }
@@ -153,8 +153,7 @@ const Acknowledgement = (props) => {
                                 >
                                     <img src='/assets/left-arrow.png' className='back-img-icon img-fluid' />Back
                                 </button>
-                        }
-                        {/* <button className='btn btn-secondary'>Save</button> */}
+                        }           
                         <button 
                             className='btn btn-primary' 
                             onClick={ () => { 

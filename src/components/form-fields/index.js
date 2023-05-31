@@ -11,6 +11,7 @@ const createField = (inputType, formFieldSettings, formFieldMasking) => {
                   href={formFieldSettings.anchorLinkSetting.hrefLink}
                   className={formFieldSettings.anchorLinkSetting.class}
                   target={ (formFieldSettings.anchorLinkSetting.isTarget)? "_blank" : "_self" } 
+                  rel="noreferrer"
                 >
                   {formFieldSettings.label}
                 </a>

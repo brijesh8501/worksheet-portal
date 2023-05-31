@@ -282,7 +282,7 @@ export const initialState = {
                 label: 'Brokerage postal/zip code',
                 value: ''
             },
-            privacyPolicyProfile: {
+            privacyPolicy: {
                 label: 'I agree that I have read and accept the Privacy Policy/Terms of Use',
                 value: false
             }
@@ -461,8 +461,8 @@ export const initialState = {
                 value: ''
             }
         },
-        acknowledgementInformation:{
-            privacyPolicyProfile: {
+        acknowledgement:{
+            privacyPolicy: {
                 label: 'I agree that I have read and accept the Privacy Policy/Terms of Use',
                 value: false
             }
@@ -503,7 +503,7 @@ export const initialState = {
                 brokerageProvince: ['required'],
                 brokerageCountry: ['required'],
                 brokeragePostalCode: ['required', 'postalCode'],
-                privacyPolicyProfile: ['required']
+                privacyPolicy: ['required']
             }
         },
         worksheetForm:{
@@ -556,8 +556,8 @@ export const initialState = {
                 p2purchasingType: ['required'],
                 p2notes: ['notRequired']
             },
-            acknowledgementInformation:{
-                privacyPolicyProfile: ['required']
+            acknowledgement:{
+                privacyPolicy: ['required']
             }
         }
     }
