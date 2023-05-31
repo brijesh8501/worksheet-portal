@@ -32,6 +32,9 @@ const SidebarMenu = (props) => {
                                 id={`sidebar${item[0]}`} 
                                 data-sidebar={item[0]} 
                                 onClick={props.showSection}
+                                onKeyPress={props.showSection}
+                                tabIndex='0'
+                                role="button"
                                 >
                                     {item[1].title}
                             </div>
@@ -46,6 +49,9 @@ const SidebarMenu = (props) => {
                                             data-sidebar={item[0]} 
                                             data-childitem={data[getKey[2]]} 
                                             onClick={props.showSection}
+                                            onKeyPress={props.showSection}
+                                            tabIndex='0'
+                                            role="button"
                                             key={j}
                                             >
                                                 {data[getKey[0]]}
@@ -61,7 +67,10 @@ const SidebarMenu = (props) => {
                             id={`sidebar${item[0]}`} 
                             data-sidebar={item[0]} 
                             onClick={props.showSection}
+                            onKeyPress={props.showSection}
                             key={i}
+                            tabIndex='0'
+                            role="button"
                             >
                                 {item[1].title}
                         </div>);

@@ -52,9 +52,11 @@ const AgentInformation = (props) => {
         `/${portalSetting.projectSetup.assetFolder}/${portalSetting.projectSetup.profileIcon}`
       ];
  
-     const openImageViewer = useCallback((index) => {
-         setCurrentImage(index);
-         setIsViewerOpen(true);
+     const openImageViewer = useCallback((index, e) => {
+        if( e.type === 'click' || ( e.type === 'keypress' && e.charCode === 13 ) ){ 
+            setCurrentImage(index);
+            setIsViewerOpen(true);
+        }
        }, []);
      
        const closeImageViewer = () => {
@@ -75,56 +77,56 @@ const AgentInformation = (props) => {
                     <div className='agent-information-wrapper bg-white p-3'>
                         <div className='d-flex gap-3'>
                             <div className='cw-50'>
-                                <div>First name</div>
-                                <div className='text-readonly'>Brijesh</div>
+                                <div htmlFor='agentFirstName'>First name</div>
+                                <div className='text-readonly' id='agentFirstName' tabIndex='0'>Brijesh</div>
                             </div>
                             <div className='cw-50'>
-                                <div>Last name</div>
-                                <div className='text-readonly'>Brijesh</div>
-                            </div>
-                        </div>
-                        <div className='d-flex gap-3 mt-3'>
-                            <div className='cw-50'>
-                                <div>Contact number</div>
-                                <div className='text-readonly'>Brijesh</div>
-                            </div>
-                            <div className='cw-50'>
-                                <div>Email address</div>
-                                <div className='text-readonly'>Brijesh</div>
+                                <div htmlFor='agentLastName'>Last name</div>
+                                <div className='text-readonly' id='agentLastName' tabIndex='0'>Brijesh</div>
                             </div>
                         </div>
                         <div className='d-flex gap-3 mt-3'>
                             <div className='cw-50'>
-                                <div>Brokerage name</div>
-                                <div className='text-readonly'>Brijesh</div>
+                                <div htmlFor='agentContactNumber'>Contact number</div>
+                                <div className='text-readonly' id='agentContactNumber' tabIndex='0'>Brijesh</div>
                             </div>
                             <div className='cw-50'>
-                                <div>Brokerage contact number</div>
-                                <div className='text-readonly'>Brijesh</div>
+                                <div htmlFor='agentEmailAddress'>Email address</div>
+                                <div className='text-readonly' id='agentEmailAddress' tabIndex='0'>Brijesh</div>
+                            </div>
+                        </div>
+                        <div className='d-flex gap-3 mt-3'>
+                            <div className='cw-50'>
+                                <div htmlFor='brokerageName'>Brokerage name</div>
+                                <div className='text-readonly' id='brokerageName' tabIndex='0'>Brijesh</div>
+                            </div>
+                            <div className='cw-50'>
+                                <div htmlFor='brokerageContactNumber'>Brokerage contact number</div>
+                                <div className='text-readonly' id='brokerageContactNumber' tabIndex='0'>Brijesh</div>
                             </div>
                         </div>
                         <div className='mt-3'>
-                            <div>Brokerage address</div>
-                            <div className='text-readonly'>Brijesh</div>
+                            <div htmlFor='brokerageAddress'>Brokerage address</div>
+                            <div className='text-readonly' id='brokerageAddress' tabIndex='0'>Brijesh</div>
                         </div>
                         <div className='d-flex gap-3 mt-3'>
                             <div className='cw-50'>
-                                <div>Brokerage city</div>
-                                <div className='text-readonly'>Brijesh</div>
+                                <div htmlFor='brokerageCity'>Brokerage city</div>
+                                <div className='text-readonly' id='brokerageCity' tabIndex='0'>Brijesh</div>
                             </div>
                             <div className='cw-50'>
-                                <div>Brokerage province/state/region</div>
-                                <div className='text-readonly'>Brijesh</div>
+                                <div htmlFor='brokerageProvince'>Brokerage province/state/region</div>
+                                <div className='text-readonly' id='brokerageProvince' tabIndex='0'>Brijesh</div>
                             </div>
                         </div>
                         <div className='d-flex gap-3 mt-3'>
                             <div className='cw-50'>
-                                <div>Brokerage country</div>
-                                <div className='text-readonly'>Brijesh</div>
+                                <div htmlFor='brokerageCountry'>Brokerage country</div>
+                                <div className='text-readonly' id='brokerageCountry' tabIndex='0'>Brijesh</div>
                             </div>
                             <div className='cw-50'>
-                                <div>Brokerage postal/zip code</div>
-                                <div className='text-readonly'>Brijesh</div>
+                                <div htmlFor='brokeragePostalCode'>Brokerage postal/zip code</div>
+                                <div className='text-readonly' id='brokeragePostalCode' tabIndex='0' >Brijesh</div>
                             </div>
                         </div>
                         <div className='mt-3'>
@@ -132,11 +134,13 @@ const AgentInformation = (props) => {
                                 {agentBusinessCard.map((src, index) => (
                                     <img
                                         src={ src }
-                                        onClick={ () => openImageViewer(index) }
+                                        onClick={ (event) => openImageViewer(index, event) }
+                                        onKeyPress={ (event) => openImageViewer(index, event) }
                                         key={ index }
                                         style={{ margin: '2px' }}
                                         alt=""
                                         className="img-fluid agent-business-card"
+                                        tabIndex='0'
                                     />
                                 ))}
 

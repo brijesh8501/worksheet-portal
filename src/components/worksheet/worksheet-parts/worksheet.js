@@ -13,6 +13,7 @@ const Worksheet = () => {
     const { worksheetSidebarSetting } = myState;
 
     const showSectionBySidebar = (e) => {
+        
         if( e.type === 'click' || ( e.type === 'keypress' && e.charCode === 13 ) ){  
             const sectionClicked = e.target.attributes.getNamedItem('data-sidebar').value;
             let actionPayload = {
@@ -38,6 +39,7 @@ const Worksheet = () => {
             }else{
                 actionPayload['childItem'] = null;
             }
+            
             dispatch( changeWorksheetSideBar(actionPayload) );
         }
     }
