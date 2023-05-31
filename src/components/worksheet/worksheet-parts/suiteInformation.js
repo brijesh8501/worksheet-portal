@@ -80,7 +80,7 @@ const SuiteInformation = (props) => {
                                             if(data.fieldType === 'textbox'){
 
                                                 return( <div className='flex-even' key={j}>
-                                                    <label className='form-label'>
+                                                    <label className='form-label' htmlFor={data.id}>
                                                         {data.label} 
                                                         &nbsp;
                                                         { (validateSuiteInformationData[data.name][0] === 'required')&& <span className='text-danger'>*</span> }

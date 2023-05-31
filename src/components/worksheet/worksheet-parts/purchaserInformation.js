@@ -73,7 +73,7 @@ const PurchaserInformation = (props) => {
                     {
                         (purchaserPrefix === 'p2')&&
                             <div>
-                                <label className='form-check-label'>
+                                <label className='form-check-label' htmlFor='isSecondaryPurchaserRequired' aria-label='Would you like to add secondary purchaser?'>
                                     {purchaserInformationData[`isSecondaryPurchaserRequired`].label}
                                     &nbsp; 
                                     { ( purchaserPrefix === 'p2' && validatePurchaserInformationData['isSecondaryPurchaserRequired'][0] === 'required')&& <span className='text-danger'>*</span> }
@@ -122,7 +122,7 @@ const PurchaserInformation = (props) => {
                         <div className='purchaser-information-box px-3'>
                             <div className='d-flex gap-3 justify-content-center align-items-center'>
                                 <div className='cw-50'>
-                                    <label className='form-label'>
+                                    <label className='form-label' htmlFor={`${purchaserPrefix}firstName`}>
                                         {purchaserInformationData[`${purchaserPrefix}firstName`].label}
                                         &nbsp;
                                         { (validatePurchaserInformationData[`${purchaserPrefix}firstName`][0] === 'required')&& <span className='text-danger'>*</span> } 
@@ -151,7 +151,7 @@ const PurchaserInformation = (props) => {
                                     />
                                 </div>
                                 <div className='cw-50'>
-                                    <label className='form-label'>
+                                    <label className='form-label' htmlFor={`${purchaserPrefix}lastName`}>
                                         {purchaserInformationData[`${purchaserPrefix}lastName`].label}
                                         &nbsp; 
                                         { (validatePurchaserInformationData[`${purchaserPrefix}lastName`][0] === 'required')&& <span className='text-danger'>*</span> }
@@ -181,7 +181,7 @@ const PurchaserInformation = (props) => {
                                 </div>
                             </div>
                             <div className='mt-3'>
-                                <label className='form-label'>
+                                <label className='form-label' htmlFor={`${purchaserPrefix}address`}>
                                     {purchaserInformationData[`${purchaserPrefix}address`].label}
                                     &nbsp;
                                     { (validatePurchaserInformationData[`${purchaserPrefix}address`][0] === 'required')&& <span className='text-danger'>*</span> }
@@ -211,7 +211,7 @@ const PurchaserInformation = (props) => {
                             </div>
                             <div className='d-flex gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
-                                    <label className='form-label'>
+                                    <label className='form-label' htmlFor={`${purchaserPrefix}city`}>
                                         {purchaserInformationData[`${purchaserPrefix}city`].label}
                                         &nbsp; 
                                         { (validatePurchaserInformationData[`${purchaserPrefix}city`][0] === 'required')&& <span className='text-danger'>*</span> }
@@ -240,7 +240,7 @@ const PurchaserInformation = (props) => {
                                     />
                                 </div>
                                 <div className='cw-50'>
-                                    <label className='form-label'>
+                                    <label className='form-label' htmlFor={`${purchaserPrefix}province`}>
                                         {purchaserInformationData[`${purchaserPrefix}province`].label}
                                         &nbsp;
                                         { (validatePurchaserInformationData[`${purchaserPrefix}province`][0] === 'required')&& <span className='text-danger'>*</span> }
@@ -271,7 +271,7 @@ const PurchaserInformation = (props) => {
                             </div>
                             <div className='d-flex gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
-                                    <label className='form-label'>
+                                    <label className='form-label' htmlFor={`${purchaserPrefix}country`}>
                                         {purchaserInformationData[`${purchaserPrefix}country`].label}
                                         &nbsp;
                                         { (validatePurchaserInformationData[`${purchaserPrefix}country`][0] === 'required')&& <span className='text-danger'>*</span> }
@@ -300,7 +300,7 @@ const PurchaserInformation = (props) => {
                                     />
                                 </div>
                                 <div className='cw-50'>
-                                    <label className='form-label'>
+                                    <label className='form-label' htmlFor={`${purchaserPrefix}postalCode`}>
                                         {purchaserInformationData[`${purchaserPrefix}postalCode`].label}
                                         &nbsp;
                                         { (validatePurchaserInformationData[`${purchaserPrefix}postalCode`][0] === 'required')&& <span className='text-danger'>*</span> }
@@ -333,7 +333,7 @@ const PurchaserInformation = (props) => {
                             </div>
                             <div className='d-flex gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
-                                    <label className='form-label'>
+                                    <label className='form-label' htmlFor={`${purchaserPrefix}phoneNumber`}>
                                         {purchaserInformationData[`${purchaserPrefix}phoneNumber`].label}
                                         &nbsp;
                                         { (validatePurchaserInformationData[`${purchaserPrefix}phoneNumber`][0] === 'required')&& <span className='text-danger'>*</span> }
@@ -364,7 +364,7 @@ const PurchaserInformation = (props) => {
                                     />
                                 </div>
                                 <div className='cw-50'>
-                                    <label className='form-label'>
+                                    <label className='form-label' htmlFor={`${purchaserPrefix}emailAddress`}>
                                         {purchaserInformationData[`${purchaserPrefix}emailAddress`].label}
                                         &nbsp;
                                         { (validatePurchaserInformationData[`${purchaserPrefix}emailAddress`][0] === 'required')&& <span className='text-danger'>*</span> }
@@ -395,7 +395,7 @@ const PurchaserInformation = (props) => {
                             </div>
                             <div className='d-flex gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
-                                    <label className='form-label'>
+                                    <label className='form-label' htmlFor={`${purchaserPrefix}dob`}>
                                         {purchaserInformationData[`${purchaserPrefix}dob`].label}
                                         &nbsp;
                                         { (validatePurchaserInformationData[`${purchaserPrefix}dob`][0] === 'required')&& <span className='text-danger'>*</span> }
@@ -426,7 +426,7 @@ const PurchaserInformation = (props) => {
                                     />
                                 </div>
                                 <div className='cw-50'>
-                                    <label className='form-label'>
+                                    <label className='form-label' htmlFor={`${purchaserPrefix}maritalStatus`}>
                                         {purchaserInformationData[`${purchaserPrefix}maritalStatus`].label}
                                         &nbsp;
                                         { (validatePurchaserInformationData[`${purchaserPrefix}maritalStatus`][0] === 'required')&& <span className='text-danger'>*</span> }
@@ -481,7 +481,7 @@ const PurchaserInformation = (props) => {
                             </div>
                             <div className='d-flex gap-3 justify-content-center align-items-center mt-3'>
                                 <div className='cw-50'>
-                                    <label className='form-label'>
+                                    <label className='form-label' htmlFor={`${purchaserPrefix}occupation`}>
                                         {purchaserInformationData[`${purchaserPrefix}occupation`].label}
                                         &nbsp;
                                         { (validatePurchaserInformationData[`${purchaserPrefix}occupation`][0] === 'required')&& <span className='text-danger'>*</span> }
@@ -510,7 +510,7 @@ const PurchaserInformation = (props) => {
                                     />
                                 </div>
                                 <div className='cw-50'>
-                                    <label className='form-label'>
+                                    <label className='form-label' htmlFor={`${purchaserPrefix}employer`}>
                                         {purchaserInformationData[`${purchaserPrefix}employer`].label}
                                         &nbsp; 
                                         { (validatePurchaserInformationData[`${purchaserPrefix}employer`][0] === 'required')&& <span className='text-danger'>*</span> }
@@ -540,7 +540,7 @@ const PurchaserInformation = (props) => {
                                 </div>
                             </div>
                             <div className='mt-3 d-flex gap-3 justify-content-start align-items-center'>
-                                <label className='form-label mb-0'>
+                                <label className='form-label mb-0' htmlFor={`${purchaserPrefix}purchasingType`} aria-label='Your client is purchasing this home'>
                                     {purchaserInformationData[`${purchaserPrefix}purchasingType`].label}
                                     &nbsp;
                                     { (validatePurchaserInformationData[`${purchaserPrefix}purchasingType`][0] === 'required')&& <span className='text-danger'>*</span> }
@@ -627,7 +627,7 @@ const PurchaserInformation = (props) => {
                                 </div>
                             </div>
                             <div className='mt-3'>
-                                <label className='form-label'>Government ID (held next to your face) <span className='text-danger'>*</span></label>
+                                <label className='form-label' htmlFor='governmentIdWithFace'>Government ID (held next to your face) <span className='text-danger'>*</span></label>
                                 <FormFields 
                                     formField='file' 
                                     formFieldSettings={ 
@@ -640,7 +640,7 @@ const PurchaserInformation = (props) => {
                                 />
                             </div>
                             <div className='mt-3'>
-                                <label className='form-label'>Government ID (front) <span className='text-danger'>*</span></label>
+                                <label className='form-label' htmlFor='governmentIdFront'>Government ID (front) <span className='text-danger'>*</span></label>
                                 <FormFields 
                                     formField='file' 
                                     formFieldSettings={ 
@@ -653,7 +653,7 @@ const PurchaserInformation = (props) => {
                                 />
                             </div>
                             <div className='mt-3'>
-                                <label className='form-label'>Government ID (back) <span className='text-danger'>*</span></label>
+                                <label className='form-label' htmlFor='governmentIdBack'>Government ID (back) <span className='text-danger'>*</span></label>
                                 <FormFields 
                                     formField='file' 
                                     formFieldSettings={ 
@@ -666,7 +666,7 @@ const PurchaserInformation = (props) => {
                                 />
                             </div>
                             <div className='mt-3'>
-                                <label className='form-label'>
+                                <label className='form-label' htmlFor={`${purchaserPrefix}notes`}>
                                     {purchaserInformationData[`${purchaserPrefix}notes`].label}
                                     &nbsp;
                                     { (validatePurchaserInformationData[`${purchaserPrefix}notes`][0] === 'required')&& <span className='text-danger'>*</span> }

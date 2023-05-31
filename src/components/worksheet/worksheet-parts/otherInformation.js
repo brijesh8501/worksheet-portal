@@ -67,7 +67,7 @@ const OtherInformation = (props) => {
                 </div>
                 <div className='step-form-body pb-3'>
                     <div>
-                        <label className='form-check-label'>
+                        <label htmlFor='Appointment type' aria-label='appointmentType' className='form-check-label'>
                             Preferred appointment type:
                             &nbsp;
                             { (validateOtherInformationData['appointmentType'][0] === 'required')&& <span className='text-danger'>*</span> }
