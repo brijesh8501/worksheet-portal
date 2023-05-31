@@ -2,12 +2,6 @@ import React, { createElement, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import SidebarMenu from './sidebarMenu';
-// import SuiteInformation from './suiteInformation';
-// import OtherInformation from './otherInformation';
-// import PurchaserInformation from './purchaserInformation';
-// import AgentInformation from './agentInformation';
-// import Acknowledgement from './acknowledgement';
-// import ReviewInformation from './reviewInformation';
 import { changeWorksheetSideBar, resetFormData } from '../../../action';
 
 
@@ -97,14 +91,14 @@ const Worksheet = () => {
             <div className='page-body body-section-wrapper'>
                 <h1 className='text-center mb-5'>Worksheet</h1>
                 <div className='row'>
-                    <div className='col-12 col-lg-3'>
+                    <div className='col-12 col-md-3 col-xxl-2'>
                         <SidebarMenu 
                             showSection={showSectionBySidebar} 
                             sidebarMenuActive={worksheetSidebarSetting.sidebarMenuActive}
                             sidebarMenuChildListActive={worksheetSidebarSetting.sidebarMenuChildListActive}
                         />
                     </div>
-                    <div className='col-12 col-lg-9 mt-5 mt-lg-0'>
+                    <div className='col-12 col-md-9 col-xxl-10 mt-5 mt-md-0'>
                         { createWorksheetComponent() }
                     </div>
                 </div>

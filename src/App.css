@@ -355,7 +355,13 @@ nav{
     background-color: var(--sec-bg-color);
     color: white;
 }
-
+.agent-business-card{
+    width: 300px;
+    cursor: pointer;
+    border: 2px solid var(--fifth-bg-color);
+    border-radius: 10px;
+    padding: 1rem;
+}
 /******************** Assets **********************************/
 .asset-page.page-body{
     max-width: 500px;

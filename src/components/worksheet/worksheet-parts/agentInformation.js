@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
+import ImageViewer from 'react-simple-image-viewer';
 import { useSelector, useDispatch } from 'react-redux';
 import FormFields from '../../form-fields/index';
 import { stepFormPrevNextSidebarItem, stepFormPrevNextSidebarChildItem } from '../../form-setup';
 
 const AgentInformation = (props) => {
+
     const whichParentForm = props.form;
     const myState = useSelector( (state) => state.myState);
 
-    const { worksheetSidebarSetting } = myState;
+    const { worksheetSidebarSetting, portalSetting } = myState;
 
     const getNavigateStepForm = stepFormPrevNextSidebarItem(worksheetSidebarSetting);
     const whichPrevForm = (getNavigateStepForm.prev)? getNavigateStepForm.prev : null;
@@ -40,6 +42,26 @@ const AgentInformation = (props) => {
         const respPrevNextForNavigation = stepFormPrevNextSidebarChildItem(objPrevNextForNavigation);
         navigateNextButton = respPrevNextForNavigation; 
     }
+
+     // image viewer
+     const [currentImage, setCurrentImage] = useState(0);
+     const [isViewerOpen, setIsViewerOpen] = useState(false);
+
+     const agentBusinessCard = [
+        `/${portalSetting.projectSetup.assetFolder}/${portalSetting.projectSetup.projectLogo}`,
+        `/${portalSetting.projectSetup.assetFolder}/${portalSetting.projectSetup.profileIcon}`
+      ];
+ 
+     const openImageViewer = useCallback((index) => {
+         setCurrentImage(index);
+         setIsViewerOpen(true);
+       }, []);
+     
+       const closeImageViewer = () => {
+         setCurrentImage(0);
+         setIsViewerOpen(false);
+       };
+ 
 
 
     return (
@@ -105,9 +127,27 @@ const AgentInformation = (props) => {
                                 <div className='text-readonly'>Brijesh</div>
                             </div>
                         </div>
-                        <div className='d-flex gap-3 mt-3'>
-                            <div>Image 1</div>
-                            <div>Image 2</div>
+                        <div className='mt-3'>
+                            <div className='d-flex gap-3 justify-content-start align-items-start'>
+                                {agentBusinessCard.map((src, index) => (
+                                    <img
+                                        src={ src }
+                                        onClick={ () => openImageViewer(index) }
+                                        key={ index }
+                                        style={{ margin: '2px' }}
+                                        alt=""
+                                        className="img-fluid agent-business-card"
+                                    />
+                                ))}
+
+                                {isViewerOpen && (
+                                    <ImageViewer
+                                    src={ agentBusinessCard }
+                                    currentIndex={ currentImage }
+                                    onClose={ closeImageViewer }
+                                    />
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
