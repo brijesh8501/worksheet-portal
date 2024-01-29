@@ -33,7 +33,6 @@ const Worksheet = () => {
                     setChildActive[sectionClicked][item] = ( sectionClickedChildItem === item )? true : false;
                 });
 
-
                 actionPayload['childItem'] = setChildActive;
 
             }else{

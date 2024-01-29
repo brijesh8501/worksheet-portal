@@ -43,28 +43,10 @@ const AgentInformation = (props) => {
         navigateNextButton = respPrevNextForNavigation; 
     }
 
-     // image viewer
-     const [currentImage, setCurrentImage] = useState(0);
-     const [isViewerOpen, setIsViewerOpen] = useState(false);
-
      const agentBusinessCard = [
         `/${portalSetting.projectSetup.assetFolder}/${portalSetting.projectSetup.projectLogo}`,
         `/${portalSetting.projectSetup.assetFolder}/${portalSetting.projectSetup.profileIcon}`
       ];
- 
-     const openImageViewer = useCallback((index, e) => {
-        if( e.type === 'click' || ( e.type === 'keypress' && e.charCode === 13 ) ){ 
-            setCurrentImage(index);
-            setIsViewerOpen(true);
-        }
-       }, []);
-     
-       const closeImageViewer = () => {
-         setCurrentImage(0);
-         setIsViewerOpen(false);
-       };
- 
-
 
     return (
         <div className='step-form ps-4 pe-3' id={whichParentForm}>
@@ -134,23 +116,15 @@ const AgentInformation = (props) => {
                                 {agentBusinessCard.map((src, index) => (
                                     <img
                                         src={ src }
-                                        onClick={ (event) => openImageViewer(index, event) }
-                                        onKeyPress={ (event) => openImageViewer(index, event) }
                                         key={ index }
                                         style={{ margin: '2px' }}
                                         alt=""
                                         className="img-fluid agent-business-card"
                                         tabIndex='0'
+                                        data-fancybox="gallery"
+                                        data-caption={`Agent business card #${index+1}`}
                                     />
                                 ))}
-
-                                {isViewerOpen && (
-                                    <ImageViewer
-                                    src={ agentBusinessCard }
-                                    currentIndex={ currentImage }
-                                    onClose={ closeImageViewer }
-                                    />
-                                )}
                             </div>
                         </div>
                     </div>

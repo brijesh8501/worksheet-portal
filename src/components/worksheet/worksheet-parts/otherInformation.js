@@ -43,9 +43,10 @@ const OtherInformation = (props) => {
             worksheetSidebarSetting,
             navigateBackNextButton: navigateNextButton
         }
-     
+
         const respPrevNextForNavigation = stepFormPrevNextSidebarChildItem(objPrevNextForNavigation);
         navigateNextButton = respPrevNextForNavigation; 
+        console.log(respPrevNextForNavigation);
     }
 
     const formFieldData = (e) => {

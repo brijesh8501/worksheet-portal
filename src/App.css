@@ -52,6 +52,56 @@
 .cw-50{
     width: calc(50% - 8px);
 }
+.column-headtitle{
+    position: relative;
+}
+.column-headtitle.column-sort-asc:before{
+    content: '\2BC5';
+    font-size: 10px;
+    position: absolute;
+    top: calc(50% + 10px);
+    right: calc(0% + 0.5rem);
+}
+.column-headtitle.column-sort-asc:after{
+    content: '\2BC6';
+    color: #dee2e6;
+    font-size: 10px;
+    position: absolute;
+    top: calc(50% + 17px);
+    right: calc(0% + 0.5rem);
+}
+.column-headtitle.column-sort-desc:before{
+    content: '\2BC5';
+    color: #dee2e6;
+    font-size: 10px;
+    position: absolute;
+    top: calc(50% + 10px);
+    right: calc(0% + 0.5rem);
+}
+.column-headtitle.column-sort-desc:after{
+    content: '\2BC6';
+    font-size: 10px;
+    position: absolute;
+    top: calc(50% + 17px);
+    right: calc(0% + 0.5rem);
+}
+
+.column-headtitle.column-unsort:before{
+    content: '\2BC5';
+    color: #dee2e6;
+    font-size: 10px;
+    position: absolute;
+    top: calc(50% + 10px);
+    right: calc(0% + 0.5rem);
+}
+.column-headtitle.column-unsort:after{
+    content: '\2BC6';
+    color: #dee2e6;
+    font-size: 10px;
+    position: absolute;
+    top: calc(50% + 17px);
+    right: calc(0% + 0.5rem);
+}
 .square-radio {
     position: relative;
     background-image: none !important;
@@ -411,7 +461,7 @@ nav{
     display: inline-block;
     position: absolute;
     top: 10px;
-    left: 4px;
+    left: calc(0% - 0.6rem);
     padding: 0.3rem 0.5rem 0.3rem 1rem;
     background-color: var(--main-bg-color) !important;
     color: #fff;

@@ -24,7 +24,8 @@ const ReviewInformation = (props) => {
             'p2purchasingType',
             'p2notes',
             'brokerageAddress',
-            'appointmentType'
+            'appointmentType',
+            'privacyPolicy'
         ]
     }
 
@@ -107,7 +108,7 @@ const ReviewInformation = (props) => {
                             <legend className='page-title'>Purchaser Information</legend>
                             <div>
                                 <h2 className='h6 mt-3 mb-3 text-decoration-underline'>Primary Purchaser</h2>
-                                <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center'>
+                                <div className='d-flex flex-wrap gap-3 justify-content-start align-items-start'>
                                 {
                                     Object.entries(worksheetForm.primaryPurchaser).map( (item, i)=>{
                                         return(<div className={`${reviewDesignSetting.fullWidth.includes(item[0])? 'w-100' : 'cw-50'}`} key={i}>
@@ -121,15 +122,32 @@ const ReviewInformation = (props) => {
                             </div>
                             <div>
                                 <h2 className='h6 mt-5 mb-3 text-decoration-underline'>Secondary Purchaser</h2>
-                                <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center'>
+                                <div className='d-flex flex-wrap gap-3 justify-content-start align-items-start'>
                                 {
                                     Object.entries(worksheetForm.secondaryPurchaser).map( (item, i)=>{
 
-                                        return(<div className={`${reviewDesignSetting.fullWidth.includes(item[0])? 'w-100' : 'cw-50'}`} key={i}>
+                                        if(
+                                            (
+                                                worksheetForm.secondaryPurchaser.isSecondaryPurchaserRequired.value === "No" ||
+                                                worksheetForm.secondaryPurchaser.isSecondaryPurchaserRequired.value === ""
+                                            )
+                                        ){
+
+                                            return (i === 0)?
+                                                (<div className={`${reviewDesignSetting.fullWidth.includes(item[0])? 'w-100' : 'cw-50'}`} key={i}>
+                                                    <label htmlFor={`${whichChildForm}${item[0]}`}>{item[1].label}</label>
+                                                    <input type="text" className='form-control' name={`${whichChildForm}${item[0]}`} id={`${whichChildForm}${item[0]}`} value={item[1].value} readOnly/>
+                                                </div>) : '';
+
+                                        }else{
+
+                                            return(<div className={`${reviewDesignSetting.fullWidth.includes(item[0])? 'w-100' : 'cw-50'}`} key={i}>
                                                 <label htmlFor={`${whichChildForm}${item[0]}`}>{item[1].label}</label>
                                                 <input type="text" className='form-control' name={`${whichChildForm}${item[0]}`} id={`${whichChildForm}${item[0]}`} value={item[1].value} readOnly/>
-                                            </div>
-                                        );
+                                            </div>);
+
+                                        }
+
                                     })
                                 }
                                 </div>
@@ -138,15 +156,15 @@ const ReviewInformation = (props) => {
                         <fieldset className='mt-4'>
                             <legend className='page-title'>Agent Information</legend>
                             <div>
-                                <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center'>
+                                <div className='d-flex flex-wrap gap-3 justify-content-start align-items-start'>
                                 {
                                     Object.entries(profileForm.profileInformation).map( (item, i)=>{
-                                        return (item[0] !== 'privacyPolicyProfile')&&
+                                        return (item[0] !== 'privacyPolicy')?
                                             (<div className={`${reviewDesignSetting.fullWidth.includes(item[0])? 'w-100' : 'cw-50'}`} key={i}>
                                                     <label htmlFor={`${whichChildForm}${item[0]}`}>{item[1].label}</label>
                                                     <input type="text" className='form-control' name={`${whichChildForm}${item[0]}`} id={`${whichChildForm}${item[0]}`} value={item[1].value} readOnly/>
                                                 </div>
-                                            )
+                                            ) : ''
                                     })
                                 }
                                 </div>
@@ -154,9 +172,22 @@ const ReviewInformation = (props) => {
                         </fieldset>
                         <fieldset className='mt-4'>
                             <legend className='page-title'>Acknowledgement</legend>
+                            <div>
+                                <div className='d-flex flex-wrap gap-3 justify-content-start align-items-start'>
+                                    {
+                                        Object.entries(worksheetForm.acknowledgement).map( (item, i)=>{
+                                            return (<div className={`${reviewDesignSetting.fullWidth.includes(item[0])? 'w-100' : 'cw-50'}`} key={i}>
+                                                        <label htmlFor={`${whichChildForm}${item[0]}`}>{item[1].label}</label>
+                                                        <input type="text" className='form-control' name={`${whichChildForm}${item[0]}`} id={`${whichChildForm}${item[0]}`} value={(item[1].value)? 'Yes' : 'No'} readOnly/>
+                                                    </div>
+                                                )
+                                        })
+                                    } 
+                                </div>
+                            </div>
                         </fieldset>
                         <div className='mt-4 fst-italic small'>
-                            <p className='mb-0'>* If you wish not to submit worksheet at this moment then "Save" and continue with submitting worksheet later.</p>  
+                            <p className='mb-0'>* If you wish not to submit worksheet at this moment then "Save" and continue with submitting worksheet later.</p> 
                         </div>
                     </div>
                 </div>

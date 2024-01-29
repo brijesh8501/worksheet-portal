@@ -25,12 +25,12 @@ const Navbar = (prop) => {
         menuRight: [{
             name: 'profile',
             label: 'Profile',
-            link: '/profile',
+            link: '/profile/',
             class: `text-decoration-none px-2 py-2 profile-menu-item ${ (currentPagePath.includes('profile'))? 'menu-active':'' }`
         },{
             name: 'logout',
             label: 'Logout',
-            link: '/logout',
+            link: '/logout/',
             class: 'text-decoration-none px-2 py-2 profile-menu-item'
         }]
     }
@@ -41,7 +41,7 @@ const Navbar = (prop) => {
         menuList['menuLeft'].push({
                 name: 'worksheet',
                 label: 'Worksheet',
-                link: '/worksheet/list',
+                link: '/worksheet/list/',
                 menuFor: headerMenu.isWorksheetMenuRequired.menuFor,
                 class: `text-decoration-none nav-menu-item d-flex justify-content-center align-items-center text-white px-4 py-2 ${ (currentPagePath.includes('worksheet/list'))? 'menu-active':'' }`
             });
@@ -50,7 +50,7 @@ const Navbar = (prop) => {
         menuList['menuLeft'].push({
             name: 'assets',
             label: 'Assets',
-            link: '/assets',
+            link: '/assets/',
             menuFor: headerMenu.isAssetsMenuRequiredmenuFor,
             class: `text-decoration-none nav-menu-item d-flex justify-content-center align-items-center text-white px-4 py-2 ${ (currentPagePath.includes('assets'))? 'menu-active':'' }`
         });

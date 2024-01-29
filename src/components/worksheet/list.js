@@ -13,7 +13,7 @@ const WorksheetList = () => {
                         <h1 className='text-center mb-5'>Worksheets</h1>
                         <div className='d-flex justify-content-between align-items-center'>
                             <div className='px-0 px-sm-3'>
-                                <Link to='/worksheet/create' className='btn btn-primary'>Submit my worksheet</Link>
+                                <Link to='/worksheet/create/' className='btn btn-primary'>Submit my worksheet</Link>
                             </div>
                         </div>
                         <hr className='mx-0 mx-sm-3'/>
@@ -66,12 +66,12 @@ const WorksheetList = () => {
                                 <table className='table table-bordered table-striped list-table mx-auto' id='worksheet-list-table'>
                                     <thead>
                                         <tr>
-                                            <th width='15%'><span className='position-absolute' id='list-head-tag'>Primary Purchaser</span>First name</th>
-                                            <th width='15%'>Last name</th>
-                                            <th width='15%'>Email address</th>
-                                            <th width='15%'>Contact number</th>
-                                            <th width='23%'>#First choice - Model & Lot number</th>
-                                            <th width='12%'>Date submitted</th>
+                                            <th width='15%' className='column-headtitle column-sort-asc'><span className='position-absolute' id='list-head-tag'>Primary Purchaser</span>First name</th>
+                                            <th width='15%' className='column-headtitle column-unsort'>Last name</th>
+                                            <th width='15%' className='column-headtitle column-unsort'>Email address</th>
+                                            <th width='15%' className='column-headtitle column-unsort'>Contact number</th>
+                                            <th width='23%' className='column-headtitle column-unsort'>#Choice</th>
+                                            <th width='12%' className='column-headtitle column-sort-desc'>Date submitted</th>
                                             <th width='5%'>Action</th>
                                         </tr>
                                     </thead>
@@ -81,15 +81,23 @@ const WorksheetList = () => {
                                             <td>Data 2</td>
                                             <td>Data 3</td>
                                             <td>Data 4</td>
-                                            <td>Data 5</td>
+                                            <td>
+                                                <ol className='ps-3'>
+                                                    <li>lot - model - elevation</li>
+                                                    <li>lot - model - elevation</li>
+                                                    <li>lot - model - elevation</li>
+                                                </ol>
+                                            </td>
                                             <td>Data 6</td>
-                                            <td className='d-flex flex-wrap justify-content-center'>
-                                                <Link to='/worksheet/edit/1' className='list-icon-link'>
-                                                    <img src='/assets/edit-icon.png' className='img-fluid' />
-                                                </Link>
-                                                <Link to='/worksheet/delete/1' className='list-icon-link'>
-                                                    <img src='/assets/delete-icon.png' className='img-fluid' />
-                                                </Link>
+                                            <td>
+                                                <div className='d-flex flex-wrap justify-content-center'>
+                                                    <Link to='/worksheet/edit/1/' className='list-icon-link'>
+                                                        <img src='/assets/edit-icon.png' className='img-fluid' />
+                                                    </Link>
+                                                    <Link to='/worksheet/delete/1/' className='list-icon-link'>
+                                                        <img src='/assets/delete-icon.png' className='img-fluid' />
+                                                    </Link>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -97,15 +105,23 @@ const WorksheetList = () => {
                                             <td>Data 2</td>
                                             <td>Data 3</td>
                                             <td>Data 4</td>
-                                            <td>Data 5</td>
+                                            <td>
+                                                <ol className='ps-3'>
+                                                    <li>lot - model - elevation</li>
+                                                    <li>lot - model - elevation</li>
+                                                    <li>lot - model - elevation</li>
+                                                </ol>
+                                            </td>
                                             <td>Data 6</td>
-                                            <td className='d-flex flex-wrap justify-content-center'>
-                                                <Link to='/worksheet/edit/2' className='list-icon-link'>
-                                                    <img src='/assets/edit-icon.png' className='img-fluid' />
-                                                </Link>
-                                                <Link to='/worksheet/delete/2' className='list-icon-link'>
-                                                    <img src='/assets/delete-icon.png' className='img-fluid' />
-                                                </Link>
+                                            <td>
+                                                <div className='d-flex flex-wrap justify-content-center'>
+                                                    <Link to='/worksheet/edit/1/' className='list-icon-link'>
+                                                        <img src='/assets/edit-icon.png' className='img-fluid' />
+                                                    </Link>
+                                                    <Link to='/worksheet/delete/1/' className='list-icon-link'>
+                                                        <img src='/assets/delete-icon.png' className='img-fluid' />
+                                                    </Link>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -113,15 +129,23 @@ const WorksheetList = () => {
                                             <td>Data 2</td>
                                             <td>Data 3</td>
                                             <td>Data 4</td>
-                                            <td>Data 5</td>
+                                            <td>
+                                                <ol className='ps-3'>
+                                                    <li>lot - model - elevation</li>
+                                                    <li>lot - model - elevation</li>
+                                                    <li>lot - model - elevation</li>
+                                                </ol>
+                                            </td>
                                             <td>Data 6</td>
-                                            <td className='d-flex flex-wrap justify-content-center'>
-                                                <Link to='/worksheet/edit' className='list-icon-link'>
-                                                    <img src='/assets/edit-icon.png' className='img-fluid' />
-                                                </Link>
-                                                <Link to='/worksheet/delete' className='list-icon-link'>
-                                                    <img src='/assets/delete-icon.png' className='img-fluid' />
-                                                </Link>
+                                            <td>
+                                                <div className='d-flex flex-wrap justify-content-center'>
+                                                    <Link to='/worksheet/edit/1/' className='list-icon-link'>
+                                                        <img src='/assets/edit-icon.png' className='img-fluid' />
+                                                    </Link>
+                                                    <Link to='/worksheet/delete/1/' className='list-icon-link'>
+                                                        <img src='/assets/delete-icon.png' className='img-fluid' />
+                                                    </Link>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -129,15 +153,23 @@ const WorksheetList = () => {
                                             <td>Data 2</td>
                                             <td>Data 3</td>
                                             <td>Data 4</td>
-                                            <td>Data 5</td>
+                                            <td>
+                                                <ol className='ps-3'>
+                                                    <li>lot - model - elevation</li>
+                                                    <li>lot - model - elevation</li>
+                                                    <li>lot - model - elevation</li>
+                                                </ol>
+                                            </td>
                                             <td>Data 6</td>
-                                            <td className='d-flex flex-wrap justify-content-center'>
-                                                <Link to='/worksheet/edit' className='list-icon-link'>
-                                                    <img src='/assets/edit-icon.png' className='img-fluid' />
-                                                </Link>
-                                                <Link to='/worksheet/delete' className='list-icon-link'>
-                                                    <img src='/assets/delete-icon.png' className='img-fluid' />
-                                                </Link>
+                                            <td>
+                                                <div className='d-flex flex-wrap justify-content-center'>
+                                                    <Link to='/worksheet/edit/1/' className='list-icon-link'>
+                                                        <img src='/assets/edit-icon.png' className='img-fluid' />
+                                                    </Link>
+                                                    <Link to='/worksheet/delete/1/' className='list-icon-link'>
+                                                        <img src='/assets/delete-icon.png' className='img-fluid' />
+                                                    </Link>
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>
