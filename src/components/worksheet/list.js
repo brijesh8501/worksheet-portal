@@ -70,9 +70,9 @@ const WorksheetList = () => {
                                             <th width='15%' className='column-headtitle column-unsort'>Last name</th>
                                             <th width='15%' className='column-headtitle column-unsort'>Email address</th>
                                             <th width='15%' className='column-headtitle column-unsort'>Contact number</th>
-                                            <th width='23%' className='column-headtitle column-unsort'>#Choice</th>
-                                            <th width='12%' className='column-headtitle column-sort-desc'>Date submitted</th>
-                                            <th width='5%'>Action</th>
+                                            <th width='20%' className='column-headtitle column-unsort'>#Choice</th>
+                                            <th width='10%' className='column-headtitle column-sort-desc'>Date submitted</th>
+                                            <th width='10%'>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -90,7 +90,7 @@ const WorksheetList = () => {
                                             </td>
                                             <td>Data 6</td>
                                             <td>
-                                                <div className='d-flex flex-wrap justify-content-center'>
+                                                <div className='d-flex flex-wrap justify-content-center px-4'>
                                                     <Link to='/worksheet/edit/1/' className='list-icon-link'>
                                                         <img src='/assets/edit-icon.png' className='img-fluid' />
                                                     </Link>
@@ -114,7 +114,7 @@ const WorksheetList = () => {
                                             </td>
                                             <td>Data 6</td>
                                             <td>
-                                                <div className='d-flex flex-wrap justify-content-center'>
+                                                <div className='d-flex flex-wrap justify-content-center px-4'>
                                                     <Link to='/worksheet/edit/1/' className='list-icon-link'>
                                                         <img src='/assets/edit-icon.png' className='img-fluid' />
                                                     </Link>
@@ -138,7 +138,7 @@ const WorksheetList = () => {
                                             </td>
                                             <td>Data 6</td>
                                             <td>
-                                                <div className='d-flex flex-wrap justify-content-center'>
+                                                <div className='d-flex flex-wrap justify-content-center px-4'>
                                                     <Link to='/worksheet/edit/1/' className='list-icon-link'>
                                                         <img src='/assets/edit-icon.png' className='img-fluid' />
                                                     </Link>
@@ -162,7 +162,7 @@ const WorksheetList = () => {
                                             </td>
                                             <td>Data 6</td>
                                             <td>
-                                                <div className='d-flex flex-wrap justify-content-center'>
+                                                <div className='d-flex flex-wrap justify-content-center px-4'>
                                                     <Link to='/worksheet/edit/1/' className='list-icon-link'>
                                                         <img src='/assets/edit-icon.png' className='img-fluid' />
                                                     </Link>

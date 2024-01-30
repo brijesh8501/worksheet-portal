@@ -21,23 +21,23 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<Home/>} />
-        <Route exact path="/login/" element={<Login/>} />
-        <Route exact path="/create-account/" element={<CreateAccount/>} />
-        <Route exact path="/forgot-password/" element={<ForgotPassword/>} />
-        <Route exact path="/change-password/" element={<ChangePassword/>} />
-        <Route path="/profile/" element={<Profile/>} />
+        <Route exact strict path="/" element={<Home/>} />
+        <Route exact strict path="/login/" element={<Login/>} />
+        <Route exact strict path="/create-account/" element={<CreateAccount/>} />
+        <Route exact strict path="/forgot-password/" element={<ForgotPassword/>} />
+        <Route exact strict path="/change-password/" element={<ChangePassword/>} />
+        <Route exact strict path="/profile/" element={<Profile/>} />
         {
           (portalSetting.worksheet)&&
           <>
-            <Route path="/worksheet/list/" element={<WorksheetList/>} />
-            <Route path="/worksheet/create/" element={<WorksheetInsert/>} />
-            <Route path="/worksheet/edit/:id/" element={<WorksheetEdit/>} />
+            <Route exact strict path="/worksheet/list/" element={<WorksheetList/>} />
+            <Route exact strict path="/worksheet/create/" element={<WorksheetInsert/>} />
+            <Route exact strict path="/worksheet/edit/:id/" element={<WorksheetEdit/>} />
           </>
         } 
         {
           (portalSetting.assets)&&
-          <Route path="/assets" element={<Assets/>} />
+          <Route exact strict path="/assets/" element={<Assets/>} />
         }
       
       </Routes>

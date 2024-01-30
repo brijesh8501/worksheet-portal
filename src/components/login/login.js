@@ -151,7 +151,7 @@ const Login = () => {
                     </div>
                     <div className='mt-4 d-flex justify-content-between'>
                         <button className='btn btn-primary'>Sign in</button>
-                        <Link to='/forgot-password' className='btn text-decoration-underline'>Forgot password?</Link>
+                        <Link to='/forgot-password/' className='btn text-decoration-underline'>Forgot password?</Link>
                     </div>
                 </div>
             </div>

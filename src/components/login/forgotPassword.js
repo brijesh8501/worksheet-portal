@@ -74,8 +74,8 @@ const ForgotPassword = () => {
                    <div className='create-account-footer w-100'>
                        <hr className='mt-4'/>
                        <div className='d-flex justify-content-between'>
-                           <Link to='/login' className='btn p-0 text-decoration-underline'>Sign in</Link>
-                           <Link to='/create-account' className='btn p-0 text-decoration-underline'>Sign up</Link>
+                           <Link to='/login/' className='btn p-0 text-decoration-underline'>Sign in</Link>
+                           <Link to='/create-account/' className='btn p-0 text-decoration-underline'>Sign up</Link>
                        </div>
                    </div>
                </div>

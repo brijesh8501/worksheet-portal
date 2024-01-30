@@ -16,7 +16,7 @@
     --sixth-bg-color: #e7d3c8;
 }
 .body-section{
-    min-height: 100vh;
+    min-height: calc( 100vh - 244px );
 }
 .list-table{
     width: 1270px;
@@ -54,6 +54,7 @@
 }
 .column-headtitle{
     position: relative;
+    cursor: pointer;
 }
 .column-headtitle.column-sort-asc:before{
     content: '\2BC5';
@@ -457,6 +458,9 @@ nav{
 }
 /**************************************************************/
 /**************** Worksheet list ***************************/
+.list-icon{
+    width: 30px;
+}
 #list-head-tag{
     display: inline-block;
     position: absolute;
@@ -543,7 +547,7 @@ nav{
 /**************** login *******************/
 .login-inner-wrapper{
     background-color: var(--main-bg-color);
-    min-height: 100vh;
+    min-height: calc(100vh - 72px);
 }
 .login-logo{
     width: 150px;
@@ -552,12 +556,11 @@ nav{
     max-width: 450px;
 }
 .create-account-form{
-    max-width: 500px;
+    max-width: 600px;
 }
 
 .login-form,
 .create-account-form{
     background-color: var(--fifth-bg-color);
     border: 1px solid var(--fourth-bg-color);
-    border-radius: 0.5rem;
 }

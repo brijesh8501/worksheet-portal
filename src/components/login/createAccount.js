@@ -71,214 +71,222 @@ const CreateAccount = () => {
                         <p className='mb-2 mb-sm-0 small'>Please fill in your profile to sign up for a new account.</p>
                         <p className='small'>You can add additional information after you have signed up.</p>
                     </div>
-                    <div className='create-account-body w-100'>
-                        <div>
-                            <label className='form-label'>
-                                {createAccountInformationData['firstName'].label} 
-                                &nbsp;
-                                { (validateCreateAccountInformationData['firstName'][0] === 'required')&& <span className='text-danger'>*</span> }
-                            </label>
-                            <FormFields 
-                                formField='textbox' 
-                                formFieldSettings={ 
-                                    { 
-                                        class: 'form-control',
-                                        id: `firstName`,
-                                        name: `firstName`,
-                                        type: 'text',
-                                        placeholder: 'Enter first name',
-                                        value: createAccountInformationData['firstName'].value,
-                                        onChange: formFieldData
-                                    }
-                                }
-                                formFieldMasking = {
-                                    (validateCreateAccountInformationData['firstName'][0] === 'required')&&
-                                    {
-                                        mask: 'required',
-                                    }
-                                }
-                            />
-                        </div>
-                        <div className='mt-3'>
-                            <label className='form-label'>
-                                {createAccountInformationData['lastName'].label} 
-                                &nbsp;
-                                { (validateCreateAccountInformationData['lastName'][0] === 'required')&& <span className='text-danger'>*</span> }
-                            </label>
-                            <FormFields 
-                                formField='textbox' 
-                                formFieldSettings={ 
-                                    { 
-                                        class: 'form-control',
-                                        id: `lastName`,
-                                        name: `lastName`,
-                                        type: 'text',
-                                        placeholder: 'Enter last name',
-                                        value: createAccountInformationData['lastName'].value,
-                                        onChange: formFieldData
-                                    }
-                                }
-                                formFieldMasking = {
-                                    (validateCreateAccountInformationData['lastName'][0] === 'required')&&
-                                    {
-                                        mask: 'required',
-                                    }
-                                }
-                            />
-                        </div>
-                        <div className='mt-3'>
-                            <label className='form-label'>
-                                {createAccountInformationData['emailAddress'].label} 
-                                &nbsp;
-                                { (validateCreateAccountInformationData['emailAddress'][0] === 'required')&& <span className='text-danger'>*</span> }
-                            </label>
-                            <FormFields 
-                                formField='textbox' 
-                                formFieldSettings={ 
-                                    { 
-                                        class: 'form-control',
-                                        id: `emailAddress`,
-                                        name: `emailAddress`,
-                                        type: 'text',
-                                        placeholder: 'Enter email address',
-                                        value: createAccountInformationData['emailAddress'].value,
-                                        onChange: formFieldData
-                                    }
-                                }
-                                formFieldMasking = {
-                                    (validateCreateAccountInformationData['emailAddress'][0] === 'required')&&
-                                    {
-                                        mask: validateCreateAccountInformationData['emailAddress'][1],
-                                    }
-                                }
-                            />
-                        </div>
-                        <div className='mt-3'>
-                            <label className='form-label'>
-                                {createAccountInformationData['confirmEmailAddress'].label} 
-                                &nbsp;
-                                { (validateCreateAccountInformationData['confirmEmailAddress'][0] === 'required')&& <span className='text-danger'>*</span> }
-                            </label>
-                            <FormFields 
-                                formField='textbox' 
-                                formFieldSettings={ 
-                                    { 
-                                        class: 'form-control',
-                                        id: `confirmEmailAddress`,
-                                        name: `confirmEmailAddress`,
-                                        type: 'text',
-                                        placeholder: 'Confirm your email address',
-                                        value: createAccountInformationData['confirmEmailAddress'].value,
-                                        onChange: formFieldData
-                                    }
-                                }
-                                formFieldMasking = {
-                                    (validateCreateAccountInformationData['confirmEmailAddress'][0] === 'required')&&
-                                    {
-                                        mask: validateCreateAccountInformationData['confirmEmailAddress'][1],
-                                    }
-                                }
-                            />
-                        </div>
-                        <div className='mt-3'>
-                            <label className='form-label'>
-                                {createAccountInformationData['phoneNumber'].label} 
-                                &nbsp;
-                                { (validateCreateAccountInformationData['phoneNumber'][0] === 'required')&& <span className='text-danger'>*</span> }
-                            </label>
-                            <FormFields 
-                                formField='textbox' 
-                                formFieldSettings={ 
-                                    { 
-                                        class: 'form-control',
-                                        id: `phoneNumber`,
-                                        name: `phoneNumber`,
-                                        type: 'text',
-                                        placeholder: 'Enter phone number',
-                                        value: createAccountInformationData['phoneNumber'].value,
-                                        onChange: formFieldData
-                                    }
-                                }
-                                formFieldMasking = {
-                                    (validateCreateAccountInformationData['phoneNumber'][0] === 'required')&&
-                                    {
-                                        mask: validateCreateAccountInformationData['phoneNumber'][1],
-                                    }
-                                }
-                            />
-                        </div>
-                        <div className='mt-3'>
-                            <label className='form-label'>
-                                {createAccountInformationData['password'].label} 
-                                &nbsp;
-                                { (validateCreateAccountInformationData['password'][0] === 'required')&& <span className='text-danger'>*</span> }
-                            </label>
-                            <div className="input-group">
+                    <div className='create-account-body w-100 d-flex gap-3 flex-column'>
+                        <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center'>
+                            <div className='flex-fill'>
+                                <label className='form-label'>
+                                    {createAccountInformationData['firstName'].label} 
+                                    &nbsp;
+                                    { (validateCreateAccountInformationData['firstName'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                </label>
                                 <FormFields 
                                     formField='textbox' 
                                     formFieldSettings={ 
                                         { 
                                             class: 'form-control',
-                                            id: `password`,
-                                            name: `password`,
-                                            type: 'password',
-                                            placeholder: 'Enter password',
-                                            value: createAccountInformationData['password'].value,
+                                            id: `firstName`,
+                                            name: `firstName`,
+                                            type: 'text',
+                                            placeholder: 'Enter first name',
+                                            value: createAccountInformationData['firstName'].value,
                                             onChange: formFieldData
                                         }
                                     }
                                     formFieldMasking = {
-                                        (validateCreateAccountInformationData['password'][0] === 'required')&&
+                                        (validateCreateAccountInformationData['firstName'][0] === 'required')&&
                                         {
                                             mask: 'required',
                                         }
                                     }
                                 />
-                                <span className="input-group-text" tabIndex='0'>
-                                    <img 
-                                        src={ (isPasswordVisible)? '/assets/eye-view.png' : '/assets/eye-hidden.png' }
-                                        data-target='password' 
-                                        className='img-eye-icon img-fluid'
-                                        onClick = { showHidePasswordField } 
-                                    />
-                                </span>
+                            </div>
+                            <div className='flex-fill'>
+                                <label className='form-label'>
+                                    {createAccountInformationData['lastName'].label} 
+                                    &nbsp;
+                                    { (validateCreateAccountInformationData['lastName'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                </label>
+                                <FormFields 
+                                    formField='textbox' 
+                                    formFieldSettings={ 
+                                        { 
+                                            class: 'form-control',
+                                            id: `lastName`,
+                                            name: `lastName`,
+                                            type: 'text',
+                                            placeholder: 'Enter last name',
+                                            value: createAccountInformationData['lastName'].value,
+                                            onChange: formFieldData
+                                        }
+                                    }
+                                    formFieldMasking = {
+                                        (validateCreateAccountInformationData['lastName'][0] === 'required')&&
+                                        {
+                                            mask: 'required',
+                                        }
+                                    }
+                                />
                             </div>
                         </div>
-                        <div className='mt-3'>
-                            <label className='form-label'>
-                                {createAccountInformationData['confirmPassword'].label}
-                                &nbsp;
-                                { (validateCreateAccountInformationData['confirmPassword'][0] === 'required')&& <span className='text-danger'>*</span> }
-                            </label>
-                            <div className="input-group">
+                        <div className='d-flex flex-wrap gap-3 flex-column justify-content-center align-items-center'>
+                            <div className='flex-fill w-100'>
+                                <label className='form-label'>
+                                    {createAccountInformationData['emailAddress'].label} 
+                                    &nbsp;
+                                    { (validateCreateAccountInformationData['emailAddress'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                </label>
                                 <FormFields 
                                     formField='textbox' 
                                     formFieldSettings={ 
                                         { 
                                             class: 'form-control',
-                                            id: `confirmPassword`,
-                                            name: `confirmPassword`,
-                                            type: 'password',
-                                            placeholder: 'Confirm your password',
-                                            value: createAccountInformationData['confirmPassword'].value,
+                                            id: `emailAddress`,
+                                            name: `emailAddress`,
+                                            type: 'text',
+                                            placeholder: 'Enter email address',
+                                            value: createAccountInformationData['emailAddress'].value,
                                             onChange: formFieldData
                                         }
                                     }
                                     formFieldMasking = {
-                                        (validateCreateAccountInformationData['confirmPassword'][0] === 'required')&&
+                                        (validateCreateAccountInformationData['emailAddress'][0] === 'required')&&
                                         {
-                                            mask: 'required',
+                                            mask: validateCreateAccountInformationData['emailAddress'][1],
                                         }
                                     }
                                 />
-                                <span className="input-group-text" tabIndex='0'>
-                                    <img 
-                                        src={ (isConfirmPasswordVisible)? '/assets/eye-view.png' : '/assets/eye-hidden.png' } 
-                                        data-target='confirmPassword' 
-                                        className='img-eye-icon img-fluid'
-                                        onClick = {showHidePasswordField} 
+                            </div>
+                            <div className='flex-fill w-100'>
+                                <label className='form-label'>
+                                    {createAccountInformationData['confirmEmailAddress'].label} 
+                                    &nbsp;
+                                    { (validateCreateAccountInformationData['confirmEmailAddress'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                </label>
+                                <FormFields 
+                                    formField='textbox' 
+                                    formFieldSettings={ 
+                                        { 
+                                            class: 'form-control',
+                                            id: `confirmEmailAddress`,
+                                            name: `confirmEmailAddress`,
+                                            type: 'text',
+                                            placeholder: 'Confirm your email address',
+                                            value: createAccountInformationData['confirmEmailAddress'].value,
+                                            onChange: formFieldData
+                                        }
+                                    }
+                                    formFieldMasking = {
+                                        (validateCreateAccountInformationData['confirmEmailAddress'][0] === 'required')&&
+                                        {
+                                            mask: validateCreateAccountInformationData['confirmEmailAddress'][1],
+                                        }
+                                    }
+                                />
+                            </div>
+                        </div>
+                        <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center'>
+                            <div className='flex-fill'>
+                                <label className='form-label'>
+                                    {createAccountInformationData['phoneNumber'].label} 
+                                    &nbsp;
+                                    { (validateCreateAccountInformationData['phoneNumber'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                </label>
+                                <FormFields 
+                                    formField='textbox' 
+                                    formFieldSettings={ 
+                                        { 
+                                            class: 'form-control',
+                                            id: `phoneNumber`,
+                                            name: `phoneNumber`,
+                                            type: 'text',
+                                            placeholder: 'Enter phone number',
+                                            value: createAccountInformationData['phoneNumber'].value,
+                                            onChange: formFieldData
+                                        }
+                                    }
+                                    formFieldMasking = {
+                                        (validateCreateAccountInformationData['phoneNumber'][0] === 'required')&&
+                                        {
+                                            mask: validateCreateAccountInformationData['phoneNumber'][1],
+                                        }
+                                    }
+                                />
+                            </div>
+                        </div>
+                        <div className='d-flex flex-wrap gap-3 flex-column justify-content-center align-items-center'>
+                            <div className='flex-fill w-100'>
+                                <label className='form-label'>
+                                    {createAccountInformationData['password'].label} 
+                                    &nbsp;
+                                    { (validateCreateAccountInformationData['password'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                </label>
+                                <div className="input-group">
+                                    <FormFields 
+                                        formField='textbox' 
+                                        formFieldSettings={ 
+                                            { 
+                                                class: 'form-control',
+                                                id: `password`,
+                                                name: `password`,
+                                                type: 'password',
+                                                placeholder: 'Enter password',
+                                                value: createAccountInformationData['password'].value,
+                                                onChange: formFieldData
+                                            }
+                                        }
+                                        formFieldMasking = {
+                                            (validateCreateAccountInformationData['password'][0] === 'required')&&
+                                            {
+                                                mask: 'required',
+                                            }
+                                        }
                                     />
-                                </span>
+                                    <span className="input-group-text" tabIndex='0'>
+                                        <img 
+                                            src={ (isPasswordVisible)? '/assets/eye-view.png' : '/assets/eye-hidden.png' }
+                                            data-target='password' 
+                                            className='img-eye-icon img-fluid'
+                                            onClick = { showHidePasswordField } 
+                                        />
+                                    </span>
+                                </div>
+                            </div>
+                            <div className='flex-fill w-100'>
+                                <label className='form-label'>
+                                    {createAccountInformationData['confirmPassword'].label}
+                                    &nbsp;
+                                    { (validateCreateAccountInformationData['confirmPassword'][0] === 'required')&& <span className='text-danger'>*</span> }
+                                </label>
+                                <div className="input-group">
+                                    <FormFields 
+                                        formField='textbox' 
+                                        formFieldSettings={ 
+                                            { 
+                                                class: 'form-control',
+                                                id: `confirmPassword`,
+                                                name: `confirmPassword`,
+                                                type: 'password',
+                                                placeholder: 'Confirm your password',
+                                                value: createAccountInformationData['confirmPassword'].value,
+                                                onChange: formFieldData
+                                            }
+                                        }
+                                        formFieldMasking = {
+                                            (validateCreateAccountInformationData['confirmPassword'][0] === 'required')&&
+                                            {
+                                                mask: 'required',
+                                            }
+                                        }
+                                    />
+                                    <span className="input-group-text" tabIndex='0'>
+                                        <img 
+                                            src={ (isConfirmPasswordVisible)? '/assets/eye-view.png' : '/assets/eye-hidden.png' } 
+                                            data-target='confirmPassword' 
+                                            className='img-eye-icon img-fluid'
+                                            onClick = {showHidePasswordField} 
+                                        />
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div className='mt-4 text-center'>
@@ -287,8 +295,8 @@ const CreateAccount = () => {
                         <div className='create-account-footer w-100'>
                             <hr className='mt-4'/>
                             <div className='d-flex justify-content-between'>
-                                <Link to='/login' className='btn p-0 text-decoration-underline'>Sign in</Link>
-                                <Link to='/forgot-password' className='btn p-0 text-decoration-underline'>Forgot password?</Link>
+                                <Link to='/login/' className='btn p-0 text-decoration-underline'>Sign in</Link>
+                                <Link to='/forgot-password/' className='btn p-0 text-decoration-underline'>Forgot password?</Link>
                             </div>
                         </div>
                     </div>

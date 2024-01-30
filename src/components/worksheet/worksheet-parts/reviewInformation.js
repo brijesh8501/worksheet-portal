@@ -91,7 +91,7 @@ const ReviewInformation = (props) => {
                             }
                         </fieldset>
                         <fieldset className='mt-4'>
-                            <legend className='page-title'>Other Information</legend>
+                            <legend className='page-title'>General Information</legend>
                             <div className='d-flex flex-wrap gap-3 justify-content-center align-items-center'>
                                 {
                                     Object.entries(worksheetForm.otherInformation).map( (item, i)=>{

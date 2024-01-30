@@ -151,8 +151,8 @@ const ChangePassword = () => {
                         <div className='create-account-footer w-100'>
                             <hr className='mt-4'/>
                             <div className='d-flex justify-content-between'>
-                                <Link to='/login' className='btn p-0 text-decoration-underline'>Sign in</Link>
-                                <Link to='/forgot-password' className='btn p-0 text-decoration-underline'>Forgot password?</Link>
+                                <Link to='/login/' className='btn p-0 text-decoration-underline'>Sign in</Link>
+                                <Link to='/forgot-password/' className='btn p-0 text-decoration-underline'>Forgot password?</Link>
                             </div>
                         </div>
                     </div>
